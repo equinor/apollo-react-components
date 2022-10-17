@@ -27,10 +27,10 @@
   },
   "lint-staged": {
     "apps/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
+      "yarn lint"
     ],
-    "packages/ui/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
+    "packages/ui/**/*.{js,ts,jsx,tsx}, !.storybook": [
+      "yarn lint"
     ],
     "*.json": [
       "prettier --write"
