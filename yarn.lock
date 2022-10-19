@@ -1200,6 +1200,18 @@
     "@floating-ui/react-dom-interactions" "^0.10.1"
     downshift "^6.1.12"
 
+"@equinor/eds-core-react@^0.25.0":
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/@equinor/eds-core-react/-/eds-core-react-0.25.0.tgz#3a5a700accb77dacc17d6b0344925c5cc76b0e90"
+  integrity sha512-ifdwFXkeSx5kNX2jY8P/qWfFlo4AnCZ65bEpw5UMwegGnenHnYfvGdlMYYNK7uNh8M0KPeWsq+851B1ezZf4LQ==
+  dependencies:
+    "@babel/runtime" "^7.19.0"
+    "@equinor/eds-icons" "0.15.0"
+    "@equinor/eds-tokens" "0.9.0"
+    "@equinor/eds-utils" "0.6.0"
+    "@floating-ui/react-dom-interactions" "^0.10.1"
+    downshift "^6.1.12"
+
 "@equinor/eds-icons@0.15.0", "@equinor/eds-icons@^0.15.0":
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@equinor/eds-icons/-/eds-icons-0.15.0.tgz#73969d20bc2ddb08b9d53947d392c63352012d02"
@@ -1210,6 +1222,11 @@
   resolved "https://registry.yarnpkg.com/@equinor/eds-tokens/-/eds-tokens-0.8.0.tgz#5060aa76d83624f5325e24825828234ef34fd7d3"
   integrity sha512-uT4WHNCjKcGGZ7Wq7x33ZmgyKlBmYt86QtBWoNpUST3CeqwNrrQ8MffU16sXTEo5RCM9n0s8cjUa0IVjjzAHIg==
 
+"@equinor/eds-tokens@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@equinor/eds-tokens/-/eds-tokens-0.9.0.tgz#725c065e423a3e5a1ea04630b402fac5936799c4"
+  integrity sha512-7FLqrH13dRc/q+wxHzZrIGkV35XMYIGojjkqLIbIeM0AwijSE1PETKqLauNf8VtMZPevt/2Hr9dV2a2NpEORQw==
+
 "@equinor/eds-utils@0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@equinor/eds-utils/-/eds-utils-0.5.0.tgz#4bdcc06b1943f65c4803efb9b54f421efcc54685"
@@ -1217,6 +1234,17 @@
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@equinor/eds-tokens" "0.8.0"
+    "@popperjs/core" "2.11.6"
+    babel-jest "^29.1.2"
+    react-popper "2.3.0"
+
+"@equinor/eds-utils@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@equinor/eds-utils/-/eds-utils-0.6.0.tgz#e8c75d5e6359a7e9e5f5f870d8d539056615d17b"
+  integrity sha512-OernvkkgJK//QHqlMgO3nbY5t5Bsjjlbdr7buuXE8fbzEY+Qk4/2TkBEVZ/+tjUiYVpg9FQmeShkGYwLt5n61w==
+  dependencies:
+    "@babel/runtime" "^7.19.0"
+    "@equinor/eds-tokens" "0.9.0"
     "@popperjs/core" "2.11.6"
     babel-jest "^29.1.2"
     react-popper "2.3.0"
@@ -2762,33 +2790,17 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-dom@^17.0.11":
-  version "17.0.17"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.17.tgz#2e3743277a793a96a99f1bf87614598289da68a1"
-  integrity sha512-VjnqEmqGnasQKV0CWLevqMTXBYG9GbwuE6x3VetERLh0cq2LTptFE73MrQi2S7GkKXCf2GgwItB/melLnxfnsg==
-  dependencies:
-    "@types/react" "^17"
-
-"@types/react-dom@^18.0.6":
+"@types/react-dom@^18.0.6", "@types/react-dom@^18.2.0":
   version "18.0.6"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.6.tgz#36652900024842b74607a17786b6662dd1e103a1"
   integrity sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.0.17":
+"@types/react@*", "@types/react@^18.0.17", "@types/react@^18.2.0":
   version "18.0.21"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.21.tgz#b8209e9626bb00a34c76f55482697edd2b43cc67"
   integrity sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@^17", "@types/react@^17.0.37":
-  version "17.0.50"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.50.tgz#39abb4f7098f546cfcd6b51207c90c4295ee81fc"
-  integrity sha512-ZCBHzpDb5skMnc1zFXAXnL3l1FAdi+xZvwxK+PkglMmBrwjpp9nKaWuEvrGnSifCJmBFGxZOOFuwC6KH/s0NuA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -8981,11 +8993,6 @@ react-refresh@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
   integrity sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==
-
-react-table@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.8.0.tgz#07858c01c1718c09f7f1aed7034fcfd7bda907d2"
-  integrity sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==
 
 react@^18.2.0:
   version "18.2.0"

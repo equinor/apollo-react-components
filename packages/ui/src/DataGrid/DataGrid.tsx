@@ -44,10 +44,10 @@ export interface DataGridProps<T> {
   tableWidth?: string
 }
 
-export const DataGrid = <T extends {}>(props: DataGridProps<T>) => {
+export function DataGrid<T>(props: DataGridProps<T>) {
   const [globalFilter, setGlobalFilter] = useState('')
 
-  const enableGlobalFilter = <T extends {}>(value: T) => {
+  function enableGlobalFilter<T>(value: T) {
     return props?.globalFilter ? value : undefined
   }
 
