@@ -1,15 +1,12 @@
 import { useState } from 'react'
-import { Button } from 'ui'
+import { PokemonTable } from './components'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div>
-      <h1>DataGrid Library</h1>
-      <div>
-        <Button />
-      </div>
+      <PokemonTable />
     </div>
   )
 }
