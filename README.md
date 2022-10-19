@@ -1,4 +1,4 @@
-# Apollo React Components 
+# Apollo React Components
 
 This is a monorepo for the development of reusable react components based on EDS.
 
@@ -8,8 +8,8 @@ This turborepo uses [Yarn](https://classic.yarnpkg.com/) as a package manager. I
 
 ### Apps and Packages
 
-- `docs`: a Vite.js React app
-- `ui`: a stub React component librar.y
+- `playground`: a Vite.js React app for testing components
+- `ui`: a stub React component library
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
