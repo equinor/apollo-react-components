@@ -16,8 +16,8 @@
     "@storybook/react": "^7.0.0-alpha.38",
     "@storybook/react-vite": "^7.0.0-alpha.38",
     "@storybook/testing-library": "^0.0.13",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^18.0.1",
+    "@types/react-dom": "^18.0.1",
     "@types/styled-components": "^5.1.26",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
@@ -30,6 +30,7 @@
   "dependencies": {
     "@equinor/eds-core-react": "^0.24.0",
     "@equinor/eds-icons": "^0.15.0",
+    "@equinor/eds-tokens": "^0.9.0",
     "@tanstack/match-sorter-utils": "^8.5.14",
     "@tanstack/react-table": "^8.5.15",
     "styled-components": "^5.3.6"

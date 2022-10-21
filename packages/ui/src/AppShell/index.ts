@@ -1,1 +1,2 @@
-export * from './AppShell'
+export { AppShell } from './AppShell'
+export { AppSidebar } from './AppSidebar'

@@ -1222,7 +1222,7 @@
   resolved "https://registry.yarnpkg.com/@equinor/eds-tokens/-/eds-tokens-0.8.0.tgz#5060aa76d83624f5325e24825828234ef34fd7d3"
   integrity sha512-uT4WHNCjKcGGZ7Wq7x33ZmgyKlBmYt86QtBWoNpUST3CeqwNrrQ8MffU16sXTEo5RCM9n0s8cjUa0IVjjzAHIg==
 
-"@equinor/eds-tokens@0.9.0":
+"@equinor/eds-tokens@0.9.0", "@equinor/eds-tokens@^0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@equinor/eds-tokens/-/eds-tokens-0.9.0.tgz#725c065e423a3e5a1ea04630b402fac5936799c4"
   integrity sha512-7FLqrH13dRc/q+wxHzZrIGkV35XMYIGojjkqLIbIeM0AwijSE1PETKqLauNf8VtMZPevt/2Hr9dV2a2NpEORQw==
@@ -2790,14 +2790,14 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-dom@^18.0.6", "@types/react-dom@^18.2.0":
+"@types/react-dom@^18.0.1", "@types/react-dom@^18.0.6":
   version "18.0.6"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.6.tgz#36652900024842b74607a17786b6662dd1e103a1"
   integrity sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.0.17", "@types/react@^18.2.0":
+"@types/react@*", "@types/react@^18.0.1", "@types/react@^18.0.17":
   version "18.0.21"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.21.tgz#b8209e9626bb00a34c76f55482697edd2b43cc67"
   integrity sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==
