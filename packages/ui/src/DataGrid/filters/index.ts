@@ -1,2 +1,2 @@
-export * from './functions'
 export * from './DebouncedInput'
+export * from './functions'

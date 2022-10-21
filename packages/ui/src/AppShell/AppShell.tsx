@@ -6,27 +6,35 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   margin: 0;
-  .--content {
+  height: 100vh;
+  .--content-wrapper {
+    display: flex;
+    flex: 1;
+  }
+  .--content-outlet {
     flex: 1;
   }
 `
 
 export interface AppShellProps {
   children?: ReactNode
+  sidebar?: ReactNode
   icon?: IconData
   title?: string
 }
 
-export const AppShell = ({ children, icon, title }: AppShellProps) => (
+export const AppShell = ({ children, icon, title, sidebar }: AppShellProps) => (
   <Wrapper>
-    <TopBar>
+    <TopBar sticky={false}>
       <TopBar.Header>
         <Icon data={icon ?? apps} />
         <span>{title ?? 'App Title'}</span>
       </TopBar.Header>
     </TopBar>
-    <div className="--content">{children}</div>
+    <div className="--content-wrapper">
+      {sidebar}
+      <div className="--content-outlet">{children}</div>
+    </div>
   </Wrapper>
 )
