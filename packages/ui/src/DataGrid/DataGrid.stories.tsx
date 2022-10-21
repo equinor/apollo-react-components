@@ -16,6 +16,7 @@ export default {
     globalFilter: true,
     tableWidth: '100%',
     captionPadding: '1rem',
+    sortable: true,
   },
   argTypes: {
     data: disableControl(),

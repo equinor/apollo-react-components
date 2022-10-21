@@ -1,4 +1,5 @@
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
+import { capitalizeHeader } from '../utils'
 
 interface Fruit {
   id: number
@@ -48,8 +49,8 @@ export const fruitsData: Fruit[] = [
 
 const columnHelper = createColumnHelper<Fruit>()
 export const fruitColumns: ColumnDef<Fruit, any>[] = [
-  columnHelper.accessor('id', {}),
-  columnHelper.accessor('name', {}),
+  columnHelper.accessor('id', { header: capitalizeHeader }),
+  columnHelper.accessor('name', { header: capitalizeHeader }),
   columnHelper.accessor('latinName', { header: 'Latin Name' }),
   columnHelper.accessor('origin', { header: 'Area of Origin' }),
 ]

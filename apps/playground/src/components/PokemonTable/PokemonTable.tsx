@@ -10,6 +10,7 @@ export const PokemonTable = () => {
       stickyHeader
       globalFilter
       tableCaption="Pokédex"
+      sortable
     />
   )
 }

@@ -4,11 +4,15 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table'
 import { useState } from 'react'
 import styled from 'styled-components'
+import { TableHeader } from './components'
 import { DebouncedInput, fuzzyFilter } from './filters'
+import { enableOrUndefined } from './utils'
 
 const TableWrapper = styled.div<{ width?: string; captionPadding?: string }>`
   & > div {
@@ -42,14 +46,17 @@ export interface DataGridProps<T> {
   globalFilterPlaceholder?: string
   stickyHeader?: boolean
   tableWidth?: string
+  sortable?: boolean
 }
 
 export function DataGrid<T>(props: DataGridProps<T>) {
   const [globalFilter, setGlobalFilter] = useState('')
 
   function enableGlobalFilter<T>(value: T) {
-    return props?.globalFilter ? value : undefined
+    return enableOrUndefined(props.globalFilter, value)
   }
+
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
     columns: props.columns,
@@ -59,7 +66,11 @@ export function DataGrid<T>(props: DataGridProps<T>) {
     globalFilterFn: enableGlobalFilter(fuzzyFilter),
     state: {
       globalFilter: enableGlobalFilter(globalFilter),
+      sorting: sorting,
     },
+    enableSorting: props.sortable,
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
   })
 
@@ -82,19 +93,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
             </FilterContainer>
           )}
         </Table.Caption>
-        <Table.Head sticky={props?.stickyHeader}>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <Table.Row key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <Table.Cell key={header.id} colSpan={header.colSpan}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </Table.Cell>
-              ))}
-            </Table.Row>
-          ))}
-        </Table.Head>
+        <TableHeader sticky={props.stickyHeader} table={table} />
         <Table.Body>
           {table.getRowModel().rows.map((row) => (
             <Table.Row key={row.id}>
