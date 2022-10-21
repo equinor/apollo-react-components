@@ -1,14 +1,7 @@
-import { useState } from 'react'
+import { launch } from '@equinor/eds-icons'
+import { AppShell } from 'ui'
 import { PokemonTable } from './components'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div>
-      <PokemonTable />
-    </div>
-  )
+export function App() {
+  return <AppShell title="Playground" icon={launch} children={<PokemonTable />} />
 }
-
-export default App
