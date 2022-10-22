@@ -33,6 +33,7 @@
     "@equinor/eds-tokens": "^0.9.0",
     "@tanstack/match-sorter-utils": "^8.5.14",
     "@tanstack/react-table": "^8.5.15",
+    "@tanstack/react-virtual": "^3.0.0-alpha.0",
     "styled-components": "^5.3.6"
   }
 }

@@ -5,11 +5,12 @@ import { Pokemon } from '../../data'
 const columnHelper = createColumnHelper<Pokemon>()
 
 export const pokemonColumns = [
-  columnHelper.accessor('id', { header: 'ID' }),
+  columnHelper.accessor('id', { header: 'ID', sortingFn: 'basic' }),
   columnHelper.accessor('name', { header: 'Name' }),
   columnHelper.accessor((row) => row.type.join(', '), {
     id: 'Type',
     cell: (value) => ChipsCell({ values: value.getValue().split(', ') }),
+    enableSorting: false,
   }),
   columnHelper.accessor('base.hp', { header: 'HP' }),
   columnHelper.accessor('base.attack', { header: 'Attack' }),
