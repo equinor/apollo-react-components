@@ -1,5 +1,5 @@
+import { AppShell } from '@equinor/apollo-components'
 import { launch } from '@equinor/eds-icons'
-import { AppShell } from 'ui'
 import { PokemonTable } from './components'
 
 export function App() {

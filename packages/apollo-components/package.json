@@ -1,0 +1,50 @@
+{
+  "name": "@equinor/apollo-components",
+  "version": "1.0.1",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "build-storybook": "storybook build",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "lint": "TIMING=1 eslint . --fix",
+    "storybook": "storybook dev"
+  },
+  "dependencies": {
+    "@equinor/eds-core-react": "^0.24.0",
+    "@equinor/eds-icons": "^0.15.0",
+    "@equinor/eds-tokens": "^0.9.0",
+    "@tanstack/match-sorter-utils": "^8.5.14",
+    "@tanstack/react-table": "^8.5.15",
+    "@tanstack/react-virtual": "^3.0.0-alpha.0",
+    "styled-components": "^5.3.6",
+    "tsup": "^6.3.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.0-alpha.38",
+    "@storybook/addon-interactions": "^7.0.0-alpha.38",
+    "@storybook/addon-links": "^7.0.0-alpha.38",
+    "@storybook/react": "^7.0.0-alpha.38",
+    "@storybook/react-vite": "^7.0.0-alpha.38",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.1",
+    "@types/react-dom": "^18.0.1",
+    "@types/styled-components": "^5.1.26",
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.0-alpha.38",
+    "tsconfig": "*",
+    "typescript": "^4.5.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

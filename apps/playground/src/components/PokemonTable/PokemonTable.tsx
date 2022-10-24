@@ -1,4 +1,4 @@
-import { DataTable } from 'ui'
+import { DataTable } from '@equinor/apollo-components'
 import { pokemon } from '../../data'
 import { pokemonColumns } from './columns'
 

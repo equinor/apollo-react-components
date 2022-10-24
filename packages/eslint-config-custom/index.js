@@ -19,4 +19,5 @@ module.exports = {
       rootDir: ['apps/*/', 'packages/*/'],
     },
   },
+  ignorePatterns: ['dist'],
 }
