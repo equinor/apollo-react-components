@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "husky install",
     "lint": "turbo run lint",
-    "publish-packages": "turbo run build lint test && changeset version && changeset publish"
+    "publish-packages": "turbo run build lint && changeset version && changeset publish"
   },
   "lint-staged": {
     "*.{ts,tsx,md,mdx,js,jsx}": [
