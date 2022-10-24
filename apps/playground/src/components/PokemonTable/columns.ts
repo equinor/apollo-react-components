@@ -1,5 +1,5 @@
+import { ChipsCell } from '@equinor/apollo-components'
 import { createColumnHelper } from '@tanstack/react-table'
-import { ChipsCell } from 'ui'
 import { Pokemon } from '../../data'
 
 const columnHelper = createColumnHelper<Pokemon>()

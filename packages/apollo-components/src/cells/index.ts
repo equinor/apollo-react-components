@@ -1,0 +1,1 @@
+export { ChipsCell } from './ChipsCell'

@@ -8,31 +8,35 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "clean": "turbo run clean",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "postinstall": "husky install"
-  },
-  "devDependencies": {
-    "eslint-config-custom": "*",
-    "gitmoji-cli": "^7.0.2",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "latest",
-    "prettier-plugin-organize-imports": "^3.1.1",
-    "turbo": "latest"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "postinstall": "husky install",
+    "lint": "turbo run lint",
+    "publish-packages": "turbo run build lint test && changeset version && changeset publish"
   },
   "lint-staged": {
     "*.{ts,tsx,md,mdx,js,jsx}": [
       "prettier --write"
     ]
   },
+  "dependencies": {
+    "@changesets/cli": "^2.25.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "gitmoji-cli": "^7.0.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.1.1",
+    "turbo": "latest"
+  },
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "gitmoji": {
     "emojiFormat": "emoji"
-  },
-  "dependencies": {},
-  "packageManager": "yarn@1.22.19"
+  }
 }
