@@ -6,13 +6,10 @@ export const PokemonTable = () => {
   return (
     <DataTable
       columns={pokemonColumns}
+      config={{ sortable: true, virtual: true, height: '800px' }}
       data={pokemon}
-      stickyHeader
-      globalFilter
-      tableCaption="Pokédex"
-      sortable
-      height="800px"
-      virtual
+      filters={{ globalFilter: true }}
+      header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
     />
   )
 }

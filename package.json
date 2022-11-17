@@ -13,7 +13,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "husky install",
     "lint": "turbo run lint",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish"
+    "publish-packages": "turbo run build lint && changeset version && changeset publish",
+    "storybook": "cd packages/apollo-components && yarn storybook"
   },
   "lint-staged": {
     "*.{ts,tsx,md,mdx,js,jsx}": [
