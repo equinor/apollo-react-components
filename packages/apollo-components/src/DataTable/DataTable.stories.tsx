@@ -12,11 +12,18 @@ export default {
   title: 'DataTable/DataTable',
   component: DataTable,
   args: {
-    tableCaption: 'Fruits',
-    globalFilter: true,
-    tableWidth: '100%',
-    captionPadding: '1rem',
-    sortable: true,
+    config: {
+      sortable: true,
+      width: '100%',
+      virtual: false,
+    },
+    header: {
+      captionPadding: '1rem',
+      tableCaption: 'Fruits',
+    },
+    filters: {
+      globalFilter: true,
+    },
   },
   argTypes: {
     data: disableControl(),
@@ -28,17 +35,16 @@ export const Basic: ComponentStoryFn<typeof DataTable> = (props) => (
   <DataTable {...props} data={fruitsData} columns={fruitColumns} />
 )
 
-export const GlobalFilter: ComponentStoryFn<typeof DataTable> = ({
-  globalFilter = true,
-  ...props
-}) => (
+export const GlobalFilter: ComponentStoryFn<typeof DataTable> = ({ filters, ...props }) => (
   <DataTable
     {...props}
     data={fruitsData}
     columns={fruitColumns}
-    globalFilter={globalFilter}
-    globalFilterPlaceholder={
-      props.globalFilterPlaceholder?.length ? props.globalFilterPlaceholder : 'Forage for fruit'
-    }
+    filters={{
+      globalFilter: filters?.globalFilter,
+      globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length
+        ? filters.globalFilterPlaceholder
+        : 'Forage for fruit',
+    }}
   />
 )

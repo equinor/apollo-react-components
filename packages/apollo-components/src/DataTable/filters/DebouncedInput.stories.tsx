@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { DebouncedInput } from './DebouncedInput'
 
 export default {
-  title: 'DataGrid/Debounced Input',
+  title: 'DataTable/Debounced Input',
   component: DebouncedInput,
 } as Meta<typeof DebouncedInput>
 

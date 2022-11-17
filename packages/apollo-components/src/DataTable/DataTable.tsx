@@ -12,6 +12,7 @@ import { BasicTable } from './components/BasicTable'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
+import { DataTableConfig, FilterConfig, HeaderConfig } from './types'
 import { enableOrUndefined } from './utils'
 
 const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPadding?: string }>`
@@ -31,23 +32,17 @@ const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPa
 export interface DataTableProps<T> {
   className?: string
   columns: ColumnDef<T, any>[]
+  config?: DataTableConfig
   data: T[]
-  tableCaption?: string
-  captionPadding?: string
-  globalFilter?: boolean
-  globalFilterPlaceholder?: string
-  stickyHeader?: boolean
-  tableWidth?: string
-  sortable?: boolean
-  virtual?: boolean
-  height?: string
+  filters?: FilterConfig
+  header?: HeaderConfig
 }
 
-export function DataTable<T>({ columns, data, ...props }: DataTableProps<T>) {
+export function DataTable<T>({ columns, data, header, filters, config }: DataTableProps<T>) {
   const [globalFilter, setGlobalFilter] = useState('')
 
   function enableGlobalFilter<T>(value: T) {
-    return enableOrUndefined(props.globalFilter, value)
+    return enableOrUndefined(filters?.globalFilter, value)
   }
 
   const [sorting, setSorting] = useState<SortingState>([])
@@ -62,7 +57,7 @@ export function DataTable<T>({ columns, data, ...props }: DataTableProps<T>) {
       globalFilter: enableGlobalFilter(globalFilter),
       sorting: sorting,
     },
-    enableSorting: props.sortable,
+    enableSorting: config?.sortable,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
@@ -72,27 +67,27 @@ export function DataTable<T>({ columns, data, ...props }: DataTableProps<T>) {
 
   return (
     <DataTableWrapper
-      captionPadding={props.captionPadding}
-      height={props.height}
-      width={props.tableWidth}
+      captionPadding={header?.captionPadding}
+      height={config?.height}
+      width={config?.width}
     >
       <DataTableHeader
-        tableCaption={props.tableCaption}
-        enableGlobalFilter={props.globalFilter}
+        tableCaption={header?.tableCaption}
+        enableGlobalFilter={filters?.globalFilter}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
-        globalFilterPlaceholder={props.globalFilterPlaceholder}
-        captionPadding={props.captionPadding}
+        globalFilterPlaceholder={filters?.globalFilterPlaceholder}
+        captionPadding={header?.captionPadding}
       />
       <div ref={tableContainerRef} className="--table-container">
-        {props.virtual ? (
+        {config?.virtual ? (
           <VirtualTable
             containerRef={tableContainerRef}
             table={table}
-            stickyHeader={props.stickyHeader}
+            stickyHeader={header?.stickyHeader}
           />
         ) : (
-          <BasicTable table={table} stickyHeader={props.stickyHeader} />
+          <BasicTable table={table} stickyHeader={header?.stickyHeader} />
         )}
       </div>
     </DataTableWrapper>

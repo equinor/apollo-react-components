@@ -2,7 +2,7 @@ import { ComponentStoryFn, Meta } from '@storybook/react'
 import { AppShell } from '.'
 
 export default {
-  title: 'App Shell/AppShell',
+  title: 'Layout/AppShell',
   component: AppShell,
 } as Meta<typeof AppShell>
 
