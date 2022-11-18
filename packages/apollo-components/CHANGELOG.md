@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.1.2
+
+### Patch Changes
+
+- Fix incorrect virtualizer code
+
 ## 1.1.1
 
 ### Patch Changes

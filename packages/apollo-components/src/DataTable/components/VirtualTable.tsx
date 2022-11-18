@@ -1,6 +1,6 @@
 import { Table } from '@equinor/eds-core-react'
 import { flexRender, Row, Table as TableType } from '@tanstack/react-table'
-import { useVirtual } from '@tanstack/react-virtual'
+import { useVirtualizer } from '@tanstack/react-virtual'
 import { RefObject } from 'react'
 import { TableHeader } from '.'
 import { PaddingRow } from './PaddingRow'
@@ -14,15 +14,18 @@ export interface VirtualTableProps<T> {
 
 export function VirtualTable<T>({ table, containerRef, ...props }: VirtualTableProps<T>) {
   const { rows } = table.getRowModel()
-  const rowVirtualizer = useVirtual({
-    overscan: 10,
-    size: rows.length,
-    parentRef: containerRef,
+  const rowVirtualizer = useVirtualizer({
+    count: rows.length,
+    estimateSize: () => 35,
+    getScrollElement: () => containerRef.current,
   })
-  const { virtualItems: virtualRows, totalSize } = rowVirtualizer
+
+  const virtualRows = rowVirtualizer.getVirtualItems()
   const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
   const paddingBottom =
-    virtualRows.length > 0 ? totalSize - (virtualRows?.[virtualRows.length - 1]?.end || 0) : 0
+    virtualRows.length > 0
+      ? rowVirtualizer.getTotalSize() - (virtualRows?.[virtualRows.length - 1]?.end || 0)
+      : 0
 
   return (
     <Table>
