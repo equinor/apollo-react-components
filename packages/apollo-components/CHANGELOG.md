@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.1.1
+
+### Patch Changes
+
+- Update react-virtual version to beta
+
 ## 1.1.0
 
 ### Minor Changes
