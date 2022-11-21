@@ -3,12 +3,12 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  RowSelectionState,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { useRef, useState } from 'react'
+import { useAtom } from 'jotai'
+import { useRef } from 'react'
 import styled from 'styled-components'
+import { globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
 import { BasicTable } from './components/BasicTable'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
@@ -40,14 +40,13 @@ export interface DataTableProps<T> {
 }
 
 export function DataTable<T>({ columns, data, header, filters, config }: DataTableProps<T>) {
-  const [globalFilter, setGlobalFilter] = useState('')
+  const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
+  const [sorting, setSorting] = useAtom(tableSortingAtom)
+  const [rowSelectionState, setRowSelectionState] = useAtom(rowSelectionAtom)
 
   function enableGlobalFilter<T>(value: T) {
     return enableOrUndefined(filters?.globalFilter, value)
   }
-
-  const [sorting, setSorting] = useState<SortingState>([])
-  const [rowSelectionState, setRowSelectionState] = useState<RowSelectionState>({})
 
   const table = useReactTable({
     columns: prependSelectColumnIfEnabled(columns, config),
