@@ -3,6 +3,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
+  RowSelectionState,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -13,7 +14,7 @@ import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
 import { DataTableConfig, FilterConfig, HeaderConfig } from './types'
-import { enableOrUndefined } from './utils'
+import { enableOrUndefined, prependSelectColumnIfEnabled } from './utils'
 
 const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPadding?: string }>`
   width: ${(props) => props.width ?? '100%'};
@@ -46,19 +47,22 @@ export function DataTable<T>({ columns, data, header, filters, config }: DataTab
   }
 
   const [sorting, setSorting] = useState<SortingState>([])
+  const [rowSelectionState, setRowSelectionState] = useState<RowSelectionState>({})
 
   const table = useReactTable({
-    columns: columns,
+    columns: prependSelectColumnIfEnabled(columns, config),
     data: data,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
     globalFilterFn: enableGlobalFilter(fuzzyFilter),
     state: {
       globalFilter: enableGlobalFilter(globalFilter),
-      sorting: sorting,
+      sorting: enableOrUndefined(config?.sortable, sorting),
+      rowSelection: rowSelectionState,
     },
+    onRowSelectionChange: setRowSelectionState,
     enableSorting: config?.sortable,
-    onSortingChange: setSorting,
+    onSortingChange: enableOrUndefined(config?.sortable, setSorting),
     getSortedRowModel: getSortedRowModel(),
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
   })
