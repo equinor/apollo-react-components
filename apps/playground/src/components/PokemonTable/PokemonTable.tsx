@@ -1,17 +1,11 @@
-import {
-  DataTable,
-  globalFilterAtom,
-  rowSelectionAtom,
-  tableSortingAtom,
-} from '@equinor/apollo-components'
-import { Provider, useAtom } from 'jotai'
+import { DataTable } from '@equinor/apollo-components'
 import { pokemon } from '../../data'
 import { pokemonColumns } from './columns'
 
 export const PokemonTable = () => {
   return (
     <div>
-      <Provider>
+      <DataTable.Provider>
         <DataTable
           columns={pokemonColumns}
           config={{ sortable: true, virtual: true, height: '400px', enableRowSelection: true }}
@@ -19,9 +13,8 @@ export const PokemonTable = () => {
           filters={{ globalFilter: true }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
         />
-        <DebugTableAtoms name="Pokédex" />
-      </Provider>
-      <Provider>
+      </DataTable.Provider>
+      <DataTable.Provider>
         <DataTable
           columns={pokemonColumns}
           config={{ sortable: true, virtual: true, height: '400px', enableRowSelection: true }}
@@ -29,18 +22,13 @@ export const PokemonTable = () => {
           filters={{ globalFilter: true }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex 2 Electric Boogaloo' }}
         />
-        <DebugTableAtoms name="Pokédex 2" />
-      </Provider>
+      </DataTable.Provider>
+
+      <div id="provider">
+        <div id="external-table-wrapper">
+          <div id="data-table" />
+        </div>
+      </div>
     </div>
   )
-}
-
-function DebugTableAtoms({ name }: { name?: string }) {
-  const [selectedRows] = useAtom(rowSelectionAtom)
-  const [tableSorting] = useAtom(tableSortingAtom)
-  const [globalFilter] = useAtom(globalFilterAtom)
-
-  console.log({ name, selectedRows, tableSorting, globalFilter })
-
-  return null
 }
