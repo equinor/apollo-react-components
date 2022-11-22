@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.2.0
+
+### Minor Changes
+
+- Add row and column selection capabilities
+
 ## 1.1.2
 
 ### Patch Changes

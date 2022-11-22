@@ -35,7 +35,7 @@ export function VirtualTable<T>({ table, containerRef, ...props }: VirtualTableP
         {virtualRows.map((virtualRow) => {
           const row = rows[virtualRow.index] as Row<T>
           return (
-            <Table.Row key={row.id}>
+            <Table.Row key={row.id} active={row.getIsSelected()}>
               {row.getVisibleCells().map((cell) => (
                 <Table.Cell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

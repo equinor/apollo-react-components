@@ -3,17 +3,19 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import { useRef, useState } from 'react'
+import { useAtom } from 'jotai'
+import { useRef } from 'react'
 import styled from 'styled-components'
+import { columnVisibilityAtom, globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
 import { BasicTable } from './components/BasicTable'
+import { ColumnSelect } from './components/ColumnSelect'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
 import { DataTableConfig, FilterConfig, HeaderConfig } from './types'
-import { enableOrUndefined } from './utils'
+import { enableOrUndefined, prependSelectColumnIfEnabled } from './utils'
 
 const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPadding?: string }>`
   width: ${(props) => props.width ?? '100%'};
@@ -39,27 +41,32 @@ export interface DataTableProps<T> {
 }
 
 export function DataTable<T>({ columns, data, header, filters, config }: DataTableProps<T>) {
-  const [globalFilter, setGlobalFilter] = useState('')
+  const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
+  const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
+  const [sorting, setSorting] = useAtom(tableSortingAtom)
+  const [rowSelectionState, setRowSelectionState] = useAtom(rowSelectionAtom)
 
   function enableGlobalFilter<T>(value: T) {
     return enableOrUndefined(filters?.globalFilter, value)
   }
 
-  const [sorting, setSorting] = useState<SortingState>([])
-
   const table = useReactTable({
-    columns: columns,
+    columns: prependSelectColumnIfEnabled(columns, config),
     data: data,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
     globalFilterFn: enableGlobalFilter(fuzzyFilter),
     state: {
       globalFilter: enableGlobalFilter(globalFilter),
-      sorting: sorting,
+      sorting: enableOrUndefined(config?.sortable, sorting),
+      rowSelection: rowSelectionState,
+      columnVisibility,
     },
+    onRowSelectionChange: setRowSelectionState,
     enableSorting: config?.sortable,
-    onSortingChange: setSorting,
+    onSortingChange: enableOrUndefined(config?.sortable, setSorting),
     getSortedRowModel: getSortedRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
   })
 
@@ -74,10 +81,9 @@ export function DataTable<T>({ columns, data, header, filters, config }: DataTab
       <DataTableHeader
         tableCaption={header?.tableCaption}
         enableGlobalFilter={filters?.globalFilter}
-        globalFilter={globalFilter}
-        setGlobalFilter={setGlobalFilter}
         globalFilterPlaceholder={filters?.globalFilterPlaceholder}
         captionPadding={header?.captionPadding}
+        filterActions={<ColumnSelect table={table} />}
       />
       <div ref={tableContainerRef} className="--table-container">
         {config?.virtual ? (
