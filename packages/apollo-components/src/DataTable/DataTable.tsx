@@ -8,8 +8,9 @@ import {
 import { useAtom } from 'jotai'
 import { useRef } from 'react'
 import styled from 'styled-components'
-import { globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
+import { columnVisibilityAtom, globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
 import { BasicTable } from './components/BasicTable'
+import { ColumnSelect } from './components/ColumnSelect'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
@@ -40,6 +41,7 @@ export interface DataTableProps<T> {
 }
 
 export function DataTable<T>({ columns, data, header, filters, config }: DataTableProps<T>) {
+  const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
   const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
   const [sorting, setSorting] = useAtom(tableSortingAtom)
   const [rowSelectionState, setRowSelectionState] = useAtom(rowSelectionAtom)
@@ -58,11 +60,13 @@ export function DataTable<T>({ columns, data, header, filters, config }: DataTab
       globalFilter: enableGlobalFilter(globalFilter),
       sorting: enableOrUndefined(config?.sortable, sorting),
       rowSelection: rowSelectionState,
+      columnVisibility,
     },
     onRowSelectionChange: setRowSelectionState,
     enableSorting: config?.sortable,
     onSortingChange: enableOrUndefined(config?.sortable, setSorting),
     getSortedRowModel: getSortedRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
   })
 
@@ -77,10 +81,9 @@ export function DataTable<T>({ columns, data, header, filters, config }: DataTab
       <DataTableHeader
         tableCaption={header?.tableCaption}
         enableGlobalFilter={filters?.globalFilter}
-        globalFilter={globalFilter}
-        setGlobalFilter={setGlobalFilter}
         globalFilterPlaceholder={filters?.globalFilterPlaceholder}
         captionPadding={header?.captionPadding}
+        filterActions={<ColumnSelect table={table} />}
       />
       <div ref={tableContainerRef} className="--table-container">
         {config?.virtual ? (

@@ -1,11 +1,15 @@
 import { Typography } from '@equinor/eds-core-react'
+import { search } from '@equinor/eds-icons'
+import { useAtom } from 'jotai'
+import { ReactNode } from 'react'
 import styled from 'styled-components'
+import { globalFilterAtom } from '../atoms'
 import { DebouncedInput } from '../filters'
 
 const DataTableHeaderWrapper = styled.div<{ captionPadding?: string }>`
-  & > * + * {
-    margin-top: 0.5rem;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
   padding: ${(props) => props.captionPadding ?? '1rem'};
 `
@@ -13,29 +17,33 @@ const DataTableHeaderWrapper = styled.div<{ captionPadding?: string }>`
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  justify-content: flex-end;
 `
 
 interface DataTableHeaderProps {
   tableCaption?: string
   captionPadding?: string
   enableGlobalFilter?: boolean
-  globalFilter?: string
   globalFilterPlaceholder?: string
-  setGlobalFilter?: (value: string) => void
+  filterActions?: ReactNode
 }
 
 export const DataTableHeader = (props: DataTableHeaderProps) => {
+  const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
+
   return (
     <DataTableHeaderWrapper className="--table-caption" captionPadding={props.captionPadding}>
-      {props?.tableCaption && <Typography variant="h2">{props?.tableCaption}</Typography>}
+      {props?.tableCaption && <Typography variant="h3">{props?.tableCaption}</Typography>}
       {props?.enableGlobalFilter && (
         <FilterContainer className="--filter-container">
           <DebouncedInput
-            value={props.globalFilter ?? ''}
+            value={globalFilter}
+            icon={search}
             placeholder={props?.globalFilterPlaceholder ?? 'Search all columns'}
-            onChange={(value) => props.setGlobalFilter?.(String(value))}
+            onChange={(value) => setGlobalFilter(String(value))}
           />
+          {props.filterActions}
         </FilterContainer>
       )}
     </DataTableHeaderWrapper>
