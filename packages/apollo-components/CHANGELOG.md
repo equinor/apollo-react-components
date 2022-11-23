@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.2.2
+
+### Patch Changes
+
+- d47c90b: Use column header string if set
+
 ## 1.2.1
 
 ### Patch Changes
