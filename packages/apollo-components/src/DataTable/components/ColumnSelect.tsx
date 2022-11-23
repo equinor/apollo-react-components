@@ -3,6 +3,7 @@ import { close, view_column } from '@equinor/eds-icons'
 import { Table } from '@tanstack/react-table'
 import { useRef, useState } from 'react'
 import styled from 'styled-components'
+import { getColumnHeader } from '../utils'
 
 const ColumnSelectContent = styled.div`
   display: grid;
@@ -63,7 +64,7 @@ export function ColumnSelect<T>({ table }: ColumnSelectProps<T>) {
                 <Checkbox
                   key={column.id}
                   checked={column.getIsVisible()}
-                  label={column.id}
+                  label={getColumnHeader(column)}
                   onChange={column.getToggleVisibilityHandler()}
                 />
               )

@@ -1,5 +1,5 @@
 import { Checkbox } from '@equinor/eds-core-react'
-import { ColumnDef, HeaderContext } from '@tanstack/react-table'
+import { Column, ColumnDef, HeaderContext } from '@tanstack/react-table'
 import { DataTableConfig } from './types'
 
 /**
@@ -23,6 +23,17 @@ export function capitalizeHeader<T>(context: HeaderContext<T, any>) {
  */
 export function enableOrUndefined<T>(enabled: boolean | undefined, value: T): T | undefined {
   return Boolean(enabled) ? value : undefined
+}
+
+/**
+ * Get column header if set
+ * @param column
+ * @returns Column label
+ */
+export function getColumnHeader<T>(column: Column<T, any>) {
+  const columnHeader = column.columnDef.header
+  if (!columnHeader) return column.id
+  return typeof columnHeader === 'string' ? columnHeader : column.id
 }
 
 /** Prepend a column definition array with a select column. */
