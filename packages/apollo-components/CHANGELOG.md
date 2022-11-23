@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.2.1
+
+### Patch Changes
+
+- 4b5ab1c: Fix aria label error in select column
+
 ## 1.2.0
 
 ### Minor Changes
