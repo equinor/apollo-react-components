@@ -46,7 +46,7 @@ export function prependSelectColumnIfEnabled<T>(columns: ColumnDef<T>[], config?
         <Checkbox
           checked={row.getIsSelected()}
           indeterminate={row.getIsSomeSelected()}
-          aria-label={`Select ${row.getValue('name')}`}
+          aria-label={`Select row ${row.id}`}
           onChange={row.getToggleSelectedHandler()}
         />
       </div>
