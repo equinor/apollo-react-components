@@ -8,7 +8,7 @@ export const PokemonTable = () => {
       <DataTable.Provider>
         <DataTable
           columns={pokemonColumns}
-          config={{ sortable: true, virtual: true, height: '400px', enableRowSelection: true }}
+          config={{ sortable: true, virtual: true, height: '400px', rowSelection: 'multiple' }}
           data={pokemon}
           filters={{ globalFilter: true }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
@@ -17,7 +17,7 @@ export const PokemonTable = () => {
       <DataTable.Provider>
         <DataTable
           columns={pokemonColumns}
-          config={{ sortable: true, virtual: true, height: '400px', enableRowSelection: true }}
+          config={{ sortable: true, virtual: true, height: '400px', rowSelection: 'single' }}
           data={pokemon}
           filters={{ globalFilter: true }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex 2 Electric Boogaloo' }}

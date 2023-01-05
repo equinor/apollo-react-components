@@ -38,20 +38,21 @@ export function getColumnHeader<T>(column: Column<T, any>) {
 
 /** Prepend a column definition array with a select column. */
 export function prependSelectColumnIfEnabled<T>(columns: ColumnDef<T>[], config?: DataTableConfig) {
-  if (!config?.enableRowSelection) return columns
+  if (!Boolean(config?.rowSelection)) return columns
 
   const selectColumn: ColumnDef<T> = {
     id: 'select',
-    header: ({ table }) => (
-      <div style={{ width: '48px' }}>
-        <Checkbox
-          checked={table.getIsAllRowsSelected()}
-          indeterminate={table.getIsSomeRowsSelected()}
-          aria-label={table.getIsAllRowsSelected() ? 'Deselect all rows' : 'Select all rows'}
-          onChange={table.getToggleAllRowsSelectedHandler()}
-        />
-      </div>
-    ),
+    header: ({ table }) =>
+      config?.rowSelection === 'multiple' ? (
+        <div style={{ width: '48px' }}>
+          <Checkbox
+            checked={table.getIsAllRowsSelected()}
+            indeterminate={table.getIsSomeRowsSelected()}
+            aria-label={table.getIsAllRowsSelected() ? 'Deselect all rows' : 'Select all rows'}
+            onChange={table.getToggleAllRowsSelectedHandler()}
+          />
+        </div>
+      ) : null,
     cell: ({ row }) => (
       <div style={{ width: '48px' }}>
         <Checkbox

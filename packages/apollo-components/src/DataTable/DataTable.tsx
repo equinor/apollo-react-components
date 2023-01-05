@@ -63,6 +63,7 @@ export function DataTable<T>({ columns, data, header, filters, config }: DataTab
       columnVisibility,
     },
     onRowSelectionChange: setRowSelectionState,
+    enableMultiRowSelection: config?.rowSelection === 'multiple',
     enableSorting: config?.sortable,
     onSortingChange: enableOrUndefined(config?.sortable, setSorting),
     getSortedRowModel: getSortedRowModel(),
