@@ -13,6 +13,6 @@ export interface DataTableConfig {
   height?: string
   sortable?: boolean
   virtual?: boolean
-  enableRowSelection?: boolean
+  rowSelection?: 'multiple' | 'single'
   width?: string
 }
