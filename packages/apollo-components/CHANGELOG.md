@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.3.0
+
+### Minor Changes
+
+- Refactor row selection to support both single and multiselect
+
 ## 1.2.2
 
 ### Patch Changes
