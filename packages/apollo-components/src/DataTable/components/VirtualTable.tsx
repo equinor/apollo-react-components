@@ -4,12 +4,14 @@ import { useVirtualizer } from '@tanstack/react-virtual'
 import { RefObject } from 'react'
 import { TableHeader } from '.'
 import { PaddingRow } from './PaddingRow'
+import { PlaceholderRow } from './PlaceholderRow'
 
 export interface VirtualTableProps<T> {
   className?: string
   table: TableType<T>
   stickyHeader?: boolean
   containerRef: RefObject<HTMLDivElement>
+  isLoading?: boolean
 }
 
 export function VirtualTable<T>({ table, containerRef, ...props }: VirtualTableProps<T>) {
@@ -32,18 +34,22 @@ export function VirtualTable<T>({ table, containerRef, ...props }: VirtualTableP
       <TableHeader sticky={props.stickyHeader} table={table} />
       <Table.Body>
         <PaddingRow height={paddingTop} />
-        {virtualRows.map((virtualRow) => {
-          const row = rows[virtualRow.index] as Row<T>
-          return (
-            <Table.Row key={row.id} active={row.getIsSelected()}>
-              {row.getVisibleCells().map((cell) => (
-                <Table.Cell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </Table.Cell>
-              ))}
-            </Table.Row>
-          )
-        })}
+        {rows.length ? (
+          virtualRows.map((virtualRow) => {
+            const row = rows[virtualRow.index] as Row<T>
+            return (
+              <Table.Row key={row.id} active={row.getIsSelected()}>
+                {row.getVisibleCells().map((cell) => (
+                  <Table.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Table.Cell>
+                ))}
+              </Table.Row>
+            )
+          })
+        ) : (
+          <PlaceholderRow isLoading={props.isLoading} />
+        )}
         <PaddingRow height={paddingBottom} />
       </Table.Body>
     </Table>
