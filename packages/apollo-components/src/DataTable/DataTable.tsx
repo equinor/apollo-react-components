@@ -32,15 +32,23 @@ const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPa
 `
 
 export interface DataTableProps<T> {
-  className?: string
-  columns: ColumnDef<T, any>[]
-  config?: DataTableConfig
   data: T[]
+  columns: ColumnDef<T, any>[]
+  isLoading?: boolean
+  className?: string
+  config?: DataTableConfig
   filters?: FilterConfig
   header?: HeaderConfig
 }
 
-export function DataTable<T>({ columns, data, header, filters, config }: DataTableProps<T>) {
+export function DataTable<T>({
+  columns,
+  data,
+  isLoading,
+  header,
+  filters,
+  config,
+}: DataTableProps<T>) {
   const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
   const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
   const [sorting, setSorting] = useAtom(tableSortingAtom)
@@ -91,10 +99,11 @@ export function DataTable<T>({ columns, data, header, filters, config }: DataTab
           <VirtualTable
             containerRef={tableContainerRef}
             table={table}
+            isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
           />
         ) : (
-          <BasicTable table={table} stickyHeader={header?.stickyHeader} />
+          <BasicTable table={table} isLoading={isLoading} stickyHeader={header?.stickyHeader} />
         )}
       </div>
     </DataTableWrapper>
