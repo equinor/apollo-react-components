@@ -1,5 +1,5 @@
-import { Checkbox } from '@equinor/eds-core-react'
 import { Column, ColumnDef, HeaderContext } from '@tanstack/react-table'
+import { SelectColumnDef } from '../cells'
 import { DataTableConfig } from './types'
 
 /**
@@ -36,33 +36,21 @@ export function getColumnHeader<T>(column: Column<T, any>) {
   return typeof columnHeader === 'string' ? columnHeader : column.id
 }
 
-/** Prepend a column definition array with a select column. */
-export function prependSelectColumnIfEnabled<T>(columns: ColumnDef<T>[], config?: DataTableConfig) {
+/** Prepend a column definition array with a select column if enabled in the config. */
+export function prependSelectColumnIfEnabled<T>(
+  columns: ColumnDef<T, any>[],
+  config?: DataTableConfig<T>
+) {
+  if (!config) return columns
   if (!Boolean(config?.rowSelection)) return columns
 
-  const selectColumn: ColumnDef<T> = {
-    id: 'select',
-    header: ({ table }) =>
-      config?.rowSelection === 'multiple' ? (
-        <div style={{ width: '48px' }}>
-          <Checkbox
-            checked={table.getIsAllRowsSelected()}
-            indeterminate={table.getIsSomeRowsSelected()}
-            aria-label={table.getIsAllRowsSelected() ? 'Deselect all rows' : 'Select all rows'}
-            onChange={table.getToggleAllRowsSelectedHandler()}
-          />
-        </div>
-      ) : null,
-    cell: ({ row }) => (
-      <div style={{ width: '48px' }}>
-        <Checkbox
-          checked={row.getIsSelected()}
-          indeterminate={row.getIsSomeSelected()}
-          aria-label={`Select row ${row.id}`}
-          onChange={row.getToggleSelectedHandler()}
-        />
-      </div>
-    ),
-  }
-  return [selectColumn, ...columns]
+  return prependSelectColumn(columns, config)
+}
+
+/** Prepend a column definition array with a select column. */
+
+export function prependSelectColumn<T>(columns: ColumnDef<T>[], config?: DataTableConfig<T>) {
+  if (!config?.selectColumn) return columns
+  if (config.selectColumn === 'default') return [SelectColumnDef<T>(), ...columns]
+  return [config.selectColumn(), ...columns]
 }

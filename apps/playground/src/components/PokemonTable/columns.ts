@@ -1,11 +1,10 @@
 import { ChipsCell } from '@equinor/apollo-components'
-import { createColumnHelper } from '@tanstack/react-table'
+import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { Pokemon } from '../../data'
 
 const columnHelper = createColumnHelper<Pokemon>()
 
-export const pokemonColumns = [
-  columnHelper.accessor('id', { header: 'ID', sortingFn: 'basic' }),
+export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
   columnHelper.accessor('name', { header: 'Name' }),
   columnHelper.accessor((row) => row.type.join(', '), {
     id: 'Type',

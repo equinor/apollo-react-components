@@ -10,4 +10,5 @@ DataTable.Provider = DataTableProvider
 
 export { globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
 export * from './types'
+export { prependSelectColumn } from './utils'
 export { DataTable }

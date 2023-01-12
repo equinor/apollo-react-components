@@ -1,5 +1,5 @@
 import { Icon, Table } from '@equinor/eds-core-react'
-import { arrow_down, arrow_up } from '@equinor/eds-icons'
+import { arrow_drop_down, arrow_drop_up } from '@equinor/eds-icons'
 import { flexRender, Header } from '@tanstack/react-table'
 import styled from 'styled-components'
 
@@ -20,8 +20,8 @@ export const HeaderCell = ({ header }: HeaderCellProps) => {
         <HeaderDiv onClick={header.column.getToggleSortingHandler()}>
           {flexRender(header.column.columnDef.header, header.getContext())}
           {{
-            asc: <Icon data={arrow_down} />,
-            desc: <Icon data={arrow_up} />,
+            asc: <Icon data={arrow_drop_down} />,
+            desc: <Icon data={arrow_drop_up} />,
           }[header.column.getIsSorted() as string] ?? null}
         </HeaderDiv>
       )}
