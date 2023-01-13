@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.4.0
+
+### Minor Changes
+
+- Improve selection and expansion functionality, add new cell components
+
 ## 1.3.1
 
 ### Patch Changes
