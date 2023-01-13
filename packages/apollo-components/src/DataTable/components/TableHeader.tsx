@@ -1,6 +1,6 @@
 import { Table } from '@equinor/eds-core-react'
 import { Table as TableProp } from '@tanstack/react-table'
-import { HeaderCell } from './HeaderCell'
+import { HeaderCell } from '../../cells/HeaderCell'
 
 interface TableHeaderProps {
   table: TableProp<any>

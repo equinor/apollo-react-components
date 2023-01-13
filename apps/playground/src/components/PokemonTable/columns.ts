@@ -1,12 +1,11 @@
-import { ChipsCell } from '@equinor/apollo-components'
-import { createColumnHelper } from '@tanstack/react-table'
+import { ChipsCell, HierarchyCell, StickyCell } from '@equinor/apollo-components'
+import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { Pokemon } from '../../data'
 
 const columnHelper = createColumnHelper<Pokemon>()
 
-export const pokemonColumns = [
-  columnHelper.accessor('id', { header: 'ID', sortingFn: 'basic' }),
-  columnHelper.accessor('name', { header: 'Name' }),
+export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
+  columnHelper.accessor('name', { header: 'Name', cell: HierarchyCell }),
   columnHelper.accessor((row) => row.type.join(', '), {
     id: 'Type',
     cell: (value) => ChipsCell({ values: value.getValue().split(', ') }),
@@ -17,5 +16,12 @@ export const pokemonColumns = [
   columnHelper.accessor('base.defense', { header: 'Defense' }),
   columnHelper.accessor('base.specialAttack', { header: 'Sp. Attack' }),
   columnHelper.accessor('base.specialDefense', { header: 'Sp. Defense' }),
-  columnHelper.accessor('base.speed', { header: 'Speed' }),
+  columnHelper.accessor('base.speed', {
+    header: 'Speed',
+  }),
+  columnHelper.display({
+    header: 'Actions',
+    cell: () => StickyCell({ children: 'Actions actions backtions' as any }),
+    meta: { sticky: true },
+  }),
 ]
