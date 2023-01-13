@@ -2,18 +2,20 @@ import { Button, Checkbox, Icon, Radio } from '@equinor/eds-core-react'
 import { chevron_down, chevron_up } from '@equinor/eds-icons'
 import { ColumnDef } from '@tanstack/table-core'
 import styled from 'styled-components'
+import { RowSelectionMode } from '../DataTable'
 
 const CellWrapper = styled.div<{ paddingLeft?: string; rowDepth?: number }>`
   display: flex;
   align-items: center;
   width: 48px;
+  margin-left: -16px;
 `
 
-export function SelectColumnDef<T>(): ColumnDef<T, any> {
+export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<T, any> {
   return {
     id: 'select',
     header: ({ table }) =>
-      table.options.enableMultiRowSelection ? (
+      selectionMode !== 'single' ? (
         <CellWrapper>
           <Checkbox
             checked={table.getIsAllRowsSelected()}
@@ -28,16 +30,16 @@ export function SelectColumnDef<T>(): ColumnDef<T, any> {
       return (
         <CellWrapper paddingLeft={paddingLeft} rowDepth={row.depth}>
           <>
-            {table.options.enableMultiRowSelection ? (
-              <Checkbox
+            {selectionMode === 'single' ? (
+              <Radio
                 checked={row.getIsSelected()}
-                indeterminate={row.getIsSomeSelected()}
                 aria-label={`Select row ${row.id}`}
                 onChange={row.getToggleSelectedHandler()}
               />
             ) : (
-              <Radio
+              <Checkbox
                 checked={row.getIsSelected()}
+                indeterminate={row.getIsSomeSelected()}
                 aria-label={`Select row ${row.id}`}
                 onChange={row.getToggleSelectedHandler()}
               />

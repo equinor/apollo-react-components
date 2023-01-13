@@ -11,11 +11,13 @@ export interface FilterConfig {
   globalFilterPlaceholder?: string
 }
 
+export type RowSelectionMode = 'single' | 'multiple'
+
 export type DataTableConfig<T> = {
   height?: string
   sortable?: boolean
   virtual?: boolean
-  rowSelection?: 'multiple' | 'single'
+  rowSelectionMode?: RowSelectionMode
   width?: string
   selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
   getSubRows?: (originalRow: T) => T[] | undefined

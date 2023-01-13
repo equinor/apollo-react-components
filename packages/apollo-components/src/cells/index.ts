@@ -1,2 +1,6 @@
 export { ChipsCell } from './ChipsCell'
+export { DynamicCell } from './DynamicCell'
+export { HierarchyCell } from './HierarchyCell'
 export { SelectColumnDef } from './SelectColumnDef'
+export { StickyCell } from './StickyCell'
+export { TypographyCustom } from './TypographyCustom'

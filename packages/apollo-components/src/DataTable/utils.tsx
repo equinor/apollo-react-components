@@ -42,7 +42,7 @@ export function prependSelectColumnIfEnabled<T>(
   config?: DataTableConfig<T>
 ) {
   if (!config) return columns
-  if (!Boolean(config?.rowSelection)) return columns
+  if (!Boolean(config?.rowSelectionMode)) return columns
 
   return prependSelectColumn(columns, config)
 }
@@ -51,6 +51,7 @@ export function prependSelectColumnIfEnabled<T>(
 
 export function prependSelectColumn<T>(columns: ColumnDef<T>[], config?: DataTableConfig<T>) {
   if (!config?.selectColumn) return columns
-  if (config.selectColumn === 'default') return [SelectColumnDef<T>(), ...columns]
+  if (config.selectColumn === 'default')
+    return [SelectColumnDef<T>(config?.rowSelectionMode), ...columns]
   return [config.selectColumn(), ...columns]
 }

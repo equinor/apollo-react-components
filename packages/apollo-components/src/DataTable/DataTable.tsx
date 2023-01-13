@@ -9,6 +9,7 @@ import {
 import { useAtom } from 'jotai'
 import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { TypographyCustom } from '../cells/TypographyCustom'
 import {
   columnVisibilityAtom,
   expandedRowsAtom,
@@ -70,9 +71,8 @@ export function DataTable<T>({
   const table = useReactTable({
     columns: prependSelectColumn(columns, config),
     data: data,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
     globalFilterFn: enableGlobalFilter(fuzzyFilter),
+
     state: {
       expanded,
       globalFilter: enableGlobalFilter(globalFilter),
@@ -80,8 +80,15 @@ export function DataTable<T>({
       rowSelection: rowSelectionState,
       columnVisibility,
     },
+    defaultColumn: {
+      cell: (cell) => <TypographyCustom noWrap>{cell.getValue() as any}</TypographyCustom>,
+    },
     enableSorting: config?.sortable,
     enableExpanding: !config?.hideExpandControls,
+    enableMultiRowSelection: config?.rowSelectionMode === 'multiple',
+    enableSubRowSelection: config?.rowSelectionMode !== 'single',
+    getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
+    getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onExpandedChange: setExpanded,

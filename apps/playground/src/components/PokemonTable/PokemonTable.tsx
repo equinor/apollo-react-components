@@ -20,7 +20,7 @@ export const PokemonTable = () => {
       <DataTable.Provider>
         <DataTable
           columns={pokemonColumns}
-          config={{ sortable: true, virtual: true, height: '400px', rowSelection: 'multiple' }}
+          config={{ sortable: true, virtual: true, height: '400px', selectColumn: 'default' }}
           data={pokemon}
           filters={{ globalFilter: true }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
@@ -32,10 +32,10 @@ export const PokemonTable = () => {
           config={{
             sortable: true,
             virtual: true,
-            height: '400px',
-            rowSelection: 'single',
-            expandAllByDefault: true,
+            height: '500px',
+            rowSelectionMode: 'single',
             selectColumn: 'default',
+            expandAllByDefault: true,
             getSubRows: (row) => (row as PokemonNode).children,
           }}
           data={pokemonTree}
