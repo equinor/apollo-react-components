@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.5.0
+
+### Minor Changes
+
+- Add additional utilities like hierarchy cell, row click handler and row id override
+
 ## 1.4.0
 
 ### Minor Changes

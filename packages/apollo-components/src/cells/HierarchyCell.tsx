@@ -29,11 +29,19 @@ const CellWrapper = styled(TypographyCustom)<CellWrapperProps>`
     `}
 `
 
-export function HierarchyCell<T>(cell: CellContext<T, any>) {
+type HierarchyCellOptions = {
+  getRowDepth?: () => number
+  getDisplayName?: () => string
+}
+
+export function HierarchyCell<T>(cell: CellContext<T, any>, options: HierarchyCellOptions = {}) {
   return (
-    <CellWrapper depth={cell.row.depth} expanded={cell.row.getIsExpanded()}>
+    <CellWrapper
+      depth={options.getRowDepth?.() ?? cell.row.depth}
+      expanded={cell.row.getIsExpanded()}
+    >
       <span className="--divider" />
-      {cell.getValue()}
+      {options.getDisplayName?.() ?? cell.getValue()}
     </CellWrapper>
   )
 }
