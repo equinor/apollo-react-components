@@ -35,7 +35,6 @@ export const PokemonTable = () => {
             height: '500px',
             rowSelectionMode: 'single',
             selectColumn: 'default',
-            expandAllByDefault: true,
             getSubRows: (row) => (row as PokemonNode).children,
           }}
           data={pokemonTree}
