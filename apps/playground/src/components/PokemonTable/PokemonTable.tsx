@@ -36,6 +36,7 @@ export const PokemonTable = () => {
             rowSelectionMode: 'single',
             selectColumn: 'default',
             getSubRows: (row) => (row as PokemonNode).children,
+            onRowClick: (row) => row.toggleSelected(),
           }}
           data={pokemonTree}
           filters={{ globalFilter: true }}

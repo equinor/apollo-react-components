@@ -9,6 +9,7 @@ const CellWrapper = styled.div<{ paddingLeft?: string; rowDepth?: number }>`
   align-items: center;
   width: 48px;
   margin-left: -16px;
+  z-index: 2;
 `
 
 export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<T, any> {
@@ -34,14 +35,20 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
               <Radio
                 checked={row.getIsSelected()}
                 aria-label={`Select row ${row.id}`}
-                onChange={row.getToggleSelectedHandler()}
+                onChange={(e) => {
+                  e.stopPropagation()
+                  row.getToggleSelectedHandler()(e)
+                }}
               />
             ) : (
               <Checkbox
                 checked={row.getIsSelected()}
                 indeterminate={row.getIsSomeSelected()}
                 aria-label={`Select row ${row.id}`}
-                onChange={row.getToggleSelectedHandler()}
+                onChange={(e) => {
+                  e.stopPropagation()
+                  row.getToggleSelectedHandler()(e)
+                }}
               />
             )}
             {row.getCanExpand() && table.options.enableExpanding && (
@@ -49,7 +56,10 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
                 variant="ghost_icon"
                 color="secondary"
                 aria-label={row.getIsExpanded() ? 'Close group' : 'Expand group'}
-                onClick={row.getToggleExpandedHandler()}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  row.getToggleExpandedHandler()()
+                }}
                 style={{ cursor: 'pointer' }}
               >
                 <Icon data={row.getIsExpanded() ? chevron_up : chevron_down} />

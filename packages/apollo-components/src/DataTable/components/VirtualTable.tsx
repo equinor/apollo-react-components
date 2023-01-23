@@ -3,18 +3,20 @@ import { flexRender, Row, Table as TableType } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { RefObject } from 'react'
 import { TableHeader } from '.'
+import { DataTableConfig } from '../types'
 import { PaddingRow } from './PaddingRow'
 import { PlaceholderRow } from './PlaceholderRow'
 
 export interface VirtualTableProps<T> {
   className?: string
   table: TableType<T>
+  config?: DataTableConfig<T>
   stickyHeader?: boolean
   containerRef: RefObject<HTMLDivElement>
   isLoading?: boolean
 }
 
-export function VirtualTable<T>({ table, containerRef, ...props }: VirtualTableProps<T>) {
+export function VirtualTable<T>({ table, config, containerRef, ...props }: VirtualTableProps<T>) {
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
@@ -38,7 +40,11 @@ export function VirtualTable<T>({ table, containerRef, ...props }: VirtualTableP
           virtualRows.map((virtualRow) => {
             const row = rows[virtualRow.index] as Row<T>
             return (
-              <Table.Row key={row.id} active={row.getIsSelected()}>
+              <Table.Row
+                key={row.id}
+                active={row.getIsSelected()}
+                onClick={() => config?.onRowClick?.(row)}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <Table.Cell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

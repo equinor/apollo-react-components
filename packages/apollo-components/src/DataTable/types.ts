@@ -1,4 +1,4 @@
-import { ColumnDef } from '@tanstack/react-table'
+import { ColumnDef, Row } from '@tanstack/react-table'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -21,6 +21,7 @@ export type DataTableConfig<T> = {
   width?: string
   selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
   getSubRows?: (originalRow: T) => T[] | undefined
+  onRowClick?: (row: Row<T>) => void
 } & ExpansionConfig
 
 interface ExpansionConfig {

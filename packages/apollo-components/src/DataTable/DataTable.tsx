@@ -125,11 +125,17 @@ export function DataTable<T>({
           <VirtualTable
             containerRef={tableContainerRef}
             table={table}
+            config={config}
             isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
           />
         ) : (
-          <BasicTable table={table} isLoading={isLoading} stickyHeader={header?.stickyHeader} />
+          <BasicTable
+            table={table}
+            config={config}
+            isLoading={isLoading}
+            stickyHeader={header?.stickyHeader}
+          />
         )}
       </div>
     </DataTableWrapper>
