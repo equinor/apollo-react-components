@@ -21,6 +21,7 @@ export type DataTableConfig<T> = {
   width?: string
   selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
   getSubRows?: (originalRow: T) => T[] | undefined
+  getRowId?: (originalRow: T, index: number, parent: Row<T> | undefined) => string
   onRowClick?: (row: Row<T>) => void
 } & ExpansionConfig
 

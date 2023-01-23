@@ -97,6 +97,7 @@ export function DataTable<T>({
     onColumnVisibilityChange: setColumnVisibility,
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
     getSubRows: config?.getSubRows,
+    getRowId: config?.getRowId,
   })
 
   useEffect(() => {
