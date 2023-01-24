@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.5.1
+
+### Patch Changes
+
+- Add aria label and fixed width to table header cell. To get auto width, set `size: -1` in columns def.
+
 ## 1.5.0
 
 ### Minor Changes

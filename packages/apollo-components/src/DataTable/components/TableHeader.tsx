@@ -2,19 +2,21 @@ import { Table } from '@equinor/eds-core-react'
 import { Table as TableProp } from '@tanstack/react-table'
 import { HeaderCell } from '../../cells/HeaderCell'
 
-interface TableHeaderProps {
-  table: TableProp<any>
+interface TableHeaderProps<T> {
+  table: TableProp<T>
   sticky?: boolean
 }
 
-export const TableHeader = ({ table, sticky }: TableHeaderProps) => (
-  <Table.Head sticky={sticky}>
-    {table.getHeaderGroups().map((headerGroup) => (
-      <Table.Row key={headerGroup.id}>
-        {headerGroup.headers.map((header) => (
-          <HeaderCell header={header} key={header.id} />
-        ))}
-      </Table.Row>
-    ))}
-  </Table.Head>
-)
+export function TableHeader<T>({ table, sticky }: TableHeaderProps<T>) {
+  return (
+    <Table.Head sticky={sticky}>
+      {table.getHeaderGroups().map((headerGroup) => (
+        <Table.Row key={headerGroup.id}>
+          {headerGroup.headers.map((header) => (
+            <HeaderCell header={header} key={header.id} />
+          ))}
+        </Table.Row>
+      ))}
+    </Table.Head>
+  )
+}

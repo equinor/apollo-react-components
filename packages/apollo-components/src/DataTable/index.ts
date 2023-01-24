@@ -9,6 +9,7 @@ const DataTable = BaseComponent as DataTableCompoundProps
 DataTable.Provider = DataTableProvider
 
 export { globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
+export * from './components'
 export * from './types'
 export { prependSelectColumn } from './utils'
 export { DataTable }
