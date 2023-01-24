@@ -87,6 +87,7 @@ export function DataTable<T>({
     enableExpanding: !config?.hideExpandControls,
     enableMultiRowSelection: config?.rowSelectionMode === 'multiple',
     enableSubRowSelection: config?.rowSelectionMode !== 'single',
+    filterFromLeafRows: filters?.filterFromLeafRows,
     getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
