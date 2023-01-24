@@ -40,6 +40,13 @@ To develop all apps and packages, run the following command:
 yarn run dev
 ```
 
+To use the local dev package version in other projects, make point to the local project instead of the version number in the `package.json` in the depending project.
+
+```
++  "@equinor/apollo-components": "link:./../apollo-react-components/packages/apollo-components",
+-  "@equinor/apollo-components": "^1.5.0",
+```
+
 ## Useful Links
 
 Learn more about the power of Turborepo:
