@@ -9,6 +9,7 @@ export interface HeaderConfig {
 export interface FilterConfig {
   globalFilter?: boolean
   globalFilterPlaceholder?: string
+  filterFromLeafRows?: boolean
 }
 
 export type RowSelectionMode = 'single' | 'multiple'
