@@ -1,0 +1,30 @@
+name: Pull Request CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_lint:
+    name: 🚧 Build, Lint and Test Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'yarn'
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile --prefer-offline
+
+      - name: 👷 Build app to check for build time errors
+        run: yarn build
+
+      - name: 💄 Lint code
+        run: yarn lint

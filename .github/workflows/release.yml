@@ -20,17 +20,17 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Install Dependencies
+      - name: 📦️ Install Dependencies
         run: yarn
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: 🚀 Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: yarn release-packages
           title: 🚀 Release Apollo Components
-          commit: 🔖 Create changeset for release
+          commit: 🔖 Create changesets for release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
