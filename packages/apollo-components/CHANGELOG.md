@@ -1,5 +1,16 @@
 # @equinor/apollo-components
 
+## 1.6.0
+
+### Minor Changes
+
+- 19b73a8: Upgrade tanstack dependencies and remove husky hooks
+
+### Patch Changes
+
+- d79d447: Add custom color to sticky dynamic cell.
+- 3d29e89: Expose capitalizeHeader utility to trigger a changeset
+
 ## 1.5.2
 
 ### Patch Changes
