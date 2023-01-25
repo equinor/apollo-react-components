@@ -47,6 +47,19 @@ To use the local dev package version in other projects, make point to the local 
 -  "@equinor/apollo-components": "^1.5.0",
 ```
 
+### Publish
+
+Packages are published through the CI system using [Changesets](https://github.com/changesets/changesets). A changeset contains a description of changes for each package, as well as the semantic version in crease (major.minor.patch).
+
+When changesets are merged into main, a PR is created to publish the NPM packages and update the changelog.
+
+An NPM_TOKEN is required to publish packages to the registry, and is tied to a specific user.
+To setup NPM publishing do the following:
+
+1. Apply to be a member of the @Equinor organization on NPM.
+2. Create an Access Token. It should be "Classic Token with Publish permissions.
+3. Copy the token as a repository secret.
+
 ## Useful Links
 
 Learn more about the power of Turborepo:
