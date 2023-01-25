@@ -11,8 +11,8 @@
     "clean": "turbo run clean",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "postinstall": "husky install",
     "lint": "turbo run lint",
+    "lint-staged": "lint-staged",
     "publish-packages": "turbo run build lint && changeset version && changeset publish",
     "release-packages": "turbo run build && changeset publish",
     "storybook": "cd packages/apollo-components && yarn storybook"
@@ -28,7 +28,6 @@
   "devDependencies": {
     "eslint-config-custom": "*",
     "gitmoji-cli": "^7.0.2",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.1.1",
