@@ -40,11 +40,19 @@ To develop all apps and packages, run the following command:
 yarn run dev
 ```
 
-To use the local dev package version in other projects, make point to the local project instead of the version number in the `package.json` in the depending project.
+To use the local dev package version in other projects, symlink to the local project instead of the version number in the `package.json` in the depending project.
 
-```
-+  "@equinor/apollo-components": "link:./../apollo-react-components/packages/apollo-components",
--  "@equinor/apollo-components": "^1.5.0",
+#### To add symlink and use local version
+
+1. Run `yarn add link:./../apollo-react-components/packages/apollo-components` (or specify your own path) to replace version number with local version.
+2. Run `yarn dev` in `apollo-react-components` project.
+
+#### To remove symlink and add npm version
+
+1. Remove `@equinor/apollo-components` from `package.json`.
+
+2. Run `yarn add @equinor/apollo-components`.
+
 ```
 
 ### Publish
@@ -70,3 +78,4 @@ Learn more about the power of Turborepo:
 - [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
 - [Configuration Options](https://turborepo.org/docs/reference/configuration)
 - [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+```
