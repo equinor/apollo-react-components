@@ -7,10 +7,12 @@ import { leftCellShadow } from './styles'
 type TableCellProps<T> = {
   cell: Cell<T, unknown>
   highlight?: boolean
+  getStickyCellColor?: (cell: Cell<T, unknown>) => string
 }
 
 type StyledStickyCellProps = {
   highlight?: boolean
+  backgroundColor?: string
 }
 
 export const StyledStickyCell = styled(StickyCell)<StyledStickyCellProps>`
@@ -19,15 +21,19 @@ export const StyledStickyCell = styled(StickyCell)<StyledStickyCellProps>`
 `
 
 const StyledCell = styled(Table.Cell)<{ backgroundColor?: string }>`
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor + ' !important' : undefined};
+  ${(props) =>
+    props.backgroundColor ? `background-color: ${props.backgroundColor} !important;` : ``}
 `
 /* TODO: Investigate why app crashes when this component is loaded in PokemonTable  */
-export function DynamicCell<T>({ cell, highlight }: TableCellProps<T>) {
+export function DynamicCell<T>({ cell, highlight, getStickyCellColor }: TableCellProps<T>) {
   const cellContent = flexRender(cell.column.columnDef.cell, cell.getContext())
 
   if (cell.column.columnDef.meta?.sticky) {
-    return <StyledStickyCell data-column={cell.column.id}>{cellContent}</StyledStickyCell>
+    return (
+      <StyledStickyCell backgroundColor={getStickyCellColor?.(cell)} data-column={cell.column.id}>
+        {cellContent}
+      </StyledStickyCell>
+    )
   }
 
   return (
