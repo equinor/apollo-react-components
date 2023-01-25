@@ -19,7 +19,12 @@ export function BasicTable<T>({ table, config, stickyHeader, isLoading }: BasicT
       <EdsTable.Body>
         {tableRows.length ? (
           tableRows.map((row) => (
-            <EdsTable.Row key={row.id} onClick={() => config?.onRowClick?.(row)}>
+            <EdsTable.Row
+              key={row.id}
+              active={row.getIsSelected()}
+              style={{ cursor: config?.onRowClick ? 'pointer' : 'initial' }}
+              onClick={() => config?.onRowClick?.(row)}
+            >
               {row.getVisibleCells().map((cell) => (
                 <EdsTable.Cell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
