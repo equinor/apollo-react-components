@@ -18,6 +18,8 @@ type StyledStickyCellProps = {
 export const StyledStickyCell = styled(StickyCell)<StyledStickyCellProps>`
   background-clip: padding-box;
   ${leftCellShadow}
+  ${(props) =>
+    props.backgroundColor ? `background-color: ${props.backgroundColor} !important;` : ``}
 `
 
 const StyledCell = styled(Table.Cell)<{ backgroundColor?: string }>`
