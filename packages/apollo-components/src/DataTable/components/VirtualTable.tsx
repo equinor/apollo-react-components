@@ -43,6 +43,7 @@ export function VirtualTable<T>({ table, config, containerRef, ...props }: Virtu
               <Table.Row
                 key={row.id}
                 active={row.getIsSelected()}
+                style={{ cursor: config?.onRowClick ? 'pointer' : 'initial' }}
                 onClick={() => config?.onRowClick?.(row)}
               >
                 {row.getVisibleCells().map((cell) => (
