@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.6.2
+
+### Patch Changes
+
+- 2d6181e: Add background color to sticky cell
+
 ## 1.6.1
 
 ### Patch Changes
