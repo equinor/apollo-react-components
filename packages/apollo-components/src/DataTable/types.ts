@@ -12,6 +12,13 @@ export interface FilterConfig {
   filterFromLeafRows?: boolean
 }
 
+export interface RowConfig<T> {
+  getRowBackground?: (row: Row<T>) => string | undefined
+  onClick?: (row: Row<T>) => void
+  onMouseEnter?: (row: Row<T>) => void
+  onMouseLeave?: (row: Row<T>) => void
+}
+
 export type RowSelectionMode = 'single' | 'multiple'
 
 export type DataTableConfig<T> = {
