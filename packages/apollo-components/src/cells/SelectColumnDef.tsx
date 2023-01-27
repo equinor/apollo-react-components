@@ -36,8 +36,8 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
                 checked={row.getIsSelected()}
                 aria-label={`Select row ${row.id}`}
                 onChange={(e) => {
-                  e.stopPropagation()
                   row.getToggleSelectedHandler()(e)
+                  e.stopPropagation()
                 }}
               />
             ) : (
@@ -46,8 +46,8 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
                 indeterminate={row.getIsSomeSelected()}
                 aria-label={`Select row ${row.id}`}
                 onChange={(e) => {
-                  e.stopPropagation()
                   row.getToggleSelectedHandler()(e)
+                  e.stopPropagation()
                 }}
               />
             )}
@@ -57,8 +57,8 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
                 color="secondary"
                 aria-label={row.getIsExpanded() ? 'Close group' : 'Expand group'}
                 onClick={(e) => {
-                  e.stopPropagation()
                   row.getToggleExpandedHandler()()
+                  e.stopPropagation()
                 }}
                 style={{ cursor: 'pointer' }}
               >
