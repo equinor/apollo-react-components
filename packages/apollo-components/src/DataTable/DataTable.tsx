@@ -22,7 +22,7 @@ import { ColumnSelect } from './components/ColumnSelect'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
-import { DataTableConfig, FilterConfig, HeaderConfig, RowConfig } from './types'
+import { CellConfig, DataTableConfig, FilterConfig, HeaderConfig, RowConfig } from './types'
 import { enableOrUndefined, prependSelectColumn } from './utils'
 
 const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPadding?: string }>`
@@ -46,6 +46,7 @@ export interface DataTableProps<T> {
   isLoading?: boolean
   className?: string
   config?: DataTableConfig<T>
+  cellConfig?: CellConfig<T>
   rowConfig?: RowConfig<T>
   filters?: FilterConfig
   header?: HeaderConfig

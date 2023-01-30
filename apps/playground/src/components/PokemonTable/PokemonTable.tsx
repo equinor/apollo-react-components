@@ -7,25 +7,8 @@ type PokemonNode = Pokemon & {
 }
 
 export const PokemonTable = () => {
-  const pokemonTree: PokemonNode[] = pokemon.map((item) => ({
-    ...item,
-    children: pokemon.slice(1, 3).map((childPokemon) => ({
-      ...childPokemon,
-      children: [pokemon.at(-1)],
-    })),
-  }))
-
   return (
     <div>
-      <DataTable.Provider>
-        <DataTable
-          columns={pokemonColumns}
-          config={{ sortable: true, virtual: true, height: '400px', selectColumn: 'default' }}
-          data={pokemon}
-          filters={{ globalFilter: true }}
-          header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
-        />
-      </DataTable.Provider>
       <DataTable.Provider>
         <DataTable
           columns={pokemonColumns}
@@ -36,11 +19,16 @@ export const PokemonTable = () => {
             rowSelectionMode: 'single',
             selectColumn: 'default',
             getSubRows: (row) => (row as PokemonNode).children,
-            onRowClick: (row) => row.toggleSelected(),
+            getRowId: (row) => row.id.toString(),
           }}
-          data={pokemonTree}
+          data={pokemon}
           filters={{ globalFilter: true }}
-          header={{ stickyHeader: true, tableCaption: 'Pokédex 2 Electric Boogaloo' }}
+          header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
+          rowConfig={{
+            onClick: (row) => row.toggleSelected(),
+            onMouseEnter: (row) => console.log(`${row.id} mouse enter`),
+            onMouseLeave: (row) => console.log(`${row.id} mouse leave`),
+          }}
         />
       </DataTable.Provider>
 

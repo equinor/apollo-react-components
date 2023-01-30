@@ -1,24 +1,29 @@
 import { Table } from '@equinor/eds-core-react'
 import { Row } from '@tanstack/react-table'
 import { DynamicCell } from '../../cells'
-import { RowConfig } from '../types'
+import { CellConfig, RowConfig } from '../types'
 
 type TableRowProps<T> = {
   row: Row<T>
-  config?: RowConfig<T>
+  rowConfig?: RowConfig<T>
+  cellConfig?: CellConfig<T>
 }
 
-export function TableRow<T>({ row, config }: TableRowProps<T>) {
+export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
   return (
     <Table.Row
       active={row.getIsSelected()}
-      style={{ cursor: config?.onClick ? 'pointer' : 'initial' }}
-      onClick={() => config?.onClick?.(row)}
-      onMouseEnter={handleRowEvent(row, config?.onMouseEnter)}
-      onMouseLeave={handleRowEvent(row, config?.onMouseLeave)}
+      style={{ cursor: rowConfig?.onClick ? 'pointer' : 'initial' }}
+      onClick={() => rowConfig?.onClick?.(row)}
+      onMouseEnter={handleRowEvent(row, rowConfig?.onMouseEnter)}
+      onMouseLeave={handleRowEvent(row, rowConfig?.onMouseLeave)}
     >
       {row.getVisibleCells().map((cell) => (
-        <DynamicCell cell={cell} key={cell.id} />
+        <DynamicCell
+          cell={cell}
+          key={cell.id}
+          getStickyCellColor={cellConfig?.getStickyCellColor}
+        />
       ))}
     </Table.Row>
   )

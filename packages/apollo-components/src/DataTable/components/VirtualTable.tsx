@@ -3,7 +3,7 @@ import { Row, Table as TableType } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { RefObject } from 'react'
 import { TableHeader } from '.'
-import { RowConfig } from '../types'
+import { CellConfig, RowConfig } from '../types'
 import { PaddingRow } from './PaddingRow'
 import { PlaceholderRow } from './PlaceholderRow'
 import { TableRow } from './TableRow'
@@ -12,6 +12,7 @@ export interface VirtualTableProps<T> {
   className?: string
   table: TableType<T>
   rowConfig?: RowConfig<T>
+  cellConfig?: CellConfig<T>
   stickyHeader?: boolean
   containerRef: RefObject<HTMLDivElement>
   isLoading?: boolean
@@ -20,6 +21,7 @@ export interface VirtualTableProps<T> {
 export function VirtualTable<T>({
   table,
   rowConfig,
+  cellConfig,
   containerRef,
   ...props
 }: VirtualTableProps<T>) {
@@ -45,7 +47,7 @@ export function VirtualTable<T>({
         {rows.length ? (
           virtualRows.map((virtualRow) => {
             const row = rows[virtualRow.index] as Row<T>
-            return <TableRow key={row.id} row={row} config={rowConfig} />
+            return <TableRow key={row.id} row={row} rowConfig={rowConfig} cellConfig={cellConfig} />
           })
         ) : (
           <PlaceholderRow isLoading={props.isLoading} />
