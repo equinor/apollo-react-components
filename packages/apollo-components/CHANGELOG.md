@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.7.1
+
+### Patch Changes
+
+- 8d9afeb: Add two options for rendering filter actions or column select specifically
+
 ## 1.7.0
 
 ### Minor Changes
