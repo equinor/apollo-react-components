@@ -26,8 +26,6 @@ export const PokemonTable = () => {
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
           rowConfig={{
             onClick: (row) => row.toggleSelected(),
-            onMouseEnter: (row) => console.log(`${row.id} mouse enter`),
-            onMouseLeave: (row) => console.log(`${row.id} mouse leave`),
           }}
         />
       </DataTable.Provider>

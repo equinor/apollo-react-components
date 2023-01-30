@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react'
+
 /**
  * Generate a HSL color based on a given string.
  *
@@ -12,4 +14,12 @@ export function stringToHslColor(str: string, s = 80, l = 85) {
 
   const h = hash % 360
   return 'hsl(' + h + ', ' + s + '%, ' + l + '%)'
+}
+
+/** Wrap an event handler and stop event propagation */
+export function stopPropagation<T extends HTMLElement>(handler: (e: SyntheticEvent<T>) => void) {
+  return (e: SyntheticEvent<T>) => {
+    e.stopPropagation()
+    handler(e)
+  }
 }
