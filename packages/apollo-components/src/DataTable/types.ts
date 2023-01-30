@@ -1,4 +1,5 @@
-import { Cell, ColumnDef, Row } from '@tanstack/react-table'
+import { Cell, ColumnDef, Row, Table } from '@tanstack/react-table'
+import { ReactNode } from 'react'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -7,9 +8,11 @@ export interface HeaderConfig {
 }
 
 export interface FilterConfig {
+  columnSelect?: boolean
   globalFilter?: boolean
   globalFilterPlaceholder?: string
   filterFromLeafRows?: boolean
+  filterActions?: <T>(table: Table<T>) => ReactNode
 }
 
 export interface RowConfig<T> {
