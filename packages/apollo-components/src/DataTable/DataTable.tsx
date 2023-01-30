@@ -18,7 +18,6 @@ import {
   tableSortingAtom,
 } from './atoms'
 import { BasicTable } from './components/BasicTable'
-import { ColumnSelect } from './components/ColumnSelect'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
@@ -120,10 +119,9 @@ export function DataTable<T>({
     >
       <DataTableHeader
         tableCaption={header?.tableCaption}
-        enableGlobalFilter={filters?.globalFilter}
-        globalFilterPlaceholder={filters?.globalFilterPlaceholder}
         captionPadding={header?.captionPadding}
-        filterActions={<ColumnSelect table={table} />}
+        table={table}
+        config={filters}
       />
       <div ref={tableContainerRef} className="--table-container">
         {config?.virtual ? (

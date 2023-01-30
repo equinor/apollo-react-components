@@ -22,7 +22,10 @@ export const PokemonTable = () => {
             getRowId: (row) => row.id.toString(),
           }}
           data={pokemon}
-          filters={{ globalFilter: true }}
+          filters={{
+            globalFilter: true,
+            columnSelect: true,
+          }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
           rowConfig={{
             onClick: (row) => row.toggleSelected(),
