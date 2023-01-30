@@ -1,17 +1,25 @@
 import { Table as EdsTable } from '@equinor/eds-core-react'
-import { flexRender, Table } from '@tanstack/react-table'
-import { DataTableConfig } from '../types'
+import { Table } from '@tanstack/react-table'
+import { CellConfig, RowConfig } from '../types'
 import { PlaceholderRow } from './PlaceholderRow'
 import { TableHeader } from './TableHeader'
+import { TableRow } from './TableRow'
 
 interface BasicTableProps<T> {
   table: Table<T>
-  config?: DataTableConfig<T>
+  rowConfig?: RowConfig<T>
+  cellConfig?: CellConfig<T>
   stickyHeader?: boolean
   isLoading?: boolean
 }
 
-export function BasicTable<T>({ table, config, stickyHeader, isLoading }: BasicTableProps<T>) {
+export function BasicTable<T>({
+  table,
+  rowConfig,
+  cellConfig,
+  stickyHeader,
+  isLoading,
+}: BasicTableProps<T>) {
   const tableRows = table.getRowModel().rows
   return (
     <EdsTable>
@@ -19,18 +27,7 @@ export function BasicTable<T>({ table, config, stickyHeader, isLoading }: BasicT
       <EdsTable.Body>
         {tableRows.length ? (
           tableRows.map((row) => (
-            <EdsTable.Row
-              key={row.id}
-              active={row.getIsSelected()}
-              style={{ cursor: config?.onRowClick ? 'pointer' : 'initial' }}
-              onClick={() => config?.onRowClick?.(row)}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <EdsTable.Cell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </EdsTable.Cell>
-              ))}
-            </EdsTable.Row>
+            <TableRow key={row.id} row={row} rowConfig={rowConfig} cellConfig={cellConfig} />
           ))
         ) : (
           <PlaceholderRow isLoading={isLoading} />

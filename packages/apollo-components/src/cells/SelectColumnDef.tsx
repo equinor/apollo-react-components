@@ -3,6 +3,7 @@ import { chevron_down, chevron_up } from '@equinor/eds-icons'
 import { ColumnDef } from '@tanstack/table-core'
 import styled from 'styled-components'
 import { RowSelectionMode } from '../DataTable'
+import { stopPropagation } from './utils'
 
 const CellWrapper = styled.div<{ paddingLeft?: string; rowDepth?: number }>`
   display: flex;
@@ -35,20 +36,14 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
               <Radio
                 checked={row.getIsSelected()}
                 aria-label={`Select row ${row.id}`}
-                onChange={(e) => {
-                  e.stopPropagation()
-                  row.getToggleSelectedHandler()(e)
-                }}
+                onChange={stopPropagation(row.getToggleSelectedHandler())}
               />
             ) : (
               <Checkbox
                 checked={row.getIsSelected()}
                 indeterminate={row.getIsSomeSelected()}
                 aria-label={`Select row ${row.id}`}
-                onChange={(e) => {
-                  e.stopPropagation()
-                  row.getToggleSelectedHandler()(e)
-                }}
+                onChange={stopPropagation(row.getToggleSelectedHandler())}
               />
             )}
             {row.getCanExpand() && table.options.enableExpanding && (
@@ -56,10 +51,7 @@ export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<
                 variant="ghost_icon"
                 color="secondary"
                 aria-label={row.getIsExpanded() ? 'Close group' : 'Expand group'}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  row.getToggleExpandedHandler()()
-                }}
+                onClick={stopPropagation(row.getToggleExpandedHandler())}
                 style={{ cursor: 'pointer' }}
               >
                 <Icon data={row.getIsExpanded() ? chevron_up : chevron_down} />

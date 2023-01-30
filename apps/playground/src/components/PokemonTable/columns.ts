@@ -1,13 +1,13 @@
-import { ChipsCell, HierarchyCell } from '@equinor/apollo-components'
+import { ChipsCell } from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { Pokemon } from '../../data'
+import { PokemonActionsCell } from './PokemonActionsCell'
 
 const columnHelper = createColumnHelper<Pokemon>()
 
 export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
   columnHelper.accessor('name', {
     header: 'Name',
-    cell: (context) => HierarchyCell(context, { getDisplayName: () => 'BING' }),
   }),
   columnHelper.accessor((row) => row.type.join(', '), {
     id: 'Type',
@@ -24,6 +24,7 @@ export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
   }),
   columnHelper.display({
     header: 'Actions',
+    cell: PokemonActionsCell,
     meta: { sticky: true },
   }),
 ]

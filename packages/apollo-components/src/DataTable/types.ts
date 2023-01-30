@@ -1,4 +1,4 @@
-import { ColumnDef, Row } from '@tanstack/react-table'
+import { Cell, ColumnDef, Row } from '@tanstack/react-table'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -12,6 +12,17 @@ export interface FilterConfig {
   filterFromLeafRows?: boolean
 }
 
+export interface RowConfig<T> {
+  getRowBackground?: (row: Row<T>) => string | undefined
+  onClick?: (row: Row<T>) => void
+  onMouseEnter?: (row: Row<T>) => void
+  onMouseLeave?: (row: Row<T>) => void
+}
+
+export interface CellConfig<T> {
+  getStickyCellColor?: (cell: Cell<T, unknown>) => string
+}
+
 export type RowSelectionMode = 'single' | 'multiple'
 
 export type DataTableConfig<T> = {
@@ -23,7 +34,6 @@ export type DataTableConfig<T> = {
   selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
   getSubRows?: (originalRow: T) => T[] | undefined
   getRowId?: (originalRow: T, index: number, parent: Row<T> | undefined) => string
-  onRowClick?: (row: Row<T>) => void
 } & ExpansionConfig
 
 interface ExpansionConfig {

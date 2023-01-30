@@ -1,22 +1,30 @@
 import { Table } from '@equinor/eds-core-react'
-import { flexRender, Row, Table as TableType } from '@tanstack/react-table'
+import { Row, Table as TableType } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { RefObject } from 'react'
 import { TableHeader } from '.'
-import { DataTableConfig } from '../types'
+import { CellConfig, RowConfig } from '../types'
 import { PaddingRow } from './PaddingRow'
 import { PlaceholderRow } from './PlaceholderRow'
+import { TableRow } from './TableRow'
 
 export interface VirtualTableProps<T> {
   className?: string
   table: TableType<T>
-  config?: DataTableConfig<T>
+  rowConfig?: RowConfig<T>
+  cellConfig?: CellConfig<T>
   stickyHeader?: boolean
   containerRef: RefObject<HTMLDivElement>
   isLoading?: boolean
 }
 
-export function VirtualTable<T>({ table, config, containerRef, ...props }: VirtualTableProps<T>) {
+export function VirtualTable<T>({
+  table,
+  rowConfig,
+  cellConfig,
+  containerRef,
+  ...props
+}: VirtualTableProps<T>) {
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
@@ -39,20 +47,7 @@ export function VirtualTable<T>({ table, config, containerRef, ...props }: Virtu
         {rows.length ? (
           virtualRows.map((virtualRow) => {
             const row = rows[virtualRow.index] as Row<T>
-            return (
-              <Table.Row
-                key={row.id}
-                active={row.getIsSelected()}
-                style={{ cursor: config?.onRowClick ? 'pointer' : 'initial' }}
-                onClick={() => config?.onRowClick?.(row)}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <Table.Cell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </Table.Cell>
-                ))}
-              </Table.Row>
-            )
+            return <TableRow key={row.id} row={row} rowConfig={rowConfig} cellConfig={cellConfig} />
           })
         ) : (
           <PlaceholderRow isLoading={props.isLoading} />
