@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.7.0
+
+### Minor Changes
+
+- b02758c: Refactor to use TableRow component with DynamicCell and row utils
+
 ## 1.6.2
 
 ### Patch Changes
