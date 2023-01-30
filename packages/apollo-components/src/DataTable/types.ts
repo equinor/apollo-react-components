@@ -14,10 +14,13 @@ export interface FilterConfig {
 
 export interface RowConfig<T> {
   getRowBackground?: (row: Row<T>) => string | undefined
-  getStickyCellColor?: (cell: Cell<T, unknown>) => string
   onClick?: (row: Row<T>) => void
   onMouseEnter?: (row: Row<T>) => void
   onMouseLeave?: (row: Row<T>) => void
+}
+
+export interface CellConfig<T> {
+  getStickyCellColor?: (cell: Cell<T, unknown>) => string
 }
 
 export type RowSelectionMode = 'single' | 'multiple'
