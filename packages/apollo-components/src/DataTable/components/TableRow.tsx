@@ -10,7 +10,9 @@ type TableRowProps<T> = {
 }
 
 export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
-  return (
+  const rowWrapper = rowConfig?.rowWrapper
+
+  const tableRowContent = (
     <Table.Row
       active={row.getIsSelected()}
       style={{ cursor: rowConfig?.onClick ? 'pointer' : 'initial' }}
@@ -27,6 +29,8 @@ export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
       ))}
     </Table.Row>
   )
+
+  return rowWrapper ? rowWrapper({ row, children: tableRowContent }) : tableRowContent
 }
 
 function handleRowEvent<T>(row: Row<T>, handler?: (row: Row<T>) => void) {

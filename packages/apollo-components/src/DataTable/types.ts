@@ -1,5 +1,5 @@
 import { Cell, ColumnDef, Row, Table } from '@tanstack/react-table'
-import { ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -15,7 +15,17 @@ export interface FilterConfig {
   filterActions?: <T>(table: Table<T>) => ReactNode
 }
 
+export interface TableRowWrapper<T> {
+  (props: TableRowWrapperProps<T>): ReactElement
+}
+
+export interface TableRowWrapperProps<T> {
+  row: Row<T>
+  children: ReactNode
+}
+
 export interface RowConfig<T> {
+  rowWrapper?: TableRowWrapper<T>
   getRowBackground?: (row: Row<T>) => string | undefined
   onClick?: (row: Row<T>) => void
   onMouseEnter?: (row: Row<T>) => void
