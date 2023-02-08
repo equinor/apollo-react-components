@@ -1,4 +1,4 @@
-import { DataTable, TableRowWrapper } from '@equinor/apollo-components'
+import { DataTable } from '@equinor/apollo-components'
 import { Pokemon, pokemon } from '../../data'
 import { pokemonColumns } from './columns'
 
@@ -28,7 +28,6 @@ export const PokemonTable = () => {
           }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
           rowConfig={{
-            rowWrapper: PokemonTableRow,
             onClick: (row) => row.toggleSelected(),
             onMouseEnter: (row) => {
               console.log({ rowId: row.original.id })
@@ -44,10 +43,4 @@ export const PokemonTable = () => {
       </div>
     </div>
   )
-}
-
-const PokemonTableRow: TableRowWrapper<Pokemon> = ({ row, children }) => {
-  console.log({ rowFromPokemon: row.original.name })
-
-  return <>{children}</>
 }
