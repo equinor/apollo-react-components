@@ -25,6 +25,9 @@ export interface TableRowWrapperProps<T> {
 }
 
 export interface RowConfig<T> {
+  /**
+   * ! Unstable - Row Wrapper has not been tested for compatibility with virtualization. Use with caution.
+   */
   rowWrapper?: TableRowWrapper<T>
   getRowBackground?: (row: Row<T>) => string | undefined
   onClick?: (row: Row<T>) => void
