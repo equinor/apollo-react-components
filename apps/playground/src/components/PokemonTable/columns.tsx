@@ -2,13 +2,16 @@ import { ChipsCell } from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { Pokemon } from '../../data'
 import { PokemonActionsCell } from './PokemonActionsCell'
+import { PokemonEditableNameCell } from './PokemonEditableNameCell'
 
 const columnHelper = createColumnHelper<Pokemon>()
 
 export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
-  columnHelper.accessor('name', {
+  {
+    accessorKey: 'name',
     header: 'Name',
-  }),
+    cell: PokemonEditableNameCell,
+  },
   columnHelper.accessor((row) => row.type.join(', '), {
     id: 'Type',
     cell: (value) => ChipsCell({ values: value.getValue().split(', ') }),

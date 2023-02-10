@@ -56,3 +56,22 @@ interface ExpansionConfig {
   expandAllByDefault?: boolean
   hideExpandControls?: boolean
 }
+
+export interface DataTableCommonProps<T> {
+  isLoading?: boolean
+  className?: string
+  config?: DataTableConfig<T>
+  cellConfig?: CellConfig<T>
+  rowConfig?: RowConfig<T>
+  filters?: FilterConfig
+  header?: HeaderConfig
+}
+
+export interface DataTableProps<T> extends DataTableCommonProps<T> {
+  data: T[]
+  columns: ColumnDef<T, any>[]
+}
+
+export interface DataTableRawProps<T> extends DataTableCommonProps<T> {
+  table: Table<T>
+}
