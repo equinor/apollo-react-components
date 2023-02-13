@@ -1,9 +1,9 @@
-import { Meta } from '@storybook/react'
+import { ComponentStoryFn, Meta } from '@storybook/react'
 import { Table } from '@tanstack/react-table'
 import { atom, useAtom } from 'jotai'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { DataTableRaw } from './DataTableRaw'
-import { fruitColumns, fruitsData } from './test-data'
+import { Fruit, fruitColumns, fruitsData } from './test-data'
 import { useDataTable } from './useDataTable'
 
 const disableControl = () => ({
@@ -41,12 +41,10 @@ export default {
 //@ts-ignore
 const editsAtom = atom({})
 
-export const SubmitAll = (props: any) => {
+export const SubmitAll: ComponentStoryFn<typeof DataTableRaw<Fruit>> = (props: any) => {
   const [_, skipAutoResetPageIndex] = useSkipper()
   const [data, setData] = useState(fruitsData)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const table = useDataTable({
+  const table = useDataTable<Fruit>({
     ...props,
     // Provide our updateData function to our table meta
     meta: {
@@ -80,8 +78,6 @@ export const SubmitAll = (props: any) => {
           useEffect(() => {
             setValue(initialValue)
           }, [initialValue])
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          //@ts-ignore
           const [edits] = useAtom(editsAtom)
           const id = row.id
           if ((edits as any)[id]) {
@@ -106,8 +102,6 @@ export const SubmitAll = (props: any) => {
       {
         id: 'edit',
         cell: (props) => {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          //@ts-ignore
           const [_, setEdits] = useAtom(editsAtom)
           return (
             <button
@@ -137,7 +131,7 @@ export const SubmitAll = (props: any) => {
   )
 }
 
-function SubmitAllButton({ table }: { table: Table<unknown> }) {
+function SubmitAllButton({ table }: { table: Table<Fruit> }) {
   const [edits] = useAtom(editsAtom)
   return (
     <button

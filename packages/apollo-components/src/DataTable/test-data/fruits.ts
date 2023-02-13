@@ -1,7 +1,7 @@
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import { capitalizeHeader } from '../utils'
 
-interface Fruit {
+export interface Fruit {
   id: number
   name: string
   latinName: string
