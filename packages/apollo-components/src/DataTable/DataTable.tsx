@@ -58,6 +58,7 @@ export function DataTable<T>({
   header,
   filters,
   config,
+  cellConfig,
   rowConfig,
 }: DataTableProps<T>) {
   const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
@@ -129,6 +130,7 @@ export function DataTable<T>({
             containerRef={tableContainerRef}
             table={table}
             rowConfig={rowConfig}
+            cellConfig={cellConfig}
             isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
           />
@@ -136,6 +138,7 @@ export function DataTable<T>({
           <BasicTable
             table={table}
             rowConfig={rowConfig}
+            cellConfig={cellConfig}
             isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
           />

@@ -37,6 +37,7 @@ export interface RowConfig<T> {
 
 export interface CellConfig<T> {
   getStickyCellColor?: (cell: Cell<T, unknown>) => string
+  getShouldHighlight?: (cell: Cell<T, unknown>) => boolean
 }
 
 export type RowSelectionMode = 'single' | 'multiple'
