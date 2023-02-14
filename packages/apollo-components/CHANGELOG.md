@@ -1,5 +1,12 @@
 # @equinor/apollo-components
 
+## 1.8.0
+
+### Minor Changes
+
+- f513b03: Add new Row Wrapper configuration to allow external row contexts
+- 0e00070: Add cell highlight configuration and fix row background not being set
+
 ## 1.7.1
 
 ### Patch Changes
