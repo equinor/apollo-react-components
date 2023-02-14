@@ -81,7 +81,6 @@ export function DataTable<T>({
     columns: prependSelectColumn(columns, config),
     data: data,
     globalFilterFn: enableGlobalFilter(fuzzyFilter),
-
     state: {
       expanded,
       globalFilter: enableGlobalFilter(globalFilter),
