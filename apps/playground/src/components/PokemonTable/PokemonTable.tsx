@@ -1,10 +1,6 @@
 import { DataTable } from '@equinor/apollo-components'
-import { Pokemon, pokemon } from '../../data'
+import { pokemon } from '../../data'
 import { pokemonColumns } from './columns'
-
-type PokemonNode = Pokemon & {
-  children?: Pokemon[]
-}
 
 export const PokemonTable = () => {
   return (
@@ -18,7 +14,6 @@ export const PokemonTable = () => {
             height: '500px',
             rowSelectionMode: 'single',
             selectColumn: 'default',
-            getSubRows: (row) => (row as PokemonNode).children,
             getRowId: (row) => row.id.toString(),
           }}
           data={pokemon}
@@ -27,10 +22,15 @@ export const PokemonTable = () => {
             columnSelect: true,
           }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
+          cellConfig={{
+            getShouldHighlight(cell) {
+              return cell.column.id === 'name' && cell.row.original.type.includes('Water')
+            },
+          }}
           rowConfig={{
             onClick: (row) => row.toggleSelected(),
-            onMouseEnter: (row) => {
-              console.log({ rowId: row.original.id })
+            getRowBackground(row) {
+              return row.original.type.includes('Poison') ? '#e0febd' : undefined
             },
           }}
         />

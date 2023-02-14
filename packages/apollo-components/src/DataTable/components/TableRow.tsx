@@ -15,7 +15,10 @@ export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
   const tableRowContent = (
     <Table.Row
       active={row.getIsSelected()}
-      style={{ cursor: rowConfig?.onClick ? 'pointer' : 'initial' }}
+      style={{
+        cursor: rowConfig?.onClick ? 'pointer' : 'initial',
+        backgroundColor: rowConfig?.getRowBackground?.(row),
+      }}
       onClick={() => rowConfig?.onClick?.(row)}
       onMouseEnter={handleRowEvent(row, rowConfig?.onMouseEnter)}
       onMouseLeave={handleRowEvent(row, rowConfig?.onMouseLeave)}
@@ -25,6 +28,7 @@ export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
           cell={cell}
           key={cell.id}
           getStickyCellColor={cellConfig?.getStickyCellColor}
+          highlight={cellConfig?.getShouldHighlight?.(cell)}
         />
       ))}
     </Table.Row>
