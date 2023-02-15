@@ -14,17 +14,9 @@
     "@equinor/eds-core-react": "^0.25.0",
     "@equinor/eds-icons": "^0.15.0",
     "@tanstack/react-router": "^0.0.1-beta.25",
-    "@trpc/client": "^10.10.0",
-    "@trpc/server": "^10.10.0",
-    "jotai": "^2.0.1",
-    "jotai-devtools": "^0.2.0",
-    "jotai-trpc": "^0.5.0",
-    "jotai-utils": "^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6",
-    "trpc-pokemon": "^2.0.0-next.0",
-    "zod": "^3.20.6"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
