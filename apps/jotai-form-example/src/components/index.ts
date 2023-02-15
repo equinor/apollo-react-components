@@ -1,1 +1,1 @@
-export { PokemonJotai } from './PokemonJotai'
+export { PokemonPage } from './PokemonPage'

@@ -2,9 +2,7 @@ import { DataTable } from '@equinor/apollo-components'
 import { useAtomValue } from 'jotai'
 import { useMemo } from 'react'
 import { allPokemonAtom } from '../../server'
-import {} from './atoms'
 import { pokemonColumns } from './columns'
-import { PokemonFormContext } from './components'
 
 export function PokemonTable() {
   const pokemon = useAtomValue(allPokemonAtom)
@@ -25,7 +23,6 @@ export function PokemonTable() {
           selectColumn: 'default',
           getRowId: (row) => row.id,
         }}
-        rowConfig={{ rowWrapper: PokemonFormContext }}
         filters={{ globalFilter: true, columnSelect: true }}
       />
     </div>

@@ -1,7 +1,7 @@
 import { useAtomsDebugValue } from 'jotai-devtools'
 import { PokemonTable } from './PokemonTable'
 
-export function PokemonJotai() {
+export function PokemonPage() {
   return (
     <div>
       <PokemonTable />
