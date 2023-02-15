@@ -1,0 +1,1 @@
+export { PokemonJotai } from './PokemonJotai'
