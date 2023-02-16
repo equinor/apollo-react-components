@@ -16,7 +16,9 @@
     "publish-packages": "turbo run build lint && changeset version && changeset publish",
     "release-packages": "turbo run build && changeset publish",
     "storybook": "cd packages/apollo-components && yarn storybook",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch"
   },
   "lint-staged": {
     "*.{ts,tsx,md,mdx,js,jsx}": [

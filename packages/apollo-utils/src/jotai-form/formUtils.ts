@@ -4,7 +4,7 @@ import { type AtomFamily } from 'jotai/vanilla/utils/atomFamily'
 import { createValidator } from '../zod-validation'
 import { FormFamilyParam, FormState } from './types'
 
-export function createFormFamily<E>() {
+export function createFormFamily<E extends Record<string, unknown>>() {
   return atomFamily(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (_param: FormFamilyParam) => atom<FormState<E> | undefined>(undefined),

@@ -3,7 +3,7 @@ import { ValidationErrorMap } from './types'
 
 export function createValidator<S extends z.ZodTypeAny>(schema: S) {
   return {
-    validate: <E>(entity: E) => {
+    validate: <E extends z.infer<typeof schema>>(entity: E) => {
       const validation = schema.safeParse(entity)
       if (validation.success) return undefined
       return new Map(
