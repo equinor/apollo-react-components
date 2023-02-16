@@ -1,11 +1,11 @@
 import { Button, Icon } from '@equinor/eds-core-react'
 import { close, edit, save } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
-import { Pokemon } from 'trpc-pokemon'
+import { Pokemon } from 'mock-data'
 import { pokemonFormUtils } from '../utils'
 
 export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {
-  const pokemonFormValues = pokemonFormUtils.useFormState({ id: row.id })
+  const pokemonFormState = pokemonFormUtils.useFormState({ id: row.id })
   const { initializeForm, resetForm } = pokemonFormUtils.useFormMutations({ id: row.id })
 
   function handleEdit() {
@@ -13,7 +13,11 @@ export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {
   }
 
   function handleSubmit() {
-    console.log(pokemonFormValues)
+    if (pokemonFormState) {
+      console.group('Submit ' + row.original.name)
+      console.dir(pokemonFormState)
+      console.groupEnd()
+    }
     handleCancel()
   }
 
@@ -25,10 +29,10 @@ export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {
     <div>
       <Button
         variant="ghost_icon"
-        onClick={() => (!pokemonFormValues ? handleEdit() : handleSubmit())}
-        disabled={pokemonFormValues && !pokemonFormValues?.isValid}
+        disabled={pokemonFormState && !pokemonFormState?.isValid}
+        onClick={() => (!pokemonFormState ? handleEdit() : handleSubmit())}
       >
-        <Icon data={!pokemonFormValues ? edit : save} />
+        <Icon data={!pokemonFormState ? edit : save} />
       </Button>
       <Button variant="ghost_icon" onClick={() => handleCancel()}>
         <Icon data={close} />

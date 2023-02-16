@@ -1,19 +1,19 @@
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
+import { Pokemon } from 'mock-data'
 import { ChangeEvent } from 'react'
-import { Pokemon } from 'trpc-pokemon'
-import { usePokemonForm } from '../atoms'
 import { pokemonFormUtils } from '../utils'
 
 export function NumberCell(context: CellContext<Pokemon, unknown>) {
-  const [pokemonForm] = usePokemonForm({ id: context.row.id })
+  const pokemonFormState = pokemonFormUtils.useFormState({ id: context.row.id })
+
   const updatePokemonForm = pokemonFormUtils.useUpdateFormMutation({ id: context.row.id })
   const columnId = context.column.id as keyof Pokemon
 
-  if (!pokemonForm) return context.getValue()
+  if (!pokemonFormState) return context.getValue()
 
-  const formValues = pokemonForm.values
-  const formErrors = pokemonForm.errors?.get(columnId)
+  const formValues = pokemonFormState.values
+  const formErrors = pokemonFormState.errors?.get(columnId)
 
   return (
     <TextField

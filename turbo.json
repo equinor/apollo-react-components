@@ -11,6 +11,7 @@
     "dev": {
       "cache": false
     },
-    "clean": {}
+    "clean": {},
+    "type-check": {}
   }
 }

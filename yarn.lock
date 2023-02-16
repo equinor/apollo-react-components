@@ -3179,16 +3179,6 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@trpc/client@^10.11.1":
-  version "10.11.1"
-  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.11.1.tgz#e61f380eb751c111821c574a155df386a0c13a50"
-  integrity sha512-6aHY27YomzyUAlKhJE4jJulzDjc6vAKAKoWqAmoYbEEhApvyDrMo52bdYqqsukjxvA/L/uPhjOcPU5OsO+x+pA==
-
-"@trpc/server@^10.11.1":
-  version "10.11.1"
-  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.11.1.tgz#afc966b97d4f16ae9e8d92044a4f8fd1326991e6"
-  integrity sha512-7FnvuaNsSl6HLloh0a297McS4yjhbqg/bw1h/XOAKduNPUQwXNmJf48X1PAsD8ODtO1Rrjz9TeynJD7uCEn0xQ==
-
 "@types/acorn@^4.0.0":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@types/acorn/-/acorn-4.0.6.tgz#d61ca5480300ac41a7d973dd5b84d0a591154a22"
@@ -8177,11 +8167,6 @@ jotai-devtools@^0.2.0:
   dependencies:
     "@redux-devtools/extension" "^3.2.3"
 
-jotai-trpc@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/jotai-trpc/-/jotai-trpc-0.5.0.tgz#56b08f53a98e582534db230e63cb0b0653f036cc"
-  integrity sha512-v+tb2zk33/pHmveZwH9wfnVw0IxrGdw/XfQr+0Van8h0P3o1hxU8FkLGyDr0UUtJIRCNMmJZH8hI/MivjbVh+A==
-
 jotai@^1.10.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.13.1.tgz#20cc46454cbb39096b12fddfa635b873b3668236"
@@ -11751,11 +11736,6 @@ trough@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/trough/-/trough-2.1.0.tgz#0f7b511a4fde65a46f18477ab38849b22c554876"
   integrity sha512-AqTiAOLcj85xS7vQ8QkAV41hPDIJ71XJB4RCUrzo/1GM2CQwhkJGaf9Hgr7BOugMRpgGUrqRg/DrBDl4H40+8g==
-
-trpc-pokemon@^2.0.0-next.0:
-  version "2.0.0-next.0"
-  resolved "https://registry.yarnpkg.com/trpc-pokemon/-/trpc-pokemon-2.0.0-next.0.tgz#d12a5a117d8cbe58d089b43ecb33c368d1f33b9a"
-  integrity sha512-TBcouSU77UyzYf9sh4JRrlS3iAsM7Q74G2l/Moxq64HFfwmqR4lvbVQMnb8TYE1n+WHKOPfX2EU4JZqK+CewlA==
 
 ts-dedent@^2.0.0, ts-dedent@^2.2.0:
   version "2.2.0"

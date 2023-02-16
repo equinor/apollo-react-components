@@ -53,6 +53,7 @@ export function useFormFamilyMutation<T>(
 ) {
   const mutate = useSetAtom(family(param))
   return (update: Partial<T>) => {
+    console.log({ update })
     return mutate((previous) => {
       if (!previous) return
 

@@ -1,7 +1,9 @@
-import { createValidator, useFormFamilyUtils } from '@equinor/apollo-utils'
-import { pokemonFormFamily, pokemonFormSchema } from './atoms'
+import { createFormFamily, createValidator, useFormFamilyUtils } from '@equinor/apollo-utils'
+import { Pokemon, pokemonSchema } from 'mock-data'
 
-const pokemonValidator = createValidator(pokemonFormSchema)
+export const pokemonFormFamily = createFormFamily<Pokemon>()
+
+const pokemonValidator = createValidator(pokemonSchema)
 export const pokemonFormUtils = useFormFamilyUtils(pokemonFormFamily, {
   validator: pokemonValidator,
 })

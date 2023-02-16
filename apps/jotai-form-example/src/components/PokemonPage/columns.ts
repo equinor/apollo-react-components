@@ -1,24 +1,26 @@
-import { capitalizeHeader } from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
-import { Pokemon } from 'trpc-pokemon'
-import { ActionsCell, NumberCell } from './components'
-import { AbilitySelectCell } from './components/AbilitySelectCell'
+import { Pokemon } from 'mock-data'
+import { ActionsCell, NumberCell, TypeSelectCell } from './components'
 
 const columnHelper = createColumnHelper<Pokemon>()
 
 export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
-  columnHelper.accessor('id', {
-    header: 'ID',
-    cell: (cell) => cell.getValue().split('-').join(' '),
+  columnHelper.accessor('name', {
+    header: 'Name',
   }),
-  columnHelper.accessor('abilities', {
-    id: 'abilities',
-    header: capitalizeHeader,
-    cell: AbilitySelectCell,
+  columnHelper.accessor((row) => row.type.join(', '), {
+    id: 'Type',
+    cell: TypeSelectCell,
     enableSorting: false,
   }),
-  columnHelper.accessor('weight', { header: capitalizeHeader, cell: NumberCell }),
-  columnHelper.accessor('height', { header: capitalizeHeader, cell: NumberCell }),
+  columnHelper.accessor('hp', { header: 'HP', cell: NumberCell }),
+  columnHelper.accessor('attack', { header: 'Attack', cell: NumberCell }),
+  columnHelper.accessor('defense', { header: 'Defense', cell: NumberCell }),
+  columnHelper.accessor('specialAttack', { header: 'Sp. Attack', cell: NumberCell }),
+  columnHelper.accessor('specialDefense', { header: 'Sp. Defense', cell: NumberCell }),
+  columnHelper.accessor('speed', {
+    header: 'Speed',
+  }),
   columnHelper.display({
     header: 'Actions',
     cell: ActionsCell,
