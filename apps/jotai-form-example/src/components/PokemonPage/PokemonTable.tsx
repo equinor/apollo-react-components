@@ -1,13 +1,16 @@
 import { DataTable } from '@equinor/apollo-components'
-import { pokemonData } from 'mock-data'
+import { usePokemonQuery } from '../../hooks'
 import { pokemonColumns } from './columns'
 
 export function PokemonTable() {
+  const { data, isLoading } = usePokemonQuery()
+
   return (
     <div>
       <DataTable
         columns={pokemonColumns}
-        data={pokemonData}
+        data={data ?? []}
+        isLoading={isLoading}
         config={{
           virtual: true,
           height: '80vh',

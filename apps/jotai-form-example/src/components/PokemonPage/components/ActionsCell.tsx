@@ -2,11 +2,13 @@ import { Button, Icon } from '@equinor/eds-core-react'
 import { close, edit, save } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
 import { Pokemon } from 'mock-data'
+import { usePokemonMutation } from '../../../hooks/usePokemonMutation'
 import { pokemonFormUtils } from '../utils'
 
 export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {
   const pokemonFormState = pokemonFormUtils.useFormState({ id: row.id })
   const { initializeForm, resetForm } = pokemonFormUtils.useFormMutations({ id: row.id })
+  const mutatePokemon = usePokemonMutation(row.original)
 
   function handleEdit() {
     initializeForm(row.original)
@@ -14,9 +16,7 @@ export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {
 
   function handleSubmit() {
     if (pokemonFormState) {
-      console.group('Submit ' + row.original.name)
-      console.dir(pokemonFormState)
-      console.groupEnd()
+      mutatePokemon(pokemonFormState)
     }
     handleCancel()
   }

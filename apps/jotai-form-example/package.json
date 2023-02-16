@@ -16,6 +16,7 @@
     "@equinor/apollo-utils": "*",
     "@equinor/eds-core-react": "^0.29.1",
     "@equinor/eds-icons": "^0.18.0",
+    "@tanstack/react-query": "^4.24.6",
     "jotai": "^2.0.1",
     "jotai-devtools": "^0.2.0",
     "mock-data": "*",
