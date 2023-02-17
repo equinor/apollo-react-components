@@ -44,6 +44,7 @@ export type RowSelectionMode = 'single' | 'multiple'
 
 export type DataTableConfig<T> = {
   height?: string
+  tableLayout?: 'auto' | 'fixed'
   sortable?: boolean
   virtual?: boolean
   rowSelectionMode?: RowSelectionMode

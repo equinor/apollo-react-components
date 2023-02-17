@@ -24,7 +24,11 @@ import { fuzzyFilter } from './filters'
 import { CellConfig, DataTableConfig, FilterConfig, HeaderConfig, RowConfig } from './types'
 import { enableOrUndefined, prependSelectColumn } from './utils'
 
-const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPadding?: string }>`
+const DataTableWrapper = styled.div<{
+  width?: string
+  height?: string
+  tableLayout?: 'auto' | 'fixed'
+}>`
   width: ${(props) => props.width ?? '100%'};
 
   .--table-container {
@@ -33,8 +37,10 @@ const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPa
     overflow: auto;
 
     table {
-      width: 100%;
-      table-layout: auto;
+      width: ${(props) => props.width ?? '100%'};
+      height: ${(props) => props.height ?? '100%'};
+      table-layout: ${(props) => props.tableLayout ?? 'fixed'};
+      border-collapse: collapse;
     }
   }
 `
@@ -114,9 +120,9 @@ export function DataTable<T>({
 
   return (
     <DataTableWrapper
-      captionPadding={header?.captionPadding}
       height={config?.height}
       width={config?.width}
+      tableLayout={config?.tableLayout}
     >
       <DataTableHeader
         tableCaption={header?.tableCaption}
