@@ -38,6 +38,6 @@ yarn-error.log*
 # turbo
 .turbo
 
-# editors
+# IDE
 .vscode
 .idea
