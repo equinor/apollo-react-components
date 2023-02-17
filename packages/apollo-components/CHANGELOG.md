@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.8.1
+
+### Patch Changes
+
+- 8352258: Set fixed as default table layout and use width and height properly
+
 ## 1.8.0
 
 ### Minor Changes
