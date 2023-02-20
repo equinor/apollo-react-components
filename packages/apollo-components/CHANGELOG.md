@@ -1,5 +1,18 @@
 # @equinor/apollo-components
 
+## 1.8.1
+
+### Patch Changes
+
+- 8352258: Set fixed as default table layout and use width and height properly
+
+## 1.8.0
+
+### Minor Changes
+
+- f513b03: Add new Row Wrapper configuration to allow external row contexts
+- 0e00070: Add cell highlight configuration and fix row background not being set
+
 ## 1.7.1
 
 ### Patch Changes

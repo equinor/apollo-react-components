@@ -1,7 +1,7 @@
 import { DataTable } from '@equinor/apollo-components/src/DataTable'
 import { DataTableRaw } from '@equinor/apollo-components/src/DataTable/DataTableRaw'
 import { useDataTable, UseTableData } from '@equinor/apollo-components/src/DataTable/useDataTable'
-import { Row, Table } from '@tanstack/react-table'
+import { Table } from '@tanstack/react-table'
 import { atom, useAtom } from 'jotai'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Pokemon, pokemon } from '../../data'
@@ -66,15 +66,20 @@ const PokomanTable = ({ table, config, filters }: any) => {
     <div style={{ height: config.height }}>
       <DataTable.Provider>
         <SubmitAllButton table={table} />
-        <DataTableRaw
+        <DataTableRaw<Pokemon>
           table={table}
           config={config}
           filters={filters}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
+          cellConfig={{
+            getShouldHighlight(cell) {
+              return cell.column.id === 'name' && cell.row.original.type.includes('Water')
+            },
+          }}
           rowConfig={{
             onClick: (row) => row.toggleSelected(),
-            onMouseEnter: (row: Row<any>) => {
-              console.log({ rowId: row.original.id })
+            getRowBackground(row) {
+              return row.original.type.includes('Poison') ? '#e0febd' : undefined
             },
           }}
         />

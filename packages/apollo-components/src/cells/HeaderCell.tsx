@@ -3,8 +3,7 @@ import { arrow_drop_down, arrow_drop_up } from '@equinor/eds-icons'
 import { flexRender, Header } from '@tanstack/react-table'
 import { AriaAttributes, CSSProperties } from 'react'
 import styled from 'styled-components'
-import { StickyCell } from './StickyCell'
-import { leftCellShadow } from './styles'
+import { StickyHeaderCell } from './StickyCell'
 
 interface HeaderCellProps<TData, TValue> {
   header: Header<TData, TValue>
@@ -15,10 +14,6 @@ const HeaderDiv = styled.div`
   align-items: center;
   gap: 0.25rem;
   z-index: 5;
-`
-
-const StyledStickyCell = styled(StickyCell)`
-  ${leftCellShadow}
 `
 
 export const HeaderCell = <TData, TValue>({ header }: HeaderCellProps<TData, TValue>) => {
@@ -39,9 +34,9 @@ export const HeaderCell = <TData, TValue>({ header }: HeaderCellProps<TData, TVa
    */
   if ((header.column.columnDef.meta as any)?.sticky) {
     return (
-      <StyledStickyCell key={header.id} {...cellProps}>
+      <StickyHeaderCell key={header.id} {...cellProps}>
         <HeaderContent header={header} />
-      </StyledStickyCell>
+      </StickyHeaderCell>
     )
   }
 

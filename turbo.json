@@ -11,6 +11,11 @@
     "dev": {
       "cache": false
     },
-    "clean": {}
+    "clean": {},
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
+    "type-check": {}
   }
 }
