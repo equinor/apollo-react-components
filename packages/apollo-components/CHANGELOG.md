@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.9.0
+
+### Minor Changes
+
+- 3b3f5de: expose a DataTableRaw component for more control in userland
+
 ## 1.8.1
 
 ### Patch Changes
