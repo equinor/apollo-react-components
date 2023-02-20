@@ -1,6 +1,6 @@
 import { ComponentStoryFn, Meta } from '@storybook/react'
 import { DataTable } from './DataTable'
-import { fruitColumns, fruitsData } from './test-data'
+import { Fruit, fruitColumns, fruitsData } from './test-data'
 
 const disableControl = () => ({
   table: {
@@ -31,11 +31,11 @@ export default {
   },
 } as Meta<typeof DataTable>
 
-export const Basic: ComponentStoryFn<typeof DataTable> = (props) => (
-  <DataTable {...props} data={fruitsData} columns={fruitColumns} />
+export const Basic: ComponentStoryFn<typeof DataTable<Fruit>> = (props) => (
+  <DataTable<Fruit> {...props} data={fruitsData} columns={fruitColumns} />
 )
 
-export const GlobalFilter: ComponentStoryFn<typeof DataTable> = ({ filters, ...props }) => (
+export const GlobalFilter: ComponentStoryFn<typeof DataTable<Fruit>> = ({ filters, ...props }) => (
   <DataTable
     {...props}
     data={fruitsData}

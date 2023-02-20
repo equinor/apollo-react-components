@@ -28,12 +28,17 @@ export const HeaderCell = <TData, TValue>({ header }: HeaderCellProps<TData, TVa
     colSpan: header.colSpan,
   }
 
-  if (header.column.columnDef.meta?.sticky)
+  /*
+   * https://github.com/TanStack/table/discussions/4104
+   * tricky to support declaration merging in a library wrapping
+   */
+  if ((header.column.columnDef.meta as any)?.sticky) {
     return (
       <StickyHeaderCell key={header.id} {...cellProps}>
         <HeaderContent header={header} />
       </StickyHeaderCell>
     )
+  }
 
   return (
     <Table.Cell key={header.id} {...cellProps}>

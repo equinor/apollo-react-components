@@ -27,7 +27,11 @@ const StyledCell = styled(Table.Cell)<{ backgroundColor?: string }>`
 export function DynamicCell<T>({ cell, highlight, getStickyCellColor }: TableCellProps<T>) {
   const cellContent = flexRender(cell.column.columnDef.cell, cell.getContext())
 
-  if (cell.column.columnDef.meta?.sticky) {
+  /*
+   * https://github.com/TanStack/table/discussions/4104
+   * tricky to support declaration merging in a library wrapping
+   */
+  if ((cell.column.columnDef.meta as any)?.sticky) {
     return (
       <StyledStickyCell backgroundColor={getStickyCellColor?.(cell)} data-column={cell.column.id}>
         {cellContent}
