@@ -22,6 +22,7 @@ tsconfig.tsbuildinfo
 # misc
 .DS_Store
 *.pem
+storybook-static
 
 # debug
 npm-debug.log*

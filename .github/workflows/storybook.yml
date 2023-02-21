@@ -1,0 +1,36 @@
+name: Build and Deploy Storybook
+
+on: [push]
+#on:
+#  push:
+#    branches:
+#      - main
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: 'packages/apollo-components'
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Install and Build ⬇️ # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          yarn install --frozen-lockfile
+          yarn build-storybook
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        # If you're changing the branch from main,
+        # also change the `main` in `refs/heads/main`
+        # below accordingly.
+        #if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/apollo-components/storybook-static # The folder the action should deploy.
