@@ -5,7 +5,10 @@ import { stringToHslColor } from './utils'
 const ChipsWrapper = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 `
 
 const Chip = styled.div<{ backgroundColor?: string }>`

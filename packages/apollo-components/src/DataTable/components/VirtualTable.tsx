@@ -6,6 +6,7 @@ import { TableHeader } from '.'
 import { CellConfig, RowConfig } from '../types'
 import { PaddingRow } from './PaddingRow'
 import { PlaceholderRow } from './PlaceholderRow'
+import { TableBody } from './TableBody'
 import { TableRow } from './TableRow'
 
 export interface VirtualTableProps<T> {
@@ -42,7 +43,7 @@ export function VirtualTable<T>({
   return (
     <Table>
       <TableHeader sticky={props.stickyHeader} table={table} />
-      <Table.Body>
+      <TableBody>
         <PaddingRow height={paddingTop} />
         {rows.length ? (
           virtualRows.map((virtualRow) => {
@@ -53,7 +54,7 @@ export function VirtualTable<T>({
           <PlaceholderRow isLoading={props.isLoading} />
         )}
         <PaddingRow height={paddingBottom} />
-      </Table.Body>
+      </TableBody>
     </Table>
   )
 }

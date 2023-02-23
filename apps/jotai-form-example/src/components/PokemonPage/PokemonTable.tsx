@@ -13,11 +13,13 @@ export function PokemonTable() {
         isLoading={isLoading}
         config={{
           virtual: true,
+          tableLayout: 'fixed', // Required for using columns with fixed width
           height: '80vh',
           sortable: true,
           selectColumn: 'default',
           getRowId: (row) => row.id.toString(),
         }}
+        header={{ stickyHeader: true }}
         filters={{ globalFilter: true, columnSelect: true }}
       />
     </div>

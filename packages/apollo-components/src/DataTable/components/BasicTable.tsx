@@ -2,6 +2,7 @@ import { Table as EdsTable } from '@equinor/eds-core-react'
 import { Table } from '@tanstack/react-table'
 import { CellConfig, RowConfig } from '../types'
 import { PlaceholderRow } from './PlaceholderRow'
+import { TableBody } from './TableBody'
 import { TableHeader } from './TableHeader'
 import { TableRow } from './TableRow'
 
@@ -24,7 +25,7 @@ export function BasicTable<T>({
   return (
     <EdsTable>
       <TableHeader sticky={stickyHeader} table={table} />
-      <EdsTable.Body>
+      <TableBody>
         {tableRows.length ? (
           tableRows.map((row) => (
             <TableRow key={row.id} row={row} rowConfig={rowConfig} cellConfig={cellConfig} />
@@ -32,7 +33,7 @@ export function BasicTable<T>({
         ) : (
           <PlaceholderRow isLoading={isLoading} />
         )}
-      </EdsTable.Body>
+      </TableBody>
     </EdsTable>
   )
 }

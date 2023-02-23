@@ -1,5 +1,6 @@
 import { Table } from '@equinor/eds-core-react'
 import { Row } from '@tanstack/react-table'
+import styled from 'styled-components'
 import { DynamicCell } from '../../cells'
 import { CellConfig, RowConfig } from '../types'
 
@@ -13,7 +14,7 @@ export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
   const rowWrapper = rowConfig?.rowWrapper
 
   const tableRowContent = (
-    <Table.Row
+    <StyledTableRow
       active={row.getIsSelected()}
       style={{
         cursor: rowConfig?.onClick ? 'pointer' : 'initial',
@@ -31,11 +32,16 @@ export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
           highlight={cellConfig?.getShouldHighlight?.(cell)}
         />
       ))}
-    </Table.Row>
+    </StyledTableRow>
   )
 
   return rowWrapper ? rowWrapper({ row, children: tableRowContent }) : tableRowContent
 }
+
+const StyledTableRow = styled(Table.Row)`
+  /* Background color must be inherited here. Does not work with inline styling */
+  background-color: inherit;
+`
 
 function handleRowEvent<T>(row: Row<T>, handler?: (row: Row<T>) => void) {
   if (!handler) return undefined

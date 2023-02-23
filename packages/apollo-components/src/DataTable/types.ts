@@ -42,9 +42,19 @@ export interface CellConfig<T> {
 
 export type RowSelectionMode = 'single' | 'multiple'
 
+export type TableLayout = 'auto' | 'fixed'
+
 export type DataTableConfig<T> = {
   height?: string
-  tableLayout?: 'auto' | 'fixed'
+  /**
+   * Defaults to `'auto'`.
+   *
+   * `'auto'` determines column width based on cell content.
+   *
+   * `'fixed'` uses fixed column width. Specify width (`size` property) in ColumnDef.
+   * Default size is 150px.
+   */
+  tableLayout?: TableLayout
   sortable?: boolean
   virtual?: boolean
   rowSelectionMode?: RowSelectionMode

@@ -3,9 +3,16 @@ import styled from 'styled-components'
 import { BasicTable } from './components/BasicTable'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
-import { DataTableRawProps } from './types'
+import { DataTableRawProps, TableLayout } from './types'
 
-const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPadding?: string }>`
+interface DataTableWrapperProps {
+  width?: string
+  height?: string
+  captionPadding?: string
+  tableLayout?: TableLayout
+}
+
+const DataTableWrapper = styled.div<DataTableWrapperProps>`
   width: ${(props) => props.width ?? '100%'};
 
   .--table-container {
@@ -15,7 +22,11 @@ const DataTableWrapper = styled.div<{ width?: string; height?: string; captionPa
 
     table {
       width: 100%;
-      table-layout: auto;
+
+      // The following attributes are important for fixed column width
+      // CHANGE THES WITH CAUTION
+      overflow: auto;
+      table-layout: ${(props) => props.tableLayout ?? 'auto'};
     }
   }
 `
@@ -28,6 +39,7 @@ export function DataTableRaw<T>(props: DataTableRawProps<T>) {
       captionPadding={header?.captionPadding}
       height={config?.height}
       width={config?.width}
+      tableLayout={config?.tableLayout}
     >
       <DataTableHeader
         tableCaption={header?.tableCaption}
