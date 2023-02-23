@@ -2,7 +2,7 @@ import { Button, Checkbox, Icon, Radio } from '@equinor/eds-core-react'
 import { chevron_down, chevron_up } from '@equinor/eds-icons'
 import { ColumnDef } from '@tanstack/table-core'
 import styled from 'styled-components'
-import { RowSelectionMode } from '../DataTable'
+import { DataTableConfig } from '../DataTable'
 import { stopPropagation } from './utils'
 
 const CellWrapper = styled.div<{ paddingLeft?: string; rowDepth?: number }>`
@@ -13,9 +13,13 @@ const CellWrapper = styled.div<{ paddingLeft?: string; rowDepth?: number }>`
   z-index: 2;
 `
 
-export function SelectColumnDef<T>(selectionMode?: RowSelectionMode): ColumnDef<T, any> {
+export function SelectColumnDef<T>(props: DataTableConfig<T> = {}): ColumnDef<T, any> {
+  const selectionMode = props.rowSelectionMode
+  const showBothSelectAndSubRowsToggle = props.hideExpandControls === false
+
   return {
     id: 'select',
+    size: showBothSelectAndSubRowsToggle ? 96 : 48,
     header: ({ table }) =>
       selectionMode !== 'single' ? (
         <CellWrapper>

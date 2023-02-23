@@ -26,7 +26,7 @@ export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {
   }
 
   return (
-    <div>
+    <div style={{ display: 'inline-flex' }}>
       <Button
         variant="ghost_icon"
         disabled={pokemonFormState && !pokemonFormState?.isValid}
