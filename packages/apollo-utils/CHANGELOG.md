@@ -1,5 +1,11 @@
 # @equinor/apollo-utils
 
+## 0.1.1
+
+### Patch Changes
+
+- f9e695e: Add validateAsync utility to support async refinements
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # jotai-form-example
 
+## 0.2.0
+
+### Minor Changes
+
+- 297dda1: Enable fixed column width and inherit sticky cell color
+
+### Patch Changes
+
+- Updated dependencies [297dda1]
+- Updated dependencies [f9e695e]
+  - @equinor/apollo-components@1.10.0
+  - @equinor/apollo-utils@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
