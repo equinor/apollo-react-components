@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.10.0
+
+### Minor Changes
+
+- 297dda1: Enable fixed column width and inherit sticky cell color
+
 ## 1.9.0
 
 ### Minor Changes
