@@ -27,7 +27,11 @@ export function SelectColumnDef<T>(props: DataTableConfig<T> = {}): ColumnDef<T,
             checked={table.getIsAllRowsSelected()}
             indeterminate={table.getIsSomeRowsSelected()}
             aria-label={table.getIsAllRowsSelected() ? 'Deselect all rows' : 'Select all rows'}
-            onChange={table.getToggleAllRowsSelectedHandler()}
+            onChange={
+              table.getIsSomeRowsSelected()
+                ? () => table.toggleAllRowsSelected(false)
+                : table.getToggleAllRowsSelectedHandler()
+            }
           />
         </CellWrapper>
       ) : null,
