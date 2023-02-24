@@ -8,10 +8,10 @@ import { TableRow } from './TableRow'
 
 interface BasicTableProps<T> {
   table: Table<T>
-  rowConfig?: RowConfig<T>
-  cellConfig?: CellConfig<T>
-  stickyHeader?: boolean
-  isLoading?: boolean
+  rowConfig: RowConfig<T> | undefined
+  cellConfig: CellConfig<T> | undefined
+  stickyHeader: boolean | undefined
+  isLoading: boolean | undefined
 }
 
 export function BasicTable<T>({

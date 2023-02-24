@@ -19,7 +19,7 @@ export const StyledStickyCell = styled(StickyCell)<StyledStickyCellProps>`
 `
 
 const StyledCell = styled(Table.Cell)<{ backgroundColor?: string }>`
-  ${({ backgroundColor: bg }) => (bg ? `background-color: ${bg} !important;` : ``)};
+  background-color: ${({ backgroundColor: bg }) => (bg ? `${bg} !important` : `inherit`)};
 `
 /* TODO: Investigate why app crashes when this component is loaded in PokemonTable  */
 export function DynamicCell<T>({ cell, highlight, getStickyCellColor }: TableCellProps<T>) {

@@ -7,7 +7,8 @@ const columnHelper = createColumnHelper<UnitEvent>()
 export const pokemonColumns: ColumnDef<UnitEvent, any>[] = [
   columnHelper.accessor('location', {
     header: 'Location',
-    size: 200,
+    size: 60,
+    meta: { showTruncatedContentOnHover: true },
   }),
   columnHelper.accessor('unit', {
     id: 'Unit',
@@ -17,9 +18,11 @@ export const pokemonColumns: ColumnDef<UnitEvent, any>[] = [
   columnHelper.accessor('from', {
     header: 'From',
     size: 80,
+    meta: { showTruncatedContentOnHover: true },
   }),
   columnHelper.accessor('to', {
     header: 'To',
+    meta: { showTruncatedContentOnHover: true },
   }),
   columnHelper.accessor('urgency', {
     header: 'Urgency',

@@ -19,6 +19,11 @@ export function UnitEventsTable() {
           selectColumn: 'default',
           getRowId: (row) => row.id.toString(),
         }}
+        cellConfig={{
+          getShouldHighlight: (cell) => {
+            return JSON.stringify(cell.getValue())?.includes('20')
+          },
+        }}
         header={{ stickyHeader: true }}
         filters={{ globalFilter: true, columnSelect: true }}
       />

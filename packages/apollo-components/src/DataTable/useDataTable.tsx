@@ -54,7 +54,14 @@ export function useDataTable<T>(props: UseTableData<T>): Table<T> {
       columnVisibility,
     },
     defaultColumn: {
-      cell: (cell) => <TypographyCustom noWrap>{cell.getValue() as any}</TypographyCustom>,
+      cell: (cell) => (
+        <TypographyCustom
+          noWrap
+          showAllOnHover={cell.column.columnDef.meta?.showTruncatedContentOnHover}
+        >
+          {cell.getValue() as any}
+        </TypographyCustom>
+      ),
     },
     meta,
     enableSorting: config?.sortable,
