@@ -1,5 +1,5 @@
 import { Cell, ColumnDef, Row, Table } from '@tanstack/react-table'
-import { ReactElement, ReactNode } from 'react'
+import { CSSProperties, ReactElement, ReactNode } from 'react'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -69,9 +69,13 @@ interface ExpansionConfig {
   hideExpandControls?: boolean
 }
 
-export interface DataTableCommonProps<T> {
+interface StyleOverrides {
+  dataTableWrapper?: CSSProperties
+}
+
+interface DataTableCommonProps<T> {
   isLoading?: boolean
-  className?: string
+  styleOverwrites?: StyleOverrides
   config?: DataTableConfig<T>
   cellConfig?: CellConfig<T>
   rowConfig?: RowConfig<T>
