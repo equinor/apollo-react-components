@@ -3109,6 +3109,14 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.24.6.tgz#8f102bc922308f0c6c5ddea34fe253688314265a"
   integrity sha512-Tfru6YTDTCpX7dKVwHp/sosw/dNjEdzrncduUjIkQxn7n7u+74HT2ZrGtwwrU6Orws4x7zp3FKRqBPWVVhpx9w==
 
+"@tanstack/react-location@^3.7.4":
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-location/-/react-location-3.7.4.tgz#0125ba5685805d232429b8df70d20cb6c2a56cec"
+  integrity sha512-6rH2vNHGr0uyeUz5ZHvWMYjeYKGgIKFzvs5749QtnS9f+FU7t7fQE0hKZAzltBZk82LT7iYbcHBRyUg2lW13VA==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    history "^5.2.0"
+
 "@tanstack/react-query@^4.24.6":
   version "4.24.6"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.24.6.tgz#ec406e59314ae13d31a2c82eed0043bb0b67ba2e"

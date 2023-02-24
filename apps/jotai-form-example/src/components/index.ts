@@ -1,1 +1,0 @@
-export { PokemonPage } from './PokemonPage'

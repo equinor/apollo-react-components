@@ -1,8 +1,8 @@
 import { DataTable } from '@equinor/apollo-components'
-import { usePokemonQuery } from '../../hooks'
 import { pokemonColumns } from './columns'
+import { usePokemonQuery } from './hooks'
 
-export function PokemonTable() {
+export function UnitEventsTable() {
   const { data, isLoading } = usePokemonQuery()
 
   return (
