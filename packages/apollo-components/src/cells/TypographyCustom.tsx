@@ -7,9 +7,7 @@ import { CSSProperties } from 'react'
 import styled from 'styled-components'
 
 export type TypographyProps = {
-  noWrap?: boolean
-  /** Requires noWrap prop in order to function */
-  showAllOnHover?: boolean
+  truncate?: boolean
 } & EdsTypographyProps
 
 const truncateStyle: CSSProperties = {
@@ -19,9 +17,9 @@ const truncateStyle: CSSProperties = {
 }
 
 export const TypographyCustom = (props: TypographyProps) => {
-  const { noWrap, showAllOnHover, style: styleFromProps, ...edsTypographyProps } = props
+  const { truncate, style: styleFromProps, ...edsTypographyProps } = props
 
-  if (noWrap && showAllOnHover)
+  if (truncate)
     return (
       <HoverCapture>
         <EdsTypography
@@ -34,12 +32,7 @@ export const TypographyCustom = (props: TypographyProps) => {
       </HoverCapture>
     )
 
-  return (
-    <EdsTypography
-      {...edsTypographyProps}
-      style={{ ...styleFromProps, ...(noWrap ? truncateStyle : {}) }}
-    />
-  )
+  return <EdsTypography {...edsTypographyProps} style={styleFromProps} />
 }
 
 const HoverCapture = styled.div`

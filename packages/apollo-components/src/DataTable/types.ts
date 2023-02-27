@@ -35,9 +35,18 @@ export interface RowConfig<T> {
   onMouseLeave?: (row: Row<T>) => void
 }
 
+export type TruncateMode = 'wrap' | 'hover'
+
 export interface CellConfig<T> {
   getStickyCellColor?: (cell: Cell<T, unknown>) => string
   getShouldHighlight?: (cell: Cell<T, unknown>) => boolean
+  /**
+   * Whether to wrap or truncate default cells. Accepts `"wrap"` or `"hover"` and  or a function returning a boolean.
+   * Defauls to `"hover"` (i.e. all cells is truncated by default).
+   *
+   * ***Note**: This only applies to default cells. Custom cells need custom implementation.*
+   */
+  truncateMode?: TruncateMode | ((cell: Cell<T, unknown>) => TruncateMode)
 }
 
 export type RowSelectionMode = 'single' | 'multiple'
