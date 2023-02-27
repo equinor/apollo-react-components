@@ -54,3 +54,14 @@ export function prependSelectColumn<T>(columns: ColumnDef<T>[], config?: DataTab
   if (config.selectColumn === 'default') return [SelectColumnDef<T>(config), ...columns]
   return [config.selectColumn(), ...columns]
 }
+
+/** Useful in cases where you either have a value, function or undefined. */
+export function getFunctionValueOrDefault<T extends boolean | string | number, P>(
+  valueOrFn: ((props: P) => T) | T | undefined,
+  fnProps: P,
+  defaultValue: T
+) {
+  if (valueOrFn === undefined) return defaultValue
+  if (typeof valueOrFn === 'function') return valueOrFn(fnProps)
+  return valueOrFn
+}

@@ -4,7 +4,7 @@ import { ActionsCell, NumberCell } from './components'
 
 const columnHelper = createColumnHelper<UnitEvent>()
 
-export const pokemonColumns: ColumnDef<UnitEvent, any>[] = [
+export const unitEventColumns: ColumnDef<UnitEvent, any>[] = [
   columnHelper.accessor('location', {
     header: 'Location',
     size: 200,

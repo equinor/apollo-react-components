@@ -18,7 +18,7 @@ import {
 } from './atoms'
 import { fuzzyFilter } from './filters'
 import { DataTableProps } from './types'
-import { enableOrUndefined, prependSelectColumn } from './utils'
+import { enableOrUndefined, getFunctionValueOrDefault, prependSelectColumn } from './utils'
 
 export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
   const { columns, data, filters, config, cellConfig } = props
@@ -46,8 +46,7 @@ export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
     },
     defaultColumn: {
       cell: ({ cell }) => {
-        let truncateMode = cellConfig?.truncateMode ?? 'hover'
-        if (typeof truncateMode === 'function') truncateMode = truncateMode(cell)
+        const truncateMode = getFunctionValueOrDefault(cellConfig?.truncateMode, cell, 'hover')
 
         return (
           <TypographyCustom truncate={truncateMode === 'hover'}>
