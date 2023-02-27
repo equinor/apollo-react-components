@@ -1,11 +1,9 @@
 import {
-  ColumnDef,
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
   getSortedRowModel,
   Table,
-  TableMeta,
   useReactTable,
 } from '@tanstack/react-table'
 import { useAtom } from 'jotai'
@@ -19,18 +17,11 @@ import {
   tableSortingAtom,
 } from './atoms'
 import { fuzzyFilter } from './filters'
-import { DataTableConfig, FilterConfig } from './types'
-import { enableOrUndefined, prependSelectColumn } from './utils'
+import { DataTableProps } from './types'
+import { enableOrUndefined, getFunctionValueOrDefault, prependSelectColumn } from './utils'
 
-export interface UseTableData<T> {
-  data: T[]
-  columns: ColumnDef<T, any>[]
-  config?: DataTableConfig<T>
-  filters?: FilterConfig
-  meta?: TableMeta<T>
-}
-export function useDataTable<T>(props: UseTableData<T>): Table<T> {
-  const { columns, data, filters, config, meta } = props
+export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
+  const { columns, data, filters, config, cellConfig } = props
   const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
   const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
   const [sorting, setSorting] = useAtom(tableSortingAtom)
@@ -54,9 +45,16 @@ export function useDataTable<T>(props: UseTableData<T>): Table<T> {
       columnVisibility,
     },
     defaultColumn: {
-      cell: (cell) => <TypographyCustom noWrap>{cell.getValue() as any}</TypographyCustom>,
+      cell: ({ cell }) => {
+        const truncateMode = getFunctionValueOrDefault(cellConfig?.truncateMode, cell, 'hover')
+
+        return (
+          <TypographyCustom truncate={truncateMode === 'hover'}>
+            {cell.getValue() as any}
+          </TypographyCustom>
+        )
+      },
     },
-    meta,
     enableSorting: config?.sortable,
     enableExpanding: !config?.hideExpandControls,
     enableMultiRowSelection: config?.rowSelectionMode === 'multiple',

@@ -32,7 +32,7 @@ const DataTableWrapper = styled.div<DataTableWrapperProps>`
 `
 
 export function DataTableRaw<T>(props: DataTableRawProps<T>) {
-  const { isLoading, header, filters, config, rowConfig, table } = props
+  const { isLoading, header, filters, config, rowConfig, cellConfig, table } = props
   const tableContainerRef = useRef<HTMLDivElement>(null)
   return (
     <DataTableWrapper
@@ -53,6 +53,7 @@ export function DataTableRaw<T>(props: DataTableRawProps<T>) {
             containerRef={tableContainerRef}
             table={table}
             rowConfig={rowConfig}
+            cellConfig={cellConfig}
             isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
           />
@@ -60,6 +61,7 @@ export function DataTableRaw<T>(props: DataTableRawProps<T>) {
           <BasicTable
             table={table}
             rowConfig={rowConfig}
+            cellConfig={cellConfig}
             isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
           />

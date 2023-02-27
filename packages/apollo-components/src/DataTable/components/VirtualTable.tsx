@@ -12,11 +12,11 @@ import { TableRow } from './TableRow'
 export interface VirtualTableProps<T> {
   className?: string
   table: TableType<T>
-  rowConfig?: RowConfig<T>
-  cellConfig?: CellConfig<T>
-  stickyHeader?: boolean
+  rowConfig: RowConfig<T> | undefined
+  cellConfig: CellConfig<T> | undefined
+  stickyHeader: boolean | undefined
   containerRef: RefObject<HTMLDivElement>
-  isLoading?: boolean
+  isLoading: boolean | undefined
 }
 
 export function VirtualTable<T>({

@@ -1,5 +1,5 @@
 import { DataTable } from '@equinor/apollo-components'
-import { pokemonColumns } from './columns'
+import { unitEventColumns } from './columns'
 import { usePokemonQuery } from './hooks'
 
 export function UnitEventsTable() {
@@ -8,7 +8,7 @@ export function UnitEventsTable() {
   return (
     <div>
       <DataTable
-        columns={pokemonColumns}
+        columns={unitEventColumns}
         data={data ?? []}
         isLoading={isLoading}
         config={{
