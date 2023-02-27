@@ -2,7 +2,7 @@ import { Button, Icon } from '@equinor/eds-core-react'
 import { close, edit, save } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
 import { Pokemon } from 'mock-data'
-import { usePokemonMutation } from '../../../hooks/usePokemonMutation'
+import { usePokemonMutation } from '../hooks/usePokemonMutation'
 import { pokemonFormUtils } from '../utils'
 
 export function ActionsCell({ row }: CellContext<Pokemon, unknown>) {

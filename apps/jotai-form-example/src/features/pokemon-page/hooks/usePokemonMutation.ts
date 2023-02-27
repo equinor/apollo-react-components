@@ -1,7 +1,7 @@
 import { FormState } from '@equinor/apollo-utils'
 import { useQueryClient } from '@tanstack/react-query'
 import { Pokemon } from 'mock-data'
-import { pokemonFormUtils } from '../components/PokemonPage/utils'
+import { pokemonFormUtils } from '../utils'
 
 export function usePokemonMutation(pokemon: Pokemon) {
   const queryClient = useQueryClient()
