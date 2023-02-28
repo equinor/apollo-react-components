@@ -1,5 +1,4 @@
 ---
-'jotai-form-example-unit-events': patch
 '@equinor/apollo-components': patch
 ---
 
