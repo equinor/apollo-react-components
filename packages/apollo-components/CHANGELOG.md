@@ -1,5 +1,12 @@
 # @equinor/apollo-components
 
+## 1.10.1
+
+### Patch Changes
+
+- 6a3867d: Make select column indeterminate state deselect all rows
+- 90e166e: Add functionality for showing truncated text content on hover
+
 ## 1.10.0
 
 ### Minor Changes
