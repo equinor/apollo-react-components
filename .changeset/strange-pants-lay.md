@@ -1,5 +1,4 @@
 ---
-'jotai-form-example-unit-events': minor
 'mock-data': minor
 ---
 
