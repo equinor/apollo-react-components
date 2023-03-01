@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.11.1
+
+### Patch Changes
+
+- 0345659: Fix active row color and cell padding
+
 ## 1.11.0
 
 ### Minor Changes
