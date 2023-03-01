@@ -40,7 +40,7 @@ export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
 
 const StyledTableRow = styled(Table.Row)`
   /* Background color must be inherited here. Does not work with inline styling */
-  background-color: inherit;
+  ${({ active }) => (active ? '' : 'background-color: inherit;')}
 `
 
 function handleRowEvent<T>(row: Row<T>, handler?: (row: Row<T>) => void) {

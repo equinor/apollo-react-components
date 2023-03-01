@@ -36,8 +36,6 @@ export const TypographyCustom = (props: TypographyProps) => {
 }
 
 const HoverCapture = styled.div`
-  padding: 0.5em 0;
-  margin: -0.5em 0;
   height: ${tokens.typography.table.cell_text.lineHeight};
   background-color: inherit;
 
