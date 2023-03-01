@@ -8,7 +8,7 @@ type DataTableCompoundProps = typeof BaseComponent & {
 const DataTable = BaseComponent as DataTableCompoundProps
 DataTable.Provider = DataTableProvider
 
-export { globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
+export { columnVisibilityAtom, globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
 export * from './components'
 export * from './types'
 export { capitalizeHeader, prependSelectColumn } from './utils'
