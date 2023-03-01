@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.11.0
+
+### Minor Changes
+
+- 5f811ee: Expose columnVisibilityAtom for use in applications
+
 ## 1.10.1
 
 ### Patch Changes
