@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.11.2
+
+### Patch Changes
+
+- 8640757: Fix header overflow and scroll jump visually
+
 ## 1.11.1
 
 ### Patch Changes
