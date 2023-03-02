@@ -19,6 +19,7 @@ const HeaderDiv = styled.div`
 export const HeaderCell = <TData, TValue>({ header }: HeaderCellProps<TData, TValue>) => {
   const style: CSSProperties = {
     width: header.column.getSize(),
+    zIndex: 10,
   }
 
   const cellProps: CellProps = {
