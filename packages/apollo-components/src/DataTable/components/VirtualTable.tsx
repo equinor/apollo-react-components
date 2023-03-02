@@ -29,8 +29,9 @@ export function VirtualTable<T>({
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    estimateSize: () => 35,
+    estimateSize: () => 48,
     getScrollElement: () => containerRef.current,
+    overscan: 5,
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
