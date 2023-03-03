@@ -17,6 +17,7 @@ export interface VirtualTableProps<T> {
   stickyHeader: boolean | undefined
   containerRef: RefObject<HTMLDivElement>
   isLoading: boolean | undefined
+  estimatedSize?: number
 }
 
 export function VirtualTable<T>({
@@ -24,12 +25,13 @@ export function VirtualTable<T>({
   rowConfig,
   cellConfig,
   containerRef,
+  estimatedSize = 35,
   ...props
 }: VirtualTableProps<T>) {
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    estimateSize: () => 35,
+    estimateSize: () => estimatedSize,
     getScrollElement: () => containerRef.current,
   })
 

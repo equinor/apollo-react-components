@@ -56,6 +56,7 @@ export function DataTableRaw<T>(props: DataTableRawProps<T>) {
             cellConfig={cellConfig}
             isLoading={isLoading}
             stickyHeader={header?.stickyHeader}
+            estimatedSize={config?.virtualEstimatedSize}
           />
         ) : (
           <BasicTable

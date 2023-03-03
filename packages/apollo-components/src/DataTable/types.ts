@@ -66,6 +66,13 @@ export type DataTableConfig<T> = {
   tableLayout?: TableLayout
   sortable?: boolean
   virtual?: boolean
+  /**
+   * Defaults to 35.
+   *
+   * Should be set height of row.
+   * if content is dynamic, the maximum height of a row should be used.
+   */
+  virtualEstimatedSize?: number
   rowSelectionMode?: RowSelectionMode
   width?: string
   selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)

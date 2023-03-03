@@ -11,6 +11,7 @@ export const PokemonTable = () => {
           config={{
             sortable: true,
             virtual: true,
+            virtualEstimatedSize: 50,
             height: '500px',
             rowSelectionMode: 'single',
             selectColumn: 'default',
