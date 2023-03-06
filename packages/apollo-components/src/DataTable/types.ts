@@ -1,4 +1,4 @@
-import { Cell, ColumnDef, Row, Table } from '@tanstack/react-table'
+import { Cell, ColumnDef, OnChangeFn, Row, SortingState, Table } from '@tanstack/react-table'
 import { ReactElement, ReactNode } from 'react'
 
 export interface HeaderConfig {
@@ -37,6 +37,13 @@ export interface RowConfig<T> {
 
 export type TruncateMode = 'wrap' | 'hover'
 
+export type SortConfig = {
+  enableSorting?: boolean
+  manualSorting?: boolean
+  sorting?: SortingState
+  onSortingChange?: OnChangeFn<SortingState>
+}
+
 export interface CellConfig<T> {
   getStickyCellColor?: (cell: Cell<T, unknown>) => string
   getShouldHighlight?: (cell: Cell<T, unknown>) => boolean
@@ -64,6 +71,7 @@ export type DataTableConfig<T> = {
    * Default size is 150px.
    */
   tableLayout?: TableLayout
+  /** @deprecated use `cellConfig.enableSorting` instead. This is to align with \@tanstack/react-table types. */
   sortable?: boolean
   virtual?: boolean
   rowSelectionMode?: RowSelectionMode
@@ -84,6 +92,7 @@ export interface DataTableCommonProps<T> {
   config?: DataTableConfig<T>
   cellConfig?: CellConfig<T>
   rowConfig?: RowConfig<T>
+  sortConfig?: SortConfig
   filters?: FilterConfig
   header?: HeaderConfig
 }

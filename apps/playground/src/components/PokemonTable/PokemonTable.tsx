@@ -9,7 +9,6 @@ export const PokemonTable = () => {
         <DataTable
           columns={pokemonColumns}
           config={{
-            sortable: true,
             virtual: true,
             height: '500px',
             rowSelectionMode: 'single',
@@ -21,6 +20,7 @@ export const PokemonTable = () => {
             globalFilter: true,
             columnSelect: true,
           }}
+          sortConfig={{ enableSorting: true }}
           header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
           cellConfig={{
             getShouldHighlight(cell) {

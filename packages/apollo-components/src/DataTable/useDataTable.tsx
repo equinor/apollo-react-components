@@ -21,7 +21,7 @@ import { DataTableProps } from './types'
 import { enableOrUndefined, getFunctionValueOrDefault, prependSelectColumn } from './utils'
 
 export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
-  const { columns, data, filters, config, cellConfig } = props
+  const { columns, data, filters, config, cellConfig, sortConfig } = props
   const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
   const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
   const [sorting, setSorting] = useAtom(tableSortingAtom)
@@ -40,7 +40,8 @@ export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
     state: {
       expanded,
       globalFilter: enableGlobalFilter(globalFilter),
-      sorting: enableOrUndefined(config?.sortable, sorting),
+      sorting:
+        sortConfig?.enableSorting || config?.sortable ? sortConfig?.sorting ?? sorting : undefined,
       rowSelection: rowSelectionState,
       columnVisibility,
     },
@@ -55,7 +56,8 @@ export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
         )
       },
     },
-    enableSorting: config?.sortable,
+    enableSorting: sortConfig?.enableSorting ?? config?.sortable,
+    manualSorting: sortConfig?.manualSorting,
     enableExpanding: !config?.hideExpandControls,
     enableMultiRowSelection: config?.rowSelectionMode === 'multiple',
     enableSubRowSelection: config?.rowSelectionMode !== 'single',
@@ -66,7 +68,10 @@ export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
     getSortedRowModel: getSortedRowModel(),
     onExpandedChange: setExpanded,
     onRowSelectionChange: setRowSelectionState,
-    onSortingChange: enableOrUndefined(config?.sortable, setSorting),
+    onSortingChange:
+      sortConfig?.enableSorting || config?.sortable
+        ? sortConfig?.onSortingChange ?? setSorting
+        : undefined,
     onColumnVisibilityChange: setColumnVisibility,
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilter),
     getSubRows: config?.getSubRows,

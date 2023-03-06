@@ -17,10 +17,12 @@ export default {
   component: DataTableRaw,
   args: {
     config: {
-      sortable: true,
       width: '100%',
       height: '100%',
       virtual: false,
+    },
+    sortConfig: {
+      enableSorting: true,
     },
     header: {
       captionPadding: '1rem',
