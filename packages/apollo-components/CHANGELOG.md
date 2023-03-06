@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.12.0
+
+### Minor Changes
+
+- 4772165: Expose onSortingChange and enable custom sorting and deprecate `sortable` and move config to `sortConfig.enableSorting`.
+
 ## 1.11.2
 
 ### Patch Changes
