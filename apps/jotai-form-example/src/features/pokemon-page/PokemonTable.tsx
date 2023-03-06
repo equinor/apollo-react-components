@@ -15,10 +15,10 @@ export function PokemonTable() {
           virtual: true,
           tableLayout: 'fixed', // Required for using columns with fixed width
           height: '80vh',
-          sortable: true,
           selectColumn: 'default',
           getRowId: (row) => row.id.toString(),
         }}
+        sortConfig={{ enableSorting: true }}
         header={{ stickyHeader: true }}
         filters={{ globalFilter: true, columnSelect: true }}
       />

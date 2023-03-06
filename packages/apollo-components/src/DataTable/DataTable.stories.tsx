@@ -13,9 +13,11 @@ export default {
   component: DataTable,
   args: {
     config: {
-      sortable: true,
       width: '100%',
       virtual: false,
+    },
+    sortConfig: {
+      enableSorting: true,
     },
     header: {
       captionPadding: '1rem',
