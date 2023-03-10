@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.12.1
+
+### Patch Changes
+
+- 9458085: Move react, react-dom and jotai to peerDependencies
+
 ## 1.12.0
 
 ### Minor Changes
