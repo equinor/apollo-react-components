@@ -23,9 +23,13 @@
     "@tanstack/match-sorter-utils": "^8.7.6",
     "@tanstack/react-table": "^8.7.6",
     "@tanstack/react-virtual": "^3.0.0-beta.23",
-    "jotai": "^1.10.0",
     "styled-components": "^5.3.6",
     "tsup": "^6.3.0"
+  },
+  "peerDependencies": {
+    "jotai": "^1.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.0-alpha.38",
@@ -39,8 +43,6 @@
     "@types/styled-components": "^5.1.26",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "storybook": "^7.0.0-alpha.38",
     "tsconfig": "*",
     "typescript": "^4.5.2"
