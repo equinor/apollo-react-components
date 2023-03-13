@@ -1,5 +1,5 @@
 import { Cell, ColumnDef, OnChangeFn, Row, SortingState, Table } from '@tanstack/react-table'
-import { ReactElement, ReactNode } from 'react'
+import { HTMLProps, MutableRefObject, ReactElement, ReactNode } from 'react'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -86,6 +86,10 @@ interface ExpansionConfig {
   hideExpandControls?: boolean
 }
 
+export type HTMLPropsRef<T extends HTMLElement> = HTMLProps<T> & {
+  ref?: MutableRefObject<T | null> | null
+}
+
 export interface DataTableCommonProps<T> {
   isLoading?: boolean
   className?: string
@@ -95,6 +99,7 @@ export interface DataTableCommonProps<T> {
   sortConfig?: SortConfig
   filters?: FilterConfig
   header?: HeaderConfig
+  tableContainerProps?: HTMLPropsRef<HTMLDivElement>
 }
 
 export interface DataTableProps<T> extends DataTableCommonProps<T> {

@@ -1,15 +1,33 @@
-import { DataTable } from '@equinor/apollo-components'
+import { DataTable, useFetchMoreOnBottomReached } from '@equinor/apollo-components'
+import { useMemo, useRef } from 'react'
 import { unitEventColumns } from './columns'
 import { usePokemonQuery } from './hooks'
 
 export function UnitEventsTable() {
-  const { data, isLoading } = usePokemonQuery()
+  const { data, isLoading, isFetching, fetchNextPage } = usePokemonQuery()
+  const flatData = useMemo(() => data?.pages.flatMap((page) => page.data) ?? [], [data])
+
+  const tableContainerRef = useRef<HTMLDivElement>(null)
+  const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0
+  const totalFetched = flatData.length
+
+  const { onScroll } = useFetchMoreOnBottomReached({
+    fetchNextPage,
+    isFetching,
+    tableContainerRef,
+    totalDBRowCount,
+    totalFetched,
+  })
 
   return (
     <div>
       <DataTable
         columns={unitEventColumns}
-        data={data ?? []}
+        tableContainerProps={{
+          ref: tableContainerRef,
+          onScroll,
+        }}
+        data={flatData}
         isLoading={isLoading}
         config={{
           virtual: true,
