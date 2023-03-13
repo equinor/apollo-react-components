@@ -1475,18 +1475,6 @@
     "@floating-ui/react-dom-interactions" "^0.10.1"
     downshift "^6.1.12"
 
-"@equinor/eds-core-react@^0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@equinor/eds-core-react/-/eds-core-react-0.27.0.tgz#b5d4894bed3dc03f636a2d9de19c7e631abde185"
-  integrity sha512-mbcc0B7fZLxWT0De6bI+DFUQUJ+y1M8zEtVFQDwLu9++n8+8odwNbTN/TsT/97VP5cea0xmtZpHRFA6ix4oCnw==
-  dependencies:
-    "@babel/runtime" "^7.19.0"
-    "@equinor/eds-icons" "0.16.0"
-    "@equinor/eds-tokens" "0.9.0"
-    "@equinor/eds-utils" "0.7.0"
-    "@floating-ui/react-dom-interactions" "^0.10.1"
-    downshift "^7.0.1"
-
 "@equinor/eds-core-react@^0.29.1":
   version "0.29.1"
   resolved "https://registry.yarnpkg.com/@equinor/eds-core-react/-/eds-core-react-0.29.1.tgz#15955c0e7a9e4f6fca5d947d01a3ae6dd96bc60d"
@@ -1504,11 +1492,6 @@
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@equinor/eds-icons/-/eds-icons-0.15.0.tgz#73969d20bc2ddb08b9d53947d392c63352012d02"
   integrity sha512-4vGsMHB6+RXvJjVka+dbWLr+0q5tLSlhBSrtstsj1Q0bgQPmj6hIMF+eHK5brkZGJ6d1K1RXYgiUOP2LguGL4Q==
-
-"@equinor/eds-icons@0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@equinor/eds-icons/-/eds-icons-0.16.0.tgz#af0c2b384171424958530508de6161dfa79574c6"
-  integrity sha512-ByEJLYaTMAoxRGpiyB/pSY/cfsXdiQ4TvQR0H4jaiWeDat/wYSZPWkA0tImo80As9iczTV8uC7iXCF7ZrY4KQA==
 
 "@equinor/eds-icons@0.18.0", "@equinor/eds-icons@^0.18.0":
   version "0.18.0"
@@ -5287,17 +5270,6 @@ downshift@^6.1.12:
   version "6.1.12"
   resolved "https://registry.yarnpkg.com/downshift/-/downshift-6.1.12.tgz#f14476b41a6f6fd080c340bad1ddf449f7143f6f"
   integrity sha512-7XB/iaSJVS4T8wGFT3WRXmSF1UlBHAA40DshZtkrIscIN+VC+Lh363skLxFTvJwtNgHxAMDGEHT4xsyQFWL+UA==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    compute-scroll-into-view "^1.0.17"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
-    tslib "^2.3.0"
-
-downshift@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/downshift/-/downshift-7.0.1.tgz#558892b40be872eb2d47da75c35590402fdca597"
-  integrity sha512-AdFU8qJjUg9WZaLKzh7xAPfEwAB0dSqDGb7/Gnx/teldUXcNlaZrxhymOWedzDV+62xphMVustttAngmG33pXw==
   dependencies:
     "@babel/runtime" "^7.14.8"
     compute-scroll-into-view "^1.0.17"
