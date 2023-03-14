@@ -10,7 +10,6 @@ DataTable.Provider = DataTableProvider
 
 export { columnVisibilityAtom, globalFilterAtom, rowSelectionAtom, tableSortingAtom } from './atoms'
 export * from './components'
-export { useFetchMoreOnBottomReached } from './hooks'
 export * from './types'
 export { capitalizeHeader, prependSelectColumn } from './utils'
 export { DataTable }

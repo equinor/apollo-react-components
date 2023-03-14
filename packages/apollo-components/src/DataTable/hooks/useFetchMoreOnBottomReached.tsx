@@ -1,48 +1,38 @@
 import { MutableRefObject, UIEventHandler, useCallback, useEffect } from 'react'
+import { InfiniteScrollConfig } from '../types'
 
-export interface UseFetchMoreOnBottomReached {
-  fetchNextPage: () => void
-  isFetching: boolean
-  totalFetched: number
-  totalDBRowCount: number
-  tableContainerRef: MutableRefObject<HTMLDivElement | null>
-  bottomOffset?: number
-}
-
-export function useFetchMoreOnBottomReached({
-  fetchNextPage,
-  isFetching,
-  totalDBRowCount,
-  totalFetched,
-  tableContainerRef,
-  bottomOffset = 300,
-}: UseFetchMoreOnBottomReached) {
+export function useFetchMoreOnBottomReached(
+  tableContainerRef: MutableRefObject<HTMLDivElement | null>,
+  infiniteScrollConfig?: InfiniteScrollConfig
+) {
   //called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table
   const fetchMoreOnBottomReached = useCallback(
-    (containerRefElement?: HTMLDivElement | null) => {
-      if (!containerRefElement) return
+    (tableContainer?: HTMLDivElement | null) => {
+      if (!infiniteScrollConfig) return
+      if (!tableContainer) return
 
-      const { scrollHeight, scrollTop, clientHeight } = containerRefElement
-      //once the user has scrolled within 300px of the bottom of the table, fetch more data if there is any
-      const hasScrolledToBottom = scrollHeight - scrollTop - clientHeight < bottomOffset
-      const hasMoreToFetch = totalFetched < totalDBRowCount
+      const { onBottomScroll, offset = 300 } = infiniteScrollConfig
 
-      if (hasScrolledToBottom && !isFetching && hasMoreToFetch) {
-        fetchNextPage()
+      const { scrollHeight, scrollTop, clientHeight } = tableContainer
+
+      //once the user has scrolled within ${offset} of the bottom of the table, fetch more data if there is any
+      if (scrollHeight - scrollTop - clientHeight < offset) {
+        onBottomScroll()
       }
     },
-    [fetchNextPage, isFetching, totalFetched, totalDBRowCount, bottomOffset]
+    [infiniteScrollConfig]
   )
 
-  const onScroll: UIEventHandler<HTMLDivElement> = useCallback(
+  const onTableContainerScroll: UIEventHandler<HTMLDivElement> = useCallback(
     (event) => fetchMoreOnBottomReached(event.target as HTMLDivElement | null),
     [fetchMoreOnBottomReached]
   )
 
   //a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
   useEffect(() => {
+    if (!infiniteScrollConfig) return
     fetchMoreOnBottomReached(tableContainerRef.current)
   }, [fetchMoreOnBottomReached])
 
-  return { onScroll }
+  return onTableContainerScroll
 }

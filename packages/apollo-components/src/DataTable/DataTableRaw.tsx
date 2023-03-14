@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BasicTable } from './components/BasicTable'
 import { DataTableHeader } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
+import { useFetchMoreOnBottomReached } from './hooks'
 import { DataTableRawProps, TableLayout } from './types'
 
 interface DataTableWrapperProps {
@@ -34,6 +35,12 @@ export function DataTableRaw<T>(props: DataTableRawProps<T>) {
   const { isLoading, header, filters, config, rowConfig, cellConfig, table } = props
   const tableContainerRef = useRef<HTMLDivElement>(null) as MutableRefObject<HTMLDivElement>
 
+  // Infinite scroll
+  const onTableContainerScroll = useFetchMoreOnBottomReached(
+    tableContainerRef,
+    props.infiniteScroll
+  )
+
   return (
     <DataTableWrapper
       captionPadding={header?.captionPadding}
@@ -50,6 +57,7 @@ export function DataTableRaw<T>(props: DataTableRawProps<T>) {
       <div
         {...props.tableContainerProps}
         className={'--table-container ' + props.tableContainerProps?.className ?? ''}
+        onScroll={props.tableContainerProps?.onScroll ?? onTableContainerScroll}
         ref={(node: HTMLDivElement) => {
           if (node) {
             tableContainerRef.current = node

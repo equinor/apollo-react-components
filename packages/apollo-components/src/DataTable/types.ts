@@ -86,8 +86,15 @@ interface ExpansionConfig {
   hideExpandControls?: boolean
 }
 
-export type HTMLPropsRef<T extends HTMLElement> = HTMLProps<T> & {
+export interface HTMLPropsRef<T extends HTMLElement> extends HTMLProps<T> {
   ref?: MutableRefObject<T | null> | null
+}
+
+export interface InfiniteScrollConfig {
+  /** Called on scroll below offset. */
+  onBottomScroll: () => void
+  /** Pixels above bottom. Defines when the onBottomScroll should be called. Defaults to `300`. */
+  offset?: number
 }
 
 export interface DataTableCommonProps<T> {
@@ -100,6 +107,7 @@ export interface DataTableCommonProps<T> {
   filters?: FilterConfig
   header?: HeaderConfig
   tableContainerProps?: HTMLPropsRef<HTMLDivElement>
+  infiniteScroll?: InfiniteScrollConfig
 }
 
 export interface DataTableProps<T> extends DataTableCommonProps<T> {
