@@ -1,5 +1,22 @@
-import { Cell, ColumnDef, OnChangeFn, Row, SortingState, Table } from '@tanstack/react-table'
-import { HTMLProps, MutableRefObject, ReactElement, ReactNode } from 'react'
+import {
+  Cell,
+  ColumnDef,
+  ExpandedState,
+  OnChangeFn,
+  Row,
+  RowSelectionState,
+  SortingState,
+  Table,
+  VisibilityState,
+} from '@tanstack/react-table'
+import {
+  Dispatch,
+  HTMLProps,
+  MutableRefObject,
+  ReactElement,
+  ReactNode,
+  SetStateAction,
+} from 'react'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -36,13 +53,6 @@ export interface RowConfig<T> {
 }
 
 export type TruncateMode = 'wrap' | 'hover'
-
-export type SortConfig = {
-  enableSorting?: boolean
-  manualSorting?: boolean
-  sorting?: SortingState
-  onSortingChange?: OnChangeFn<SortingState>
-}
 
 export interface CellConfig<T> {
   getStickyCellColor?: (cell: Cell<T, unknown>) => string
@@ -90,11 +100,9 @@ export interface HTMLPropsRef<T extends HTMLElement> extends HTMLProps<T> {
   ref?: MutableRefObject<T | null> | null
 }
 
-export interface InfiniteScrollConfig {
-  /** Called on scroll below offset. */
-  onBottomScroll: () => void
-  /** Pixels above bottom. Defines when the onBottomScroll should be called. Defaults to `300`. */
-  offset?: number
+export interface State<S> {
+  state: S
+  onChange: Dispatch<SetStateAction<S>>
 }
 
 export interface DataTableCommonProps<T> {
@@ -103,11 +111,39 @@ export interface DataTableCommonProps<T> {
   config?: DataTableConfig<T>
   cellConfig?: CellConfig<T>
   rowConfig?: RowConfig<T>
-  sortConfig?: SortConfig
+  sortConfig?: {
+    enableSorting?: boolean
+    manualSorting?: boolean
+    sorting?: SortingState
+    onSortingChange?: OnChangeFn<SortingState>
+  }
   filters?: FilterConfig
   header?: HeaderConfig
   tableContainerProps?: HTMLPropsRef<HTMLDivElement>
-  infiniteScroll?: InfiniteScrollConfig
+  infiniteScroll?: {
+    /** Called on scroll below offset. */ onBottomScroll: () => void
+    /** Pixels above bottom. Defines when the onBottomScroll should be called. Defaults to `300`. */
+    offset?: number
+  }
+  rowSelection?: {
+    mode: RowSelectionMode
+    state?: RowSelectionState
+    onChange?: OnChangeFn<RowSelectionState>
+  }
+  columnVisibility?: {
+    state?: VisibilityState
+    onChange?: OnChangeFn<VisibilityState>
+  }
+  expanded?: {
+    state?: ExpandedState
+    onChange?: OnChangeFn<ExpandedState>
+  }
+  globalFilter?: {
+    enable: boolean
+    state?: string
+    onChange?: OnChangeFn<string>
+  }
+  // TODO: Add global filter state
 }
 
 export interface DataTableProps<T> extends DataTableCommonProps<T> {

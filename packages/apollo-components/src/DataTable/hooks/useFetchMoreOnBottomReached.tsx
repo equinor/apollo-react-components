@@ -1,9 +1,9 @@
 import { MutableRefObject, UIEventHandler, useCallback, useEffect } from 'react'
-import { InfiniteScrollConfig } from '../types'
+import { DataTableCommonProps } from '../types'
 
 export function useFetchMoreOnBottomReached(
   tableContainerRef: MutableRefObject<HTMLDivElement | null>,
-  infiniteScrollConfig?: InfiniteScrollConfig
+  infiniteScrollConfig?: DataTableCommonProps<unknown>['infiniteScroll']
 ) {
   //called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table
   const fetchMoreOnBottomReached = useCallback(

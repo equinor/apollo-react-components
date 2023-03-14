@@ -1,32 +1,28 @@
 import {
+  ExpandedState,
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
   getSortedRowModel,
+  RowSelectionState,
+  SortingState,
   Table,
   useReactTable,
+  VisibilityState,
 } from '@tanstack/react-table'
-import { useAtom } from 'jotai'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { TypographyCustom } from '../cells'
-import {
-  columnVisibilityAtom,
-  expandedRowsAtom,
-  globalFilterAtom,
-  rowSelectionAtom,
-  tableSortingAtom,
-} from './atoms'
 import { fuzzyFilter } from './filters'
 import { DataTableProps } from './types'
 import { enableOrUndefined, getFunctionValueOrDefault, prependSelectColumn } from './utils'
 
 export function useDataTable<T>(props: DataTableProps<T>): Table<T> {
-  const { columns, data, filters, config, cellConfig, sortConfig } = props
-  const [columnVisibility, setColumnVisibility] = useAtom(columnVisibilityAtom)
-  const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
-  const [sorting, setSorting] = useAtom(tableSortingAtom)
-  const [rowSelectionState, setRowSelectionState] = useAtom(rowSelectionAtom)
-  const [expanded, setExpanded] = useAtom(expandedRowsAtom)
+  const { columns, data, filters, config, cellConfig, sortConfig, state } = props
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [globalFilter, setGlobalFilter] = useState<string>('')
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [rowSelectionState, setRowSelectionState] = useState<RowSelectionState>({})
+  const [expanded, setExpanded] = useState<ExpandedState>({})
 
   function enableGlobalFilter<T>(value: T) {
     return enableOrUndefined(filters?.globalFilter, value)
