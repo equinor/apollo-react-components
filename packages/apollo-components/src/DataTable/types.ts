@@ -1,5 +1,5 @@
 import { Cell, ColumnDef, OnChangeFn, Row, SortingState, Table } from '@tanstack/react-table'
-import { ReactElement, ReactNode } from 'react'
+import { HTMLProps, MutableRefObject, ReactElement, ReactNode } from 'react'
 
 export interface HeaderConfig {
   captionPadding?: string
@@ -86,6 +86,17 @@ interface ExpansionConfig {
   hideExpandControls?: boolean
 }
 
+export interface HTMLPropsRef<T extends HTMLElement> extends HTMLProps<T> {
+  ref?: MutableRefObject<T | null> | null
+}
+
+export interface InfiniteScrollConfig {
+  /** Called on scroll below offset. */
+  onBottomScroll: () => void
+  /** Pixels above bottom. Defines when the onBottomScroll should be called. Defaults to `300`. */
+  offset?: number
+}
+
 export interface DataTableCommonProps<T> {
   isLoading?: boolean
   className?: string
@@ -95,6 +106,8 @@ export interface DataTableCommonProps<T> {
   sortConfig?: SortConfig
   filters?: FilterConfig
   header?: HeaderConfig
+  tableContainerProps?: HTMLPropsRef<HTMLDivElement>
+  infiniteScroll?: InfiniteScrollConfig
 }
 
 export interface DataTableProps<T> extends DataTableCommonProps<T> {
