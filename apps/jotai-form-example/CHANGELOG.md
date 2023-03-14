@@ -1,5 +1,14 @@
 # jotai-form-example
 
+## 0.3.1
+
+### Patch Changes
+
+- 10f9e7b: Support infinite scroll and implement example
+- Updated dependencies [10f9e7b]
+  - @equinor/apollo-components@1.12.3
+  - mock-data@1.1.1
+
 ## 0.3.0
 
 ### Minor Changes
