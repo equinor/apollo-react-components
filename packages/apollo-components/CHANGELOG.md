@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 1.12.2
+
+### Patch Changes
+
+- eeb26fc: Move @equinor/eds-core-react to peer dependencies
+
 ## 1.12.1
 
 ### Patch Changes
