@@ -8,19 +8,24 @@ export function PokemonTable() {
   return (
     <div>
       <DataTable
+        tableCaption="Pokemon"
         columns={pokemonColumns}
         data={data ?? []}
         isLoading={isLoading}
-        config={{
-          virtual: true,
-          tableLayout: 'fixed', // Required for using columns with fixed width
-          height: '80vh',
+        getRowId={(row) => row.id.toString()}
+        virtual
+        tableLayout="fixed" // Required for using columns with fixed width
+        height="80vh"
+        rowSelection={{
           selectColumn: 'default',
-          getRowId: (row) => row.id.toString(),
         }}
-        sortConfig={{ enableSorting: true }}
-        header={{ stickyHeader: true }}
-        filters={{ globalFilter: true, columnSelect: true }}
+        sorting={{ enableSorting: true }}
+        headerConfig={{ sticky: true }}
+        actionsRow={{
+          enableGlobalFilterInput: true,
+          enableColumnSelect: true,
+          enableTableCaption: true,
+        }}
       />
     </div>
   )

@@ -1,6 +1,6 @@
 import { Column, ColumnDef, HeaderContext } from '@tanstack/react-table'
 import { SelectColumnDef } from '../cells'
-import { DataTableConfig } from './types'
+import { DataTableProps } from './types'
 
 /**
  * Capitalize the table header.
@@ -39,17 +39,20 @@ export function getColumnHeader<T>(column: Column<T, any>) {
 /** Prepend a column definition array with a select column if enabled in the config. */
 export function prependSelectColumnIfEnabled<T>(
   columns: ColumnDef<T, any>[],
-  config?: DataTableConfig<T>
+  config?: DataTableProps<T>['rowSelection']
 ) {
   if (!config) return columns
-  if (!Boolean(config?.rowSelectionMode)) return columns
+  if (!Boolean(config?.mode)) return columns
 
   return prependSelectColumn(columns, config)
 }
 
 /** Prepend a column definition array with a select column. */
 
-export function prependSelectColumn<T>(columns: ColumnDef<T>[], config?: DataTableConfig<T>) {
+export function prependSelectColumn<T>(
+  columns: ColumnDef<T>[],
+  config?: DataTableProps<T>['rowSelection']
+) {
   if (!config?.selectColumn) return columns
   if (config.selectColumn === 'default') return [SelectColumnDef<T>(config), ...columns]
   return [config.selectColumn(), ...columns]

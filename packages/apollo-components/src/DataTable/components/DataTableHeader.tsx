@@ -1,19 +1,18 @@
 import { Typography } from '@equinor/eds-core-react'
 import { search } from '@equinor/eds-icons'
-import { Table } from '@tanstack/react-table'
-import { useAtom } from 'jotai'
+import { OnChangeFn, Table } from '@tanstack/react-table'
 import styled from 'styled-components'
-import { globalFilterAtom } from '../atoms'
+import { SetRequired } from 'type-fest'
 import { DebouncedInput } from '../filters'
-import { FilterConfig } from '../types'
+import { DataTableProps } from '../types'
 import { ColumnSelect } from './ColumnSelect'
 
-const DataTableHeaderWrapper = styled.div<{ captionPadding?: string }>`
+const DataTableHeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: ${(props) => props.captionPadding ?? '1rem'};
+  padding: 1rem;
 `
 
 const FilterContainer = styled.div`
@@ -25,30 +24,41 @@ const FilterContainer = styled.div`
 
 interface DataTableHeaderProps<T> {
   table: Table<T>
-  tableCaption?: string
-  captionPadding?: string
-  config?: FilterConfig
+  tableCaption: string
+  actionsRow: SetRequired<DataTableProps<T>, 'actionsRow'>['actionsRow']
+  globalFilter: { state: string; onChange: OnChangeFn<string> }
 }
 
-export function DataTableHeader<T>({ config, table, ...props }: DataTableHeaderProps<T>) {
-  const [globalFilter, setGlobalFilter] = useAtom(globalFilterAtom)
-
+export function ActionsHeaderRow<T>({
+  table,
+  actionsRow,
+  tableCaption,
+  globalFilter,
+}: DataTableHeaderProps<T>) {
   return (
-    <DataTableHeaderWrapper className="--table-caption" captionPadding={props.captionPadding}>
-      {props?.tableCaption && <Typography variant="h3">{props?.tableCaption}</Typography>}
+    <DataTableHeaderWrapper className="--table-caption">
+      <FilterContainer className="--filter-container-left">
+        {actionsRow?.enableTableCaption && <Typography variant="h3">{tableCaption}</Typography>}
+        {actionsRow?.customActions?.(table)}
+      </FilterContainer>
 
-      <FilterContainer className="--filter-container">
+      <FilterContainer className="--filter-container-right">
         <>
-          {config?.globalFilter && (
+          {actionsRow?.enableGlobalFilterInput && (
             <DebouncedInput
-              value={globalFilter}
+              value={globalFilter.state}
               icon={search}
-              placeholder={config?.globalFilterPlaceholder ?? 'Search all columns'}
-              onChange={(value) => setGlobalFilter(String(value))}
+              placeholder={actionsRow.globalFilterPlaceholder ?? 'Search all columns'}
+              onChange={(value) => globalFilter.onChange(String(value))}
             />
           )}
-          {config?.filterActions?.(table)}
-          {config?.columnSelect && <ColumnSelect table={table} />}
+          {actionsRow?.enableColumnSelect && <ColumnSelect table={table} />}
+          {actionsRow?.totalRowCount && (
+            <span>
+              {table.options.data.length.toLocaleString()} /{' '}
+              {actionsRow.totalRowCount.toLocaleString()} rows
+            </span>
+          )}
         </>
       </FilterContainer>
     </DataTableHeaderWrapper>

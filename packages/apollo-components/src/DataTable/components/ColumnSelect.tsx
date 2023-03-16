@@ -1,4 +1,4 @@
-import { Button, Checkbox, Divider, Icon, Popover } from '@equinor/eds-core-react'
+import { Button, Checkbox, Divider, Icon, Popover, Tooltip } from '@equinor/eds-core-react'
 import { close, view_column } from '@equinor/eds-icons'
 import { Table } from '@tanstack/react-table'
 import { useRef, useState } from 'react'
@@ -29,17 +29,19 @@ export function ColumnSelect<T>({ table }: ColumnSelectProps<T>) {
 
   return (
     <>
-      <Button
-        aria-haspopup
-        id="column-select-anchor"
-        aria-controls="column-select-popover"
-        aria-expanded={isOpen}
-        ref={referenceElement}
-        variant="ghost_icon"
-        onClick={() => setIsOpen(true)}
-      >
-        <Icon name="view_column" data={view_column} />
-      </Button>
+      <Tooltip title="Select columns" placement="left">
+        <Button
+          aria-haspopup
+          id="column-select-anchor"
+          aria-controls="column-select-popover"
+          aria-expanded={isOpen}
+          ref={referenceElement}
+          variant="ghost_icon"
+          onClick={() => setIsOpen(true)}
+        >
+          <Icon name="view_column" data={view_column} />
+        </Button>
+      </Tooltip>
       <Popover
         open={isOpen}
         id="column-select-popover"

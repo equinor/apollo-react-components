@@ -6,7 +6,8 @@ import { TableBody } from './TableBody'
 import { TableHeader } from './TableHeader'
 import { TableRow } from './TableRow'
 
-interface BasicTableProps<T> {
+export interface BasicTableProps<T> {
+  tableCaption: string
   table: Table<T>
   rowConfig: RowConfig<T> | undefined
   cellConfig: CellConfig<T> | undefined
@@ -20,10 +21,12 @@ export function BasicTable<T>({
   cellConfig,
   stickyHeader,
   isLoading,
+  tableCaption,
 }: BasicTableProps<T>) {
   const tableRows = table.getRowModel().rows
   return (
     <EdsTable>
+      <EdsTable.Caption hidden>{tableCaption}</EdsTable.Caption>
       <TableHeader sticky={stickyHeader} table={table} />
       <TableBody>
         {tableRows.length ? (

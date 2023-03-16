@@ -1,22 +1,17 @@
 import { Table } from '@equinor/eds-core-react'
-import { Row, Table as TableType } from '@tanstack/react-table'
+import { Row } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { RefObject } from 'react'
 import { TableHeader } from '.'
-import { CellConfig, RowConfig } from '../types'
+import { BasicTableProps } from './BasicTable'
 import { PaddingRow } from './PaddingRow'
 import { PlaceholderRow } from './PlaceholderRow'
 import { TableBody } from './TableBody'
 import { TableRow } from './TableRow'
 
-export interface VirtualTableProps<T> {
+export interface VirtualTableProps<T> extends BasicTableProps<T> {
   className?: string
-  table: TableType<T>
-  rowConfig: RowConfig<T> | undefined
-  cellConfig: CellConfig<T> | undefined
-  stickyHeader: boolean | undefined
   containerRef: RefObject<HTMLDivElement>
-  isLoading: boolean | undefined
 }
 
 export function VirtualTable<T>({
@@ -43,6 +38,7 @@ export function VirtualTable<T>({
 
   return (
     <Table>
+      <Table.Caption hidden>{props.tableCaption}</Table.Caption>
       <TableHeader sticky={props.stickyHeader} table={table} />
       <TableBody>
         <PaddingRow height={paddingTop} />
