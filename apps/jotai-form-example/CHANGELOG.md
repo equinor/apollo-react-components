@@ -1,5 +1,21 @@
 # jotai-form-example
 
+## 0.4.0
+
+### Minor Changes
+
+- d901c86: Change DataTable props type and remove jotai
+
+  - Breaking changes requiring to update DataTable props
+  - Control table directly instead of using exported atoms (not exported anymore)
+  - This change was made improve prop structure, scalability and ease of use
+  - See example apps for migration tips
+
+### Patch Changes
+
+- Updated dependencies [d901c86]
+  - @equinor/apollo-components@2.0.0
+
 ## 0.3.1
 
 ### Patch Changes
