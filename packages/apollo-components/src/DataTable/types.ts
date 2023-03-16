@@ -1,18 +1,35 @@
-import { Cell, ColumnDef, OnChangeFn, Row, SortingState, Table } from '@tanstack/react-table'
-import { HTMLProps, MutableRefObject, ReactElement, ReactNode } from 'react'
+import {
+  Cell,
+  ColumnDef,
+  ExpandedState,
+  OnChangeFn,
+  Row,
+  RowSelectionState,
+  SortingState,
+  Table,
+  VisibilityState,
+} from '@tanstack/react-table'
+import {
+  Dispatch,
+  HTMLProps,
+  MutableRefObject,
+  ReactElement,
+  ReactNode,
+  SetStateAction,
+} from 'react'
 
 export interface HeaderConfig {
-  captionPadding?: string
-  stickyHeader?: boolean
-  tableCaption?: string
+  sticky?: boolean
 }
 
 export interface FilterConfig {
+  showTableCaption?: boolean
+  totalRowCount?: number
   columnSelect?: boolean
   globalFilter?: boolean
   globalFilterPlaceholder?: string
   filterFromLeafRows?: boolean
-  filterActions?: <T>(table: Table<T>) => ReactNode
+  customActions?: <T>(table: Table<T>) => ReactNode
 }
 
 export interface TableRowWrapper<T> {
@@ -60,32 +77,6 @@ export type RowSelectionMode = 'single' | 'multiple'
 
 export type TableLayout = 'auto' | 'fixed'
 
-export type DataTableConfig<T> = {
-  height?: string
-  /**
-   * Defaults to `'auto'`.
-   *
-   * `'auto'` determines column width based on cell content.
-   *
-   * `'fixed'` uses fixed column width. Specify width (`size` property) in ColumnDef.
-   * Default size is 150px.
-   */
-  tableLayout?: TableLayout
-  /** @deprecated use `cellConfig.enableSorting` instead. This is to align with \@tanstack/react-table types. */
-  sortable?: boolean
-  virtual?: boolean
-  rowSelectionMode?: RowSelectionMode
-  width?: string
-  selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
-  getSubRows?: (originalRow: T) => T[] | undefined
-  getRowId?: (originalRow: T, index: number, parent: Row<T> | undefined) => string
-} & ExpansionConfig
-
-interface ExpansionConfig {
-  expandAllByDefault?: boolean
-  hideExpandControls?: boolean
-}
-
 export interface HTMLPropsRef<T extends HTMLElement> extends HTMLProps<T> {
   ref?: MutableRefObject<T | null> | null
 }
@@ -97,24 +88,60 @@ export interface InfiniteScrollConfig {
   offset?: number
 }
 
-export interface DataTableCommonProps<T> {
-  isLoading?: boolean
-  className?: string
-  config?: DataTableConfig<T>
+export interface DataTableProps<T> {
+  tableCaption: string
+  data: T[]
+  columns: ColumnDef<T, any>[]
+
   cellConfig?: CellConfig<T>
   rowConfig?: RowConfig<T>
-  sortConfig?: SortConfig
-  filters?: FilterConfig
-  header?: HeaderConfig
+  headerConfig?: HeaderConfig
+
+  isLoading?: boolean
+  height?: string
+  width?: string
+  /**
+   * Defaults to `'auto'`.
+   *
+   * `'auto'` determines column width based on cell content.
+   *
+   * `'fixed'` uses fixed column width. Specify width (`size` property) in ColumnDef.
+   * Default size is 150px.
+   */
+  tableLayout?: TableLayout
+  virtual?: boolean
+  getRowId?: (originalRow: T, index: number, parent: Row<T> | undefined) => string
+  getSubRows?: (originalRow: T) => T[] | undefined
+
+  rowSelection?: Partial<ControlledState<RowSelectionState>> & {
+    mode?: RowSelectionMode
+    selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
+    includeExpansionButton?: boolean
+  }
+  expansion?: Partial<ControlledState<ExpandedState>> & {
+    expandAllByDefault?: boolean
+  }
+  sorting?: Partial<ControlledState<SortingState>> & {
+    enableSorting?: boolean
+    manualSorting?: boolean
+  }
+  globalFilter?: ControlledState<string>
+  columnVisibility?: ControlledState<VisibilityState>
+  actionsRow?: {
+    showTableCaption?: boolean
+    totalRowCount?: number
+    showColumnSelect?: boolean
+    showGlobalFilter?: boolean
+    globalFilterPlaceholder?: string
+    filterFromLeafRows?: boolean
+    customActions?: <T>(table: Table<T>) => ReactNode
+  }
   tableContainerProps?: HTMLPropsRef<HTMLDivElement>
   infiniteScroll?: InfiniteScrollConfig
 }
 
-export interface DataTableProps<T> extends DataTableCommonProps<T> {
-  data: T[]
-  columns: ColumnDef<T, any>[]
-}
-
-export interface DataTableRawProps<T> extends DataTableCommonProps<T> {
-  table: Table<T>
+type ControlledState<T> = {
+  state: T
+  /** Callback when state chagnes. Using this requires the state to be fully controlled. */
+  onChange?: Dispatch<SetStateAction<T>>
 }

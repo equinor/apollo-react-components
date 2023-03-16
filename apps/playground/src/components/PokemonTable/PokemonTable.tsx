@@ -1,40 +1,82 @@
 import { DataTable } from '@equinor/apollo-components'
+import { Card } from '@equinor/eds-core-react'
+import { useMemo, useState } from 'react'
 import { pokemon } from '../../data'
 import { pokemonColumns } from './columns'
 
+/**
+ * Example with row selection and controlled state.
+ */
 export const PokemonTable = () => {
+  const [rowSelectionState, setRowSelectionState] = useState({})
+
+  const selectedPokemonId: string | undefined = Object.keys(rowSelectionState).filter(
+    (key) => rowSelectionState[key as keyof typeof rowSelectionState]
+  )[0]
+
+  const selectedPokemon = useMemo(
+    () => pokemon.find((pokemon) => String(pokemon.id) === selectedPokemonId),
+    [selectedPokemonId]
+  )
+
   return (
     <div>
-      <DataTable.Provider>
-        <DataTable
-          columns={pokemonColumns}
-          config={{
-            virtual: true,
-            height: '500px',
-            rowSelectionMode: 'single',
-            selectColumn: 'default',
-            getRowId: (row) => row.id.toString(),
-          }}
-          data={pokemon}
-          filters={{
-            globalFilter: true,
-            columnSelect: true,
-          }}
-          sortConfig={{ enableSorting: true }}
-          header={{ stickyHeader: true, tableCaption: 'Pokédex' }}
-          cellConfig={{
-            getShouldHighlight(cell) {
-              return cell.column.id === 'name' && cell.row.original.type.includes('Water')
-            },
-          }}
-          rowConfig={{
-            onClick: (row) => row.toggleSelected(),
-            getRowBackground(row) {
-              return row.original.type.includes('Poison') ? '#e0febd' : undefined
-            },
-          }}
-        />
-      </DataTable.Provider>
+      <div style={{ padding: '1rem' }}>
+        <Card elevation={'raised'}>
+          <Card.Header>
+            <Card.HeaderTitle>Selected Pokemon</Card.HeaderTitle>
+          </Card.Header>
+          <Card.Content>
+            {selectedPokemon ? (
+              <div>
+                {Object.keys(selectedPokemon).map((key) => {
+                  let value = selectedPokemon[key as keyof typeof selectedPokemon]
+                  if (Array.isArray(value)) value = value.join(', ')
+                  return (
+                    <div key={key}>
+                      <b>{key}:</b> <span>{JSON.stringify(value)}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
+              <>No pokemon selected.</>
+            )}
+          </Card.Content>
+        </Card>
+      </div>
+
+      <DataTable
+        tableCaption="Pokédex"
+        data={pokemon}
+        columns={pokemonColumns}
+        virtual
+        height={'500px'}
+        rowSelection={{
+          mode: 'single',
+          selectColumn: 'default',
+          state: rowSelectionState,
+          onChange: setRowSelectionState,
+        }}
+        getRowId={(row) => row.id.toString()}
+        actionsRow={{
+          showGlobalFilter: true,
+          showColumnSelect: true,
+        }}
+        sorting={{ enableSorting: true }}
+        headerConfig={{ sticky: true }}
+        cellConfig={{
+          getShouldHighlight(cell) {
+            return cell.column.id === 'name' && cell.row.original.type.includes('Water')
+          },
+        }}
+        rowConfig={{
+          onClick: (row) => row.toggleSelected(),
+          getRowBackground(row) {
+            return row.original.type.includes('Poison') ? '#e0febd' : undefined
+          },
+        }}
+      />
 
       <div id="provider">
         <div id="external-table-wrapper">
