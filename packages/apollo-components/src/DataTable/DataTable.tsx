@@ -61,7 +61,8 @@ export function DataTable<T>(props: DataTableProps<T>) {
     props.globalFilter?.state ?? internalGlobalFilterState,
     props.globalFilter?.onChange ?? setInternalGlobalFilterState,
   ]
-  const shouldEnableGlobalFilter = props.actionsRow?.showGlobalFilter || Boolean(props.globalFilter)
+  const shouldEnableGlobalFilter =
+    props.actionsRow?.enableGlobalFilterInput || Boolean(props.globalFilter)
   function enableGlobalFilter<T>(value: T) {
     return enableOrUndefined(shouldEnableGlobalFilter, value)
   }

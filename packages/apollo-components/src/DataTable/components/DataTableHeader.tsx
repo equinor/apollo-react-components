@@ -38,13 +38,13 @@ export function ActionsHeaderRow<T>({
   return (
     <DataTableHeaderWrapper className="--table-caption">
       <FilterContainer className="--filter-container-left">
-        {actionsRow?.showTableCaption && <Typography variant="h3">{tableCaption}</Typography>}
+        {actionsRow?.enableTableCaption && <Typography variant="h3">{tableCaption}</Typography>}
         {actionsRow?.customActions?.(table)}
       </FilterContainer>
 
       <FilterContainer className="--filter-container-right">
         <>
-          {actionsRow?.showGlobalFilter && (
+          {actionsRow?.enableGlobalFilterInput && (
             <DebouncedInput
               value={globalFilter.state}
               icon={search}
@@ -52,7 +52,7 @@ export function ActionsHeaderRow<T>({
               onChange={(value) => globalFilter.onChange(String(value))}
             />
           )}
-          {actionsRow?.showColumnSelect && <ColumnSelect table={table} />}
+          {actionsRow?.enableColumnSelect && <ColumnSelect table={table} />}
           {actionsRow?.totalRowCount && (
             <span>
               {table.options.data.length.toLocaleString()} /{' '}

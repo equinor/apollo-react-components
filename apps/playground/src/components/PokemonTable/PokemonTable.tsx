@@ -60,8 +60,8 @@ export const PokemonTable = () => {
         }}
         getRowId={(row) => row.id.toString()}
         actionsRow={{
-          showGlobalFilter: true,
-          showColumnSelect: true,
+          enableGlobalFilterInput: true,
+          enableColumnSelect: true,
         }}
         sorting={{ enableSorting: true }}
         headerConfig={{ sticky: true }}

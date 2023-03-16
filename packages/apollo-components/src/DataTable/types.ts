@@ -23,7 +23,7 @@ export interface HeaderConfig {
 }
 
 export interface FilterConfig {
-  showTableCaption?: boolean
+  enableTableCaption?: boolean
   totalRowCount?: number
   columnSelect?: boolean
   globalFilter?: boolean
@@ -128,10 +128,10 @@ export interface DataTableProps<T> {
   globalFilter?: ControlledState<string>
   columnVisibility?: ControlledState<VisibilityState>
   actionsRow?: {
-    showTableCaption?: boolean
+    enableTableCaption?: boolean
     totalRowCount?: number
-    showColumnSelect?: boolean
-    showGlobalFilter?: boolean
+    enableColumnSelect?: boolean
+    enableGlobalFilterInput?: boolean
     globalFilterPlaceholder?: string
     filterFromLeafRows?: boolean
     customActions?: <T>(table: Table<T>) => ReactNode

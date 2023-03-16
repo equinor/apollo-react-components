@@ -34,7 +34,7 @@ export function UnitEventsTable() {
         sorting={{ enableSorting: true }}
         headerConfig={{ sticky: true }}
         actionsRow={{
-          showColumnSelect: true,
+          enableColumnSelect: true,
           totalRowCount: totalDBRowCount,
           customActions: () => (
             <>

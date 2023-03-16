@@ -22,9 +22,9 @@ export function PokemonTable() {
         sorting={{ enableSorting: true }}
         headerConfig={{ sticky: true }}
         actionsRow={{
-          showGlobalFilter: true,
-          showColumnSelect: true,
-          showTableCaption: true,
+          enableGlobalFilterInput: true,
+          enableColumnSelect: true,
+          enableTableCaption: true,
         }}
       />
     </div>

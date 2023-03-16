@@ -20,8 +20,8 @@ const args: Partial<DataTableProps<unknown>> = {
     sticky: true,
   },
   actionsRow: {
-    showGlobalFilter: true,
-    showTableCaption: true,
+    enableGlobalFilterInput: true,
+    enableTableCaption: true,
   },
 }
 
@@ -48,7 +48,7 @@ export const GlobalFilter: ComponentStoryFn<typeof DataTable<Fruit>> = ({
     data={fruitsData}
     columns={fruitColumns}
     actionsRow={{
-      showGlobalFilter: filters?.showGlobalFilter,
+      enableGlobalFilterInput: filters?.enableGlobalFilterInput,
       globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length
         ? filters.globalFilterPlaceholder
         : 'Forage for fruit',
