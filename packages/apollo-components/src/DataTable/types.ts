@@ -18,20 +18,6 @@ import {
   SetStateAction,
 } from 'react'
 
-export interface HeaderConfig {
-  sticky?: boolean
-}
-
-export interface FilterConfig {
-  enableTableCaption?: boolean
-  totalRowCount?: number
-  columnSelect?: boolean
-  globalFilter?: boolean
-  globalFilterPlaceholder?: string
-  filterFromLeafRows?: boolean
-  customActions?: <T>(table: Table<T>) => ReactNode
-}
-
 export interface TableRowWrapper<T> {
   (props: TableRowWrapperProps<T>): ReactElement
 }
@@ -95,11 +81,11 @@ export interface DataTableProps<T> {
 
   cellConfig?: CellConfig<T>
   rowConfig?: RowConfig<T>
-  headerConfig?: HeaderConfig
 
   isLoading?: boolean
   height?: string
   width?: string
+  stickyHeader?: boolean
   /**
    * Defaults to `'auto'`.
    *
@@ -127,14 +113,22 @@ export interface DataTableProps<T> {
   }
   globalFilter?: ControlledState<string>
   columnVisibility?: ControlledState<VisibilityState>
-  actionsRow?: {
+  /**
+   * Everything that has todo with the area (banner) over the table
+   */
+  bannerConfig?: {
     enableTableCaption?: boolean
     totalRowCount?: number
     enableColumnSelect?: boolean
     enableGlobalFilterInput?: boolean
     globalFilterPlaceholder?: string
     filterFromLeafRows?: boolean
-    customActions?: <T>(table: Table<T>) => ReactNode
+    customActions?: <T>(table: Table<T>) => ReactNode,
+    /**
+     * Default 1rem
+     * Accepts any CSS padding value
+     */
+    padding?: string
   }
   tableContainerProps?: HTMLPropsRef<HTMLDivElement>
   infiniteScroll?: InfiniteScrollConfig

@@ -20,8 +20,8 @@ export function PokemonTable() {
           selectColumn: 'default',
         }}
         sorting={{ enableSorting: true }}
-        headerConfig={{ sticky: true }}
-        actionsRow={{
+        stickyHeader={true}
+        bannerConfig={{
           enableGlobalFilterInput: true,
           enableColumnSelect: true,
           enableTableCaption: true,

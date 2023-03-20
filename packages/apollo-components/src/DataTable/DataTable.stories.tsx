@@ -16,10 +16,8 @@ const args: Partial<DataTableProps<unknown>> = {
   sorting: {
     enableSorting: true,
   },
-  headerConfig: {
-    sticky: true,
-  },
-  actionsRow: {
+  stickyHeader: true,
+  bannerConfig: {
     enableGlobalFilterInput: true,
     enableTableCaption: true,
   },
@@ -40,14 +38,14 @@ export const Basic: ComponentStoryFn<typeof DataTable<Fruit>> = (props) => (
 )
 
 export const GlobalFilter: ComponentStoryFn<typeof DataTable<Fruit>> = ({
-  actionsRow: filters,
+  bannerConfig: filters,
   ...props
 }) => (
   <DataTable
     {...props}
     data={fruitsData}
     columns={fruitColumns}
-    actionsRow={{
+    bannerConfig={{
       enableGlobalFilterInput: filters?.enableGlobalFilterInput,
       globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length
         ? filters.globalFilterPlaceholder

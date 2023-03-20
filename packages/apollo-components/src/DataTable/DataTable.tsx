@@ -13,7 +13,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { TypographyCustom } from '../cells'
 import { BasicTable } from './components/BasicTable'
-import { ActionsHeaderRow } from './components/DataTableHeader'
+import { TableBanner } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
 import { useFetchMoreOnBottomReached } from './hooks'
@@ -46,7 +46,7 @@ const DataTableWrapper = styled.div<DataTableWrapperProps>`
 `
 
 export function DataTable<T>(props: DataTableProps<T>) {
-  const { columns, data, actionsRow, cellConfig, sorting } = props
+  const { columns, data, bannerConfig, cellConfig, sorting } = props
 
   // Column visibility
   const [internalColumnVisibility, setInternalColumnVisibility] = useState<VisibilityState>({})
@@ -62,7 +62,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
     props.globalFilter?.onChange ?? setInternalGlobalFilterState,
   ]
   const shouldEnableGlobalFilter =
-    props.actionsRow?.enableGlobalFilterInput || Boolean(props.globalFilter)
+    props.bannerConfig?.enableGlobalFilterInput || Boolean(props.globalFilter)
   function enableGlobalFilter<T>(value: T) {
     return enableOrUndefined(shouldEnableGlobalFilter, value)
   }
@@ -116,7 +116,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
     enableExpanding: Boolean(props.expansion),
     enableMultiRowSelection: props.rowSelection?.mode === 'multiple',
     enableSubRowSelection: props.rowSelection?.mode !== 'single',
-    filterFromLeafRows: actionsRow?.filterFromLeafRows,
+    filterFromLeafRows: bannerConfig?.filterFromLeafRows,
     getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
@@ -147,10 +147,10 @@ export function DataTable<T>(props: DataTableProps<T>) {
 
   return (
     <DataTableWrapper height={props?.height} width={props?.width} tableLayout={props?.tableLayout}>
-      {props.actionsRow && (
-        <ActionsHeaderRow
+      {props.bannerConfig && (
+        <TableBanner
           table={table}
-          actionsRow={props.actionsRow}
+          bannerConfig={props.bannerConfig}
           globalFilter={{ state: globalFilterState, onChange: setGlobalFilterState }}
           tableCaption={props.tableCaption}
         />
@@ -176,7 +176,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
             rowConfig={rowConfig}
             cellConfig={cellConfig}
             isLoading={isLoading}
-            stickyHeader={props.headerConfig?.sticky}
+            stickyHeader={props.stickyHeader}
           />
         ) : (
           <BasicTable
@@ -185,7 +185,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
             rowConfig={rowConfig}
             cellConfig={cellConfig}
             isLoading={isLoading}
-            stickyHeader={props.headerConfig?.sticky}
+            stickyHeader={props.stickyHeader}
           />
         )}
       </div>

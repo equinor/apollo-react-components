@@ -59,12 +59,13 @@ export const PokemonTable = () => {
           onChange: setRowSelectionState,
         }}
         getRowId={(row) => row.id.toString()}
-        actionsRow={{
+        bannerConfig={{
           enableGlobalFilterInput: true,
           enableColumnSelect: true,
+          enableTableCaption: true
         }}
         sorting={{ enableSorting: true }}
-        headerConfig={{ sticky: true }}
+        stickyHeader={true}
         cellConfig={{
           getShouldHighlight(cell) {
             return cell.column.id === 'name' && cell.row.original.type.includes('Water')

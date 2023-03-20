@@ -2,17 +2,16 @@ import { Typography } from '@equinor/eds-core-react'
 import { search } from '@equinor/eds-icons'
 import { OnChangeFn, Table } from '@tanstack/react-table'
 import styled from 'styled-components'
-import { SetRequired } from 'type-fest'
 import { DebouncedInput } from '../filters'
 import { DataTableProps } from '../types'
 import { ColumnSelect } from './ColumnSelect'
 
-const DataTableHeaderWrapper = styled.div`
+const TableBannerWrapper = styled.div<{padding?: string}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: ${props => props.padding || '1rem'};
 `
 
 const FilterContainer = styled.div`
@@ -25,42 +24,42 @@ const FilterContainer = styled.div`
 interface DataTableHeaderProps<T> {
   table: Table<T>
   tableCaption: string
-  actionsRow: SetRequired<DataTableProps<T>, 'actionsRow'>['actionsRow']
+  bannerConfig: DataTableProps<T>['bannerConfig']
   globalFilter: { state: string; onChange: OnChangeFn<string> }
 }
 
-export function ActionsHeaderRow<T>({
+export function TableBanner<T>({
   table,
-  actionsRow,
+  bannerConfig,
   tableCaption,
   globalFilter,
 }: DataTableHeaderProps<T>) {
   return (
-    <DataTableHeaderWrapper className="--table-caption">
+    <TableBannerWrapper className="--table-caption" padding={bannerConfig?.padding}>
       <FilterContainer className="--filter-container-left">
-        {actionsRow?.enableTableCaption && <Typography variant="h3">{tableCaption}</Typography>}
-        {actionsRow?.customActions?.(table)}
+        {bannerConfig?.enableTableCaption && <Typography variant="h3" as="h2">{tableCaption}</Typography>}
+        {bannerConfig?.customActions?.(table)}
       </FilterContainer>
 
       <FilterContainer className="--filter-container-right">
         <>
-          {actionsRow?.enableGlobalFilterInput && (
+          {bannerConfig?.enableGlobalFilterInput && (
             <DebouncedInput
               value={globalFilter.state}
               icon={search}
-              placeholder={actionsRow.globalFilterPlaceholder ?? 'Search all columns'}
+              placeholder={bannerConfig.globalFilterPlaceholder ?? 'Search all columns'}
               onChange={(value) => globalFilter.onChange(String(value))}
             />
           )}
-          {actionsRow?.enableColumnSelect && <ColumnSelect table={table} />}
-          {actionsRow?.totalRowCount && (
+          {bannerConfig?.enableColumnSelect && <ColumnSelect table={table} />}
+          {bannerConfig?.totalRowCount && (
             <span>
               {table.options.data.length.toLocaleString()} /{' '}
-              {actionsRow.totalRowCount.toLocaleString()} rows
+              {bannerConfig.totalRowCount.toLocaleString()} rows
             </span>
           )}
         </>
       </FilterContainer>
-    </DataTableHeaderWrapper>
+    </TableBannerWrapper>
   )
 }
