@@ -1,5 +1,13 @@
 # jotai-form-example
 
+## 0.4.1
+
+### Patch Changes
+
+- 0b420f5: Renamed props, added object properties, minor changes for better a11ty
+- Updated dependencies [0b420f5]
+  - @equinor/apollo-components@3.0.0
+
 ## 0.4.0
 
 ### Minor Changes
