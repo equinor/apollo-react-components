@@ -32,8 +32,8 @@ export function UnitEventsTable() {
         }}
         getRowId={(row) => row.id.toString()}
         sorting={{ enableSorting: true }}
-        headerConfig={{ sticky: true }}
-        actionsRow={{
+        stickyHeader={true}
+        bannerConfig={{
           enableColumnSelect: true,
           totalRowCount: totalDBRowCount,
           customActions: () => (
