@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.0.0
+
+### Major Changes
+
+- 0b420f5: Renamed props, added object properties, minor changes for better a11ty
+
 ## 2.0.0
 
 ### Major Changes
