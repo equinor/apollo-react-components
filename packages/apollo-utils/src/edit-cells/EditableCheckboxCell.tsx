@@ -1,7 +1,7 @@
 import { Checkbox, EdsProvider } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
 import { Controller, useFormContext } from 'react-hook-form'
-import { FormMeta, useEditMode } from '../formMeta'
+import { FormMeta, useEditMode } from '../form-meta'
 
 export function EditableCheckboxCell<T extends FormMeta>(context: CellContext<T, boolean>) {
   const editMode = useEditMode()

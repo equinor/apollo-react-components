@@ -9,9 +9,9 @@ import {
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table'
+import { TypographyCustom } from 'apollo-common'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { TypographyCustom } from '../cells'
 import { BasicTable } from './components/BasicTable'
 import { TableBanner } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'

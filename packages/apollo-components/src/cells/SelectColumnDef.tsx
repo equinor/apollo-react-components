@@ -1,10 +1,10 @@
 import { Button, Checkbox, Icon, Radio } from '@equinor/eds-core-react'
 import { chevron_down, chevron_up } from '@equinor/eds-icons'
 import { ColumnDef } from '@tanstack/table-core'
+import { stopPropagation } from 'apollo-common'
 import styled from 'styled-components'
 import { SetRequired } from 'type-fest'
 import { DataTableProps } from '../DataTable'
-import { stopPropagation } from './utils'
 
 const CellWrapper = styled.div<{ paddingLeft?: string; rowDepth?: number }>`
   display: flex;
