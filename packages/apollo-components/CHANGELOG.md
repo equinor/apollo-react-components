@@ -1,5 +1,15 @@
 # @equinor/apollo-components
 
+## 3.1.1
+
+### Patch Changes
+
+- 7fa24ff: Move cells to @equinor/apollo-utils and extract common functionality into separate package
+- 7fa24ff: Move react-hook-form to peer deps
+- Updated dependencies [07e344a]
+- Updated dependencies [7fa24ff]
+  - apollo-common@0.1.2
+
 ## 3.1.0
 
 ### Minor Changes
