@@ -1,7 +1,7 @@
 import { tokens } from '@equinor/eds-tokens'
 import { CellContext } from '@tanstack/react-table'
+import { TypographyCustom, TypographyProps } from 'apollo-common'
 import styled, { css } from 'styled-components'
-import { TypographyCustom, TypographyProps } from './TypographyCustom'
 
 type CellWrapperProps = {
   depth: number

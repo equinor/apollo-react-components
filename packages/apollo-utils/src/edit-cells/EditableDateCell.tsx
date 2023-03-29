@@ -1,10 +1,10 @@
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
+import { TypographyCustom } from 'apollo-common'
 import { ChangeEvent, useMemo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
-import { FormMeta, useEditMode } from '../formMeta'
-import { TypographyCustom } from './TypographyCustom'
+import { FormMeta, useEditMode } from '../form-meta'
 import { getHelperTextProps } from './utils'
 
 export interface EditableDateCellProps<T extends FormMeta> extends CellContext<T, unknown> {

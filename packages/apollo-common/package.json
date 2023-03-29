@@ -1,5 +1,5 @@
 {
-  "name": "@equinor/apollo-utils",
+  "name": "apollo-common",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "version": "0.1.1",
@@ -10,23 +10,23 @@
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint . --fix",
     "type-check": "tsc --noEmit",
-    "test": "vitest --run",
+    "test": "vitest --run --pass-with-no-tests",
     "test:watch": "vitest --watch"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "apollo-common": "*",
     "jotai": "^2.0.1",
     "tsup": "^6.6.3",
     "typescript": "^4.9.5",
     "zod": "^3.20.6"
   },
   "peerDependencies": {
+    "@equinor/apollo-components": "^3.0.0",
+    "@equinor/eds-core-react": "^0.27.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.8"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
@@ -37,7 +37,6 @@
     "jsdom": "^21.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.8",
     "vitest": "^0.28.5"
   }
 }

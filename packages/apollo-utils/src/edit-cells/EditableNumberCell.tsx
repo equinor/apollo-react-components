@@ -1,10 +1,10 @@
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
+import { TypographyCustom } from 'apollo-common'
 import { ChangeEvent } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
-import { FormMeta, useEditMode } from '../formMeta'
-import { TypographyCustom } from './TypographyCustom'
+import { FormMeta, useEditMode } from '../form-meta'
 import { getHelperTextProps } from './utils'
 
 export function EditableNumberCell<T extends FormMeta>(context: CellContext<T, number>) {

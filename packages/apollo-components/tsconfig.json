@@ -1,5 +1,9 @@
 {
   "extends": "tsconfig/react-library.json",
-  "include": ["src"],
+  "include": [
+    "src",
+    "../apollo-utils/src/form-meta",
+    "../apollo-common/src/components/PopoverCell.tsx"
+  ],
   "exclude": ["dist", "build", "node_modules"]
 }

@@ -24,7 +24,8 @@
     "@tanstack/react-virtual": "^3.0.0-beta.23",
     "styled-components": "^5.3.7",
     "tsup": "^6.3.0",
-    "type-fest": "^3.6.1"
+    "type-fest": "^3.6.1",
+    "apollo-common": "*"
   },
   "peerDependencies": {
     "@equinor/eds-core-react": "^0.27.0",
@@ -43,7 +44,6 @@
     "@types/styled-components": "^5.1.26",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
-    "react-hook-form": "^7.43.8",
     "storybook": "^7.0.0-alpha.38",
     "tsconfig": "*",
     "typescript": "^4.5.2"

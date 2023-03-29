@@ -1,11 +1,11 @@
 import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
+import { PopoverCell, stopPropagation } from 'apollo-common'
 import { ChangeEvent, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
-import { FormMeta, useEditMode } from '../formMeta'
-import { PopoverCell } from './PopoverCell'
-import { getHelperTextProps, stopPropagation } from './utils'
+import { FormMeta, useEditMode } from '../form-meta'
+import { getHelperTextProps } from './utils'
 
 interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {
   dialogTitle: string

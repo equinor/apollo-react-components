@@ -1,4 +1,5 @@
+export * from 'apollo-common'
+export * from '../../apollo-utils/src/form-meta'
 export { AppShell, AppSidebar } from './AppShell'
 export * from './cells'
 export * from './DataTable'
-export * from './formMeta'

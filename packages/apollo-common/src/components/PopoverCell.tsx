@@ -1,7 +1,7 @@
 import { Popover, Typography } from '@equinor/eds-core-react'
 import { ReactNode, useRef, useState } from 'react'
+import { stopPropagation } from '../utils'
 import { TypographyCustom } from './TypographyCustom'
-import { stopPropagation } from './utils'
 
 interface PopoverCellProps {
   id: string
