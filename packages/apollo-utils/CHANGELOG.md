@@ -1,5 +1,14 @@
 # @equinor/apollo-utils
 
+## 0.1.2
+
+### Patch Changes
+
+- 7fa24ff: Move cells to @equinor/apollo-utils and extract common functionality into separate package
+- Updated dependencies [07e344a]
+- Updated dependencies [7fa24ff]
+  - apollo-common@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

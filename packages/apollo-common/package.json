@@ -2,7 +2,7 @@
   "name": "apollo-common",
   "main": "src/index.ts",
   "types": "src/index.ts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react",
