@@ -1,9 +1,13 @@
 {
   "name": "@equinor/apollo-utils",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
   "version": "0.1.3-beta.3",
   "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
@@ -13,21 +17,17 @@
     "test": "vitest --run",
     "test:watch": "vitest --watch"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "jotai": "^2.0.1",
     "tsup": "^6.6.3",
-    "typescript": "^4.9.5",
     "zod": "^3.20.6"
   },
   "peerDependencies": {
+    "@equinor/eds-core-react": "^0.27.0",
+    "styled-components": "^5.3.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.8",
-    "@equinor/eds-core-react": "^0.27.0",
-    "styled-components": "^5.3.7"
+    "react-hook-form": "^7.43.8"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
@@ -35,10 +35,15 @@
     "@vitest/ui": "^0.28.5",
     "eslint": "^8.34.0",
     "eslint-config-custom": "*",
+    "@types/react": "^18.0.1",
+    "@types/react-dom": "^18.0.1",
+    "@types/styled-components": "^5.1.26",
     "jsdom": "^21.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.8",
-    "vitest": "^0.28.5"
+    "vitest": "^0.28.5",
+    "tsconfig": "*",
+    "typescript": "^4.9.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
