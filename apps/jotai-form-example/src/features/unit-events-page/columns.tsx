@@ -1,6 +1,7 @@
+import { EditableNumberCell } from '@equinor/apollo-utils'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
-import { UnitEvent } from 'mock-data'
-import { ActionsCell, NumberCell } from './components'
+import { ActionsCell } from './components'
+import { UnitEvent } from './types'
 
 const columnHelper = createColumnHelper<UnitEvent>()
 
@@ -23,7 +24,7 @@ export const unitEventColumns: ColumnDef<UnitEvent, any>[] = [
   }),
   columnHelper.accessor('urgency', {
     header: 'Urgency',
-    cell: NumberCell,
+    cell: EditableNumberCell,
   }),
   columnHelper.accessor('reference', {
     header: 'Reference',
