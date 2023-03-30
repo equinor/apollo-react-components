@@ -14,9 +14,6 @@
     "test": "vitest --run --pass-with-no-tests",
     "test:watch": "vitest --watch"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "jotai": "^2.0.1",
     "tsup": "^6.6.3",
