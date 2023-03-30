@@ -1,5 +1,12 @@
 # @equinor/apollo-utils
 
+## 0.1.3
+
+### Patch Changes
+
+- ee213ad: Remove public access for apollo-common
+- 5f2de63: Make common package private
+
 ## 0.1.2
 
 ### Patch Changes
