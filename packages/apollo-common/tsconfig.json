@@ -1,5 +1,0 @@
-{
-  "extends": "tsconfig/vite.json",
-  "include": ["src", "setupTest.ts"],
-  "compilerOptions": { "types": ["vitest/importMeta"] }
-}

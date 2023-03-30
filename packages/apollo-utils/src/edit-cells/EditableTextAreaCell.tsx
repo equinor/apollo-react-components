@@ -1,6 +1,6 @@
+import { PopoverCell, stopPropagation } from '@equinor/apollo-components'
 import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
-import { PopoverCell, stopPropagation } from 'apollo-common'
 import { ChangeEvent, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
@@ -8,11 +8,11 @@ import { FormMeta, useEditMode } from '../form-meta'
 import { getHelperTextProps } from './utils'
 
 interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {
-  dialogTitle: string
+  title: string
 }
 
 export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextAreaProps<T>) {
-  const { dialogTitle, ...context } = props
+  const { title, ...context } = props
 
   const [textareaValue, setTextareaValue] = useState<string>(context.getValue())
   const [open, setOpen] = useState(false)
@@ -22,7 +22,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
   const name = context.column.id
 
   if (!editMode)
-    return <PopoverCell id={name + 'popover'} value={context.getValue()} title="Comment" />
+    return <PopoverCell id={name + 'popover'} value={context.getValue()} title={title} />
 
   const openDialog = () => setOpen(true)
   const closeDialog = () => setOpen(false)
@@ -64,7 +64,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
             style={{ width: 'min(50rem, calc(100vw - 4rem))' }}
           >
             <EDS.Header>
-              <EDS.Title>{dialogTitle}</EDS.Title>
+              <EDS.Title>{title}</EDS.Title>
             </EDS.Header>
             <EDS.Content>
               <TextField
