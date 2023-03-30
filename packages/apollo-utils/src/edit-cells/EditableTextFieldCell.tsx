@@ -1,6 +1,6 @@
+import { TypographyCustom } from '@equinor/apollo-components'
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
-import { TypographyCustom } from 'apollo-common'
 import { Controller, FieldPath, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
 import { FormMeta, useEditMode } from '../form-meta'
