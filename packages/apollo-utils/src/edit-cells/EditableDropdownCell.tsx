@@ -1,9 +1,9 @@
-import { TypographyCustom } from '@equinor/apollo-components'
 import { Autocomplete } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
 import { FormMeta, useEditMode } from '../form-meta'
+import { TypographyCustom } from './TypographyCustom'
 
 export interface Option {
   label: string

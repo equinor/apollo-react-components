@@ -1,6 +1,7 @@
 import { Icon } from '@equinor/eds-core-react'
 import { Variants } from '@equinor/eds-core-react/dist/types/components/types'
 import { error_filled, warning_filled } from '@equinor/eds-icons'
+import { SyntheticEvent } from 'react'
 
 interface GetHelperTextPropsProps {
   error?: { message?: string }
@@ -36,5 +37,13 @@ export function getHelperTextProps({
   return {
     helperText,
     helperIcon: null,
+  }
+}
+
+/** Wrap an event handler and stop event propagation */
+export function stopPropagation<T extends HTMLElement>(handler: (e: SyntheticEvent<T>) => void) {
+  return (e: SyntheticEvent<T>) => {
+    e.stopPropagation()
+    handler(e)
   }
 }
