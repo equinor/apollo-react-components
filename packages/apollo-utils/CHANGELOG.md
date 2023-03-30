@@ -1,5 +1,13 @@
 # @equinor/apollo-utils
 
+## 0.1.3
+
+### Patch Changes
+
+- e1354f0: Move edit cells to apollo-utils
+- Updated dependencies [e1354f0]
+  - @equinor/apollo-components@3.1.2
+
 ## 0.1.2
 
 ### Patch Changes
