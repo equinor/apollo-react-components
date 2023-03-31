@@ -34,7 +34,7 @@ export function UnitEventsTable() {
     setNewRows([])
   }
 
-  console.log(newRows)
+  console.log(data)
 
   return (
     <div>

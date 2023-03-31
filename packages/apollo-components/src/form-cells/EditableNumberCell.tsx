@@ -3,8 +3,8 @@ import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
+import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
-import { TypographyCustom } from './TypographyCustom'
 import { getHelperTextProps } from './utils'
 
 export function EditableNumberCell<T extends FormMeta>(context: CellContext<T, number>) {

@@ -1,5 +1,5 @@
 {
   "extends": "tsconfig/vite.json",
-  "include": ["src", "setupTest.ts"],
+  "include": ["src", "setupTest.ts", "../apollo-components/src/form-meta"],
   "compilerOptions": { "types": ["vitest/importMeta"] }
 }

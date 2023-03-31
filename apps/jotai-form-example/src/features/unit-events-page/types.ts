@@ -1,4 +1,4 @@
-import { FormMeta } from '@equinor/apollo-utils'
+import { FormMeta } from '@equinor/apollo-components'
 import { UnitEvent as UnitEventDto } from 'mock-data'
 import { FieldValues, UseFormReturn } from 'react-hook-form'
 

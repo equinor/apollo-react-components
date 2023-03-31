@@ -1,9 +1,9 @@
-import { TypographyCustom } from '@equinor/apollo-components'
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useMemo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
+import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
 import { getHelperTextProps } from './utils'
 

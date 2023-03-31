@@ -3,8 +3,8 @@ import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import styled from 'styled-components'
+import { PopoverCell } from '../cells/PopoverCell'
 import { FormMeta, useEditMode } from '../form-meta'
-import { PopoverCell } from './PopoverCell'
 import { getHelperTextProps, stopPropagation } from './utils'
 
 interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {

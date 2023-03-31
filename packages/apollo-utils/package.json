@@ -1,6 +1,6 @@
 {
   "name": "@equinor/apollo-utils",
-  "version": "0.1.3-beta.3",
+  "version": "0.1.3-beta.5",
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -26,8 +26,7 @@
     "@equinor/eds-core-react": "^0.27.0",
     "styled-components": "^5.3.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.8"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",

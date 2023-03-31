@@ -1,4 +1,4 @@
-import { EditableNumberCell } from '@equinor/apollo-utils'
+import { EditableNumberCell } from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { ActionsCell } from './components'
 import { UnitEvent } from './types'
