@@ -41,7 +41,7 @@ function newUnitEvent(): UnitEvent {
     isActive: Math.random() > 0.2 ? true : false,
     reference: faker.name.fullName(),
     updatedAt: faker.date.past().toISOString(),
-    urgency: parseInt(faker.random.numeric(3)),
+    urgency: parseInt(faker.random.numeric(2)),
   }
 }
 
@@ -70,8 +70,6 @@ export const fetchData = (start: number, size: number) => {
 
   return {
     data: dbData.slice(start, start + size),
-    meta: {
-      totalRowCount: dbData.length,
-    },
+    totalSize: dbData.length,
   }
 }

@@ -7,13 +7,12 @@ import {
 } from '@equinor/apollo-components'
 import { Button, Icon, Progress } from '@equinor/eds-core-react'
 import { close, edit, save } from '@equinor/eds-icons'
-import { CellContext } from '@tanstack/react-table'
 import { useFormContext, useFormState } from 'react-hook-form'
 import { useUnitEventMutation } from '../hooks/useUnitEventMutation'
 import { UnitEvent } from '../types'
 import { useUnitEventFormContext } from '../UnitEventsFormContext'
 
-export function ActionsCell({ row }: CellContext<UnitEvent, unknown>) {
+export function ActionsCell() {
   const mutatePokemon = useUnitEventMutation()
 
   const { setEditMode } = useUnitEventFormContext()
@@ -40,9 +39,7 @@ export function ActionsCell({ row }: CellContext<UnitEvent, unknown>) {
 
         const isNew = getIsNew()
         console.log(`Mutating ${isNew ? 'new' : 'updated'} Unit Event`, newValues)
-        mutatePokemon(newValues)
-        // if (isNew) await mutatePost([{ valuesBeforeChange, valuesAfterChange }])
-        // else await mutatePut([{ valuesBeforeChange, valuesAfterChange }])
+        await mutatePokemon([newValues])
 
         // Cleanup
         setFormMeta({ _isNew: false })

@@ -10,7 +10,7 @@ export function UnitEventsTable() {
   const { data, isLoading, isFetching, fetchNextPage } = usePokemonQuery()
   const flatData = useMemo(() => data?.pages.flatMap((page) => page.data) ?? [], [data])
 
-  const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0
+  const totalDBRowCount = data?.pages?.[0]?.totalSize ?? 0
   const totalFetched = flatData.length
 
   const canFetchNextPage = !isFetching && totalFetched < totalDBRowCount
@@ -33,8 +33,6 @@ export function UnitEventsTable() {
     setFormsCache({})
     setNewRows([])
   }
-
-  console.log(data)
 
   return (
     <div>

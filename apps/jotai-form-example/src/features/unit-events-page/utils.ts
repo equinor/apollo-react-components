@@ -9,9 +9,10 @@ export const unitEventFormUtils = useFormFamilyUtils(unitEventFormFamily, {
   validator: unitEventValidator,
 })
 
-export function omit<T>(obj: T, key: keyof T) {
-  if (obj[key]) delete obj[key]
-  return obj
+export function omit<T>(obj: T, ...keys: (keyof T)[]) {
+  const updated = { ...obj }
+  keys.forEach((key) => delete updated[key])
+  return updated
 }
 
 export function buildNewUnitEvent(overwrites: Partial<UnitEvent> = {}): Required<UnitEvent> {
@@ -41,3 +42,5 @@ function uuid() {
     Date.now().toString()
   )
 }
+
+export const UNIT_EVENTS_QUERY_KEY = 'unitEvents'

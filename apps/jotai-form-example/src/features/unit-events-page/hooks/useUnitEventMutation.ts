@@ -1,18 +1,15 @@
-import { useQueryClient } from '@tanstack/react-query'
 import { UnitEvent } from 'mock-data'
+import { UNIT_EVENTS_QUERY_KEY } from '../utils'
+import { useInfiniteCache } from './useInfiniteCache'
 
 export function useUnitEventMutation() {
-  const queryClient = useQueryClient()
+  const cache = useInfiniteCache([UNIT_EVENTS_QUERY_KEY])
 
-  return (newValue: UnitEvent) => {
-    queryClient.setQueryData(['allUnitEvents'], (currentUnitEvent?: UnitEvent[]) => {
-      console.log(currentUnitEvent)
+  return async (newValues: UnitEvent[]) => {
+    // Simulate backend call
+    await new Promise((resolve) => setTimeout(resolve, 500))
 
-      if (!currentUnitEvent) return
-      return currentUnitEvent.map((unitEvent) => {
-        if (unitEvent.id === newValue.id) return newValue
-        return unitEvent
-      })
-    })
+    // Update cache
+    cache.update(newValues)
   }
 }
