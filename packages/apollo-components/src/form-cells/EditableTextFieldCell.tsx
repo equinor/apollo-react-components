@@ -20,7 +20,7 @@ export function EditableTextFieldCell<T extends FormMeta>(context: CellContext<T
         <InlineTextField
           id={context.column.id}
           autoComplete="none"
-          value={String(value)}
+          value={String(value ?? '')}
           {...field}
           {...getHelperTextProps({ error })}
         />
