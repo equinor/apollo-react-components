@@ -4,6 +4,7 @@ import { usePokemonQuery } from './hooks'
 
 export function PokemonTable() {
   const { data, isLoading } = usePokemonQuery()
+  console.log('pokemon')
 
   return (
     <div>

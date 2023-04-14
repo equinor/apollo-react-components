@@ -32,14 +32,14 @@ const DataTableWrapper = styled.div<DataTableWrapperProps>`
 
   .--table-container {
     height: ${(props) => props.height ?? '100%'};
-    width: ${(props) => props.width ?? '100%'};
+    width: '100%';
     overflow: auto;
 
     table {
       width: 100%;
 
       // The following attribute is important for fixed column width
-      // CHANGE THES WITH CAUTION
+      // CHANGE THIS WITH CAUTION
       table-layout: ${(props) => props.tableLayout ?? 'auto'};
     }
   }
@@ -169,6 +169,19 @@ export function DataTable<T>(props: DataTableProps<T>) {
         }}
       >
         {props?.virtual ? (
+          /*  <Table>
+            <Table.Caption hidden>{props.tableCaption}</Table.Caption>
+            <TableHeader sticky={props.stickyHeader} table={table} />
+            <VirtualTableBody
+              containerRef={tableContainerRef}
+              tableCaption={props.tableCaption}
+              table={table}
+              rowConfig={rowConfig}
+              cellConfig={cellConfig}
+              isLoading={isLoading}
+              stickyHeader={props.stickyHeader}
+            />
+            </Table> */
           <VirtualTable
             containerRef={tableContainerRef}
             tableCaption={props.tableCaption}

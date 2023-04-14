@@ -8,14 +8,24 @@ type TableRowProps<T> = {
   row: Row<T>
   rowConfig?: RowConfig<T>
   cellConfig?: CellConfig<T>
+  measureElement?: (node: HTMLTableRowElement) => void
+  index?: number
 }
 
-export function TableRow<T>({ row, rowConfig, cellConfig }: TableRowProps<T>) {
+export function TableRow<T>({
+  row,
+  rowConfig,
+  cellConfig,
+  measureElement,
+  index,
+}: TableRowProps<T>) {
   const rowWrapper = rowConfig?.rowWrapper
 
   const tableRowContent = (
     <StyledTableRow
       active={row.getIsSelected()}
+      data-index={index}
+      ref={measureElement}
       style={{
         cursor: rowConfig?.onClick ? 'pointer' : 'initial',
         backgroundColor: rowConfig?.getRowBackground?.(row),
