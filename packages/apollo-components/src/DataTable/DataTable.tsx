@@ -142,8 +142,6 @@ export function DataTable<T>(props: DataTableProps<T>) {
   const { isLoading, rowConfig } = props
   const tableContainerRef = useRef<HTMLDivElement>(null) as MutableRefObject<HTMLDivElement>
 
-  console.log('DataTable', { container: tableContainerRef.current })
-
   // Infinite scroll
   const onTableContainerScroll = useFetchMoreOnBottomReached(
     tableContainerRef,
@@ -177,8 +175,6 @@ export function DataTable<T>(props: DataTableProps<T>) {
         style={{ contain: 'strict' }}
         onScroll={props.tableContainerProps?.onScroll ?? onTableContainerScroll}
         ref={(node: HTMLDivElement) => {
-          console.log({ node })
-
           if (node) {
             tableContainerRef.current = node
             if (props.tableContainerProps?.ref) {

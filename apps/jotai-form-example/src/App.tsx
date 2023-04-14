@@ -1,11 +1,9 @@
 import { AppShell } from '@equinor/apollo-components'
-import { Button } from '@equinor/eds-core-react'
 import { launch } from '@equinor/eds-icons'
-import { Link, ReactLocation, Router } from '@tanstack/react-location'
+import { ReactLocation, Router } from '@tanstack/react-location'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PokemonPage } from './features'
 import { EntryPage } from './features/entry-page'
-import { SwitchPage } from './features/switch-page'
 import { UnitEventsPage } from './features/unit-events-page'
 
 const queryClient = new QueryClient()
@@ -23,39 +21,8 @@ export function App() {
             location={location}
             routes={[
               { path: '/', element: <EntryPage /> },
-              { path: '/switch', element: <SwitchPage /> },
-              {
-                path: '/pokemon',
-                element: (
-                  <>
-                    <>
-                      <Button as={Link} to="/pokemon">
-                        Pokemon
-                      </Button>
-                      <Button as={Link} to="/unit-events">
-                        Unit Events
-                      </Button>
-                    </>
-                    <PokemonPage />
-                  </>
-                ),
-              },
-              {
-                path: '/unit-events',
-                element: (
-                  <>
-                    <>
-                      <Button as={Link} to="/pokemon">
-                        Pokemon
-                      </Button>
-                      <Button as={Link} to="/unit-events">
-                        Unit Events
-                      </Button>
-                    </>
-                    <UnitEventsPage />
-                  </>
-                ),
-              },
+              { path: '/pokemon', element: <PokemonPage /> },
+              { path: '/unit-events', element: <UnitEventsPage /> },
             ]}
           />
         }

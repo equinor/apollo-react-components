@@ -10,14 +10,12 @@ import { TableRow } from './TableRow'
 export interface VirtualTableBodyProps<T> extends BasicTableProps<T> {
   className?: string
   containerRef: RefObject<HTMLDivElement>
-  hasRef?: boolean
 }
 
 export function VirtualTableBody<T>({
   table,
   rowConfig,
   cellConfig,
-  hasRef,
   containerRef,
   ...props
 }: VirtualTableBodyProps<T>) {
@@ -33,7 +31,6 @@ export function VirtualTableBody<T>({
   if (!rowVirtualizer) return null
 
   const virtualRows = rowVirtualizer.getVirtualItems()
-  console.log('VirtualTableBody', { container: containerRef.current, virtualRows, hasRef })
   const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
   const paddingBottom =
     virtualRows.length > 0
