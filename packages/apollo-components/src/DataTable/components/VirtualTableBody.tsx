@@ -9,7 +9,7 @@ import { TableRow } from './TableRow'
 
 export interface VirtualTableBodyProps<T> extends BasicTableProps<T> {
   className?: string
-  containerRef: RefObject<HTMLDivElement>['current']
+  containerRef: RefObject<HTMLDivElement>
   hasRef?: boolean
 }
 
@@ -24,7 +24,7 @@ export function VirtualTableBody<T>({
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    getScrollElement: () => containerRef,
+    getScrollElement: () => containerRef.current,
     estimateSize: () => 48,
     measureElement: (element) => element?.getBoundingClientRect().height,
     overscan: 2,
@@ -33,7 +33,7 @@ export function VirtualTableBody<T>({
   if (!rowVirtualizer) return null
 
   const virtualRows = rowVirtualizer.getVirtualItems()
-  console.log('VirtualTableBody', { container: containerRef, virtualRows, hasRef })
+  console.log('VirtualTableBody', { container: containerRef.current, virtualRows, hasRef })
   const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
   const paddingBottom =
     virtualRows.length > 0
