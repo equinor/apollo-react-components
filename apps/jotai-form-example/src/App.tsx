@@ -5,6 +5,7 @@ import { Link, ReactLocation, Router } from '@tanstack/react-location'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PokemonPage } from './features'
 import { EntryPage } from './features/entry-page'
+import { SwitchPage } from './features/switch-page'
 import { UnitEventsPage } from './features/unit-events-page'
 
 const queryClient = new QueryClient()
@@ -22,6 +23,7 @@ export function App() {
             location={location}
             routes={[
               { path: '/', element: <EntryPage /> },
+              { path: '/switch', element: <SwitchPage /> },
               {
                 path: '/pokemon',
                 element: (

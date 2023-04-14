@@ -1,3 +1,4 @@
+import { Table } from '@equinor/eds-core-react'
 import {
   ExpandedState,
   getCoreRowModel,
@@ -12,9 +13,10 @@ import {
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { TypographyCustom } from '../cells'
+import { TableHeader } from './components'
 import { BasicTable } from './components/BasicTable'
 import { TableBanner } from './components/DataTableHeader'
-import { VirtualTable } from './components/VirtualTable'
+import { VirtualTableBody } from './components/VirtualTableBody'
 import { fuzzyFilter } from './filters'
 import { useFetchMoreOnBottomReached } from './hooks'
 import { DataTableProps, TableLayout } from './types'
@@ -169,7 +171,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
         }}
       >
         {props?.virtual ? (
-          /*  <Table>
+          <Table>
             <Table.Caption hidden>{props.tableCaption}</Table.Caption>
             <TableHeader sticky={props.stickyHeader} table={table} />
             <VirtualTableBody
@@ -181,17 +183,17 @@ export function DataTable<T>(props: DataTableProps<T>) {
               isLoading={isLoading}
               stickyHeader={props.stickyHeader}
             />
-            </Table> */
-          <VirtualTable
-            containerRef={tableContainerRef}
-            tableCaption={props.tableCaption}
-            table={table}
-            rowConfig={rowConfig}
-            cellConfig={cellConfig}
-            isLoading={isLoading}
-            stickyHeader={props.stickyHeader}
-          />
+          </Table>
         ) : (
+          // <VirtualTable
+          //   containerRef={tableContainerRef}
+          //   tableCaption={props.tableCaption}
+          //   table={table}
+          //   rowConfig={rowConfig}
+          //   cellConfig={cellConfig}
+          //   isLoading={isLoading}
+          //   stickyHeader={props.stickyHeader}
+          // />
           <BasicTable
             tableCaption={props.tableCaption}
             table={table}
