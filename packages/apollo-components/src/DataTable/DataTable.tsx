@@ -159,7 +159,8 @@ export function DataTable<T>(props: DataTableProps<T>) {
       )}
       <div
         {...props.tableContainerProps}
-        className={'--table-container ' + props.tableContainerProps?.className ?? ''}
+        className={'--table-container ' + (props.tableContainerProps?.className ?? '')}
+        style={{ contain: 'strict' }}
         onScroll={props.tableContainerProps?.onScroll ?? onTableContainerScroll}
         ref={(node: HTMLDivElement) => {
           if (node) {
