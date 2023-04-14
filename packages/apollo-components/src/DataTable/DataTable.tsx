@@ -141,11 +141,18 @@ export function DataTable<T>(props: DataTableProps<T>) {
   const { isLoading, rowConfig } = props
   const tableContainerRef = useRef<HTMLDivElement>(null) as MutableRefObject<HTMLDivElement>
 
+  console.log('DataTable', { container: tableContainerRef.current })
+
   // Infinite scroll
   const onTableContainerScroll = useFetchMoreOnBottomReached(
     tableContainerRef,
     props.infiniteScroll
   )
+
+  const [hasRef, setHasRef] = useState(false)
+  useEffect(() => {
+    setHasRef(Boolean(tableContainerRef.current))
+  }, [tableContainerRef.current?.toString()])
 
   return (
     <DataTableWrapper height={props?.height} width={props?.width} tableLayout={props?.tableLayout}>
@@ -163,6 +170,8 @@ export function DataTable<T>(props: DataTableProps<T>) {
         style={{ contain: 'strict' }}
         onScroll={props.tableContainerProps?.onScroll ?? onTableContainerScroll}
         ref={(node: HTMLDivElement) => {
+          console.log({ node })
+
           if (node) {
             tableContainerRef.current = node
             if (props.tableContainerProps?.ref) {
@@ -176,8 +185,9 @@ export function DataTable<T>(props: DataTableProps<T>) {
             <Table.Caption hidden>{props.tableCaption}</Table.Caption>
             <TableHeader sticky={props.stickyHeader} table={table} />
             <VirtualTableBody
-              containerRef={tableContainerRef}
+              containerRef={tableContainerRef.current}
               tableCaption={props.tableCaption}
+              hasRef={hasRef}
               table={table}
               rowConfig={rowConfig}
               cellConfig={cellConfig}
