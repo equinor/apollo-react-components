@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.1.3
+
+### Patch Changes
+
+- a5dced5: Fix edge case with rendering wrong amount of table rows
+
 ## 3.1.2
 
 ### Patch Changes
