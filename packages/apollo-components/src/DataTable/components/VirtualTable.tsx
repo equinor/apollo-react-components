@@ -26,6 +26,7 @@ export function VirtualTable<T>({
     count: rows.length,
     estimateSize: () => 48,
     getScrollElement: () => containerRef.current,
+    measureElement: (element) => element?.getBoundingClientRect().height,
     overscan: 5,
   })
 
@@ -45,7 +46,16 @@ export function VirtualTable<T>({
         {rows.length ? (
           virtualRows.map((virtualRow) => {
             const row = rows[virtualRow.index] as Row<T>
-            return <TableRow key={row.id} row={row} rowConfig={rowConfig} cellConfig={cellConfig} />
+            return (
+              <TableRow
+                key={row.id}
+                row={row}
+                rowConfig={rowConfig}
+                cellConfig={cellConfig}
+                index={virtualRow.index}
+                measureElement={rowVirtualizer.measureElement}
+              />
+            )
           })
         ) : (
           <PlaceholderRow isLoading={props.isLoading} />
