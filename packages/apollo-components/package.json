@@ -21,15 +21,15 @@
     "@equinor/eds-tokens": "^0.9.0",
     "@tanstack/match-sorter-utils": "^8.7.6",
     "@tanstack/react-table": "^8.7.6",
-    "@tanstack/react-virtual": "^3.0.0-beta.23",
+    "@tanstack/react-virtual": "^3.0.0-beta.54",
     "tsup": "^6.3.0",
     "type-fest": "^3.6.1"
   },
   "peerDependencies": {
     "@equinor/eds-core-react": "^0.27.0",
-    "styled-components": "^5.3.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.7"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.0-alpha.38",

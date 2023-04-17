@@ -17,6 +17,7 @@ import { TableBanner } from './components/DataTableHeader'
 import { VirtualTable } from './components/VirtualTable'
 import { fuzzyFilter } from './filters'
 import { useFetchMoreOnBottomReached } from './hooks'
+import { useForceRerender } from './hooks/useForceRerender'
 import { DataTableProps, TableLayout } from './types'
 import { enableOrUndefined, getFunctionValueOrDefault, prependSelectColumn } from './utils'
 
@@ -32,14 +33,14 @@ const DataTableWrapper = styled.div<DataTableWrapperProps>`
 
   .--table-container {
     height: ${(props) => props.height ?? '100%'};
-    width: ${(props) => props.width ?? '100%'};
+    width: '100%';
     overflow: auto;
 
     table {
       width: 100%;
 
       // The following attribute is important for fixed column width
-      // CHANGE THES WITH CAUTION
+      // CHANGE THIS WITH CAUTION
       table-layout: ${(props) => props.tableLayout ?? 'auto'};
     }
   }
@@ -145,6 +146,17 @@ export function DataTable<T>(props: DataTableProps<T>) {
     props.infiniteScroll
   )
 
+  // Force rerender table component when tableContainerRef value is set. This is hacky, but fixes
+  // an issue where the table only rendered a few rows. The reason for the bug was that a change in
+  // the tableContainerRef.current does not trigger a rerender. Since the virtualization requires
+  // tableContainerRef.current to be set in order to work properly and the table never got rendered
+  // with the ref defined it led to an edge case bug where only the overscan rendered.
+  // CHANGE WITH CAUTION
+  const forceRerender = useForceRerender()
+  useEffect(() => {
+    if (Boolean(tableContainerRef.current)) forceRerender()
+  }, [tableContainerRef.current === null])
+
   return (
     <DataTableWrapper height={props?.height} width={props?.width} tableLayout={props?.tableLayout}>
       {props.bannerConfig && (
@@ -157,7 +169,8 @@ export function DataTable<T>(props: DataTableProps<T>) {
       )}
       <div
         {...props.tableContainerProps}
-        className={'--table-container ' + props.tableContainerProps?.className ?? ''}
+        className={'--table-container ' + (props.tableContainerProps?.className ?? '')}
+        style={{ contain: 'strict' }}
         onScroll={props.tableContainerProps?.onScroll ?? onTableContainerScroll}
         ref={(node: HTMLDivElement) => {
           if (node) {
