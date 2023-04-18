@@ -27,7 +27,7 @@ export function VirtualTable<T>({
     estimateSize: () => 48,
     getScrollElement: () => containerRef.current,
     measureElement: (element) => element?.getBoundingClientRect().height,
-    overscan: 5,
+    overscan: 20,
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
