@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.1.4
+
+### Patch Changes
+
+- 0bf3251: Increase initial row render count
+
 ## 3.1.3
 
 ### Patch Changes
