@@ -1,4 +1,4 @@
-import { Checkbox, EdsProvider } from '@equinor/eds-core-react'
+import { Checkbox } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
 import { Controller, useFormContext } from 'react-hook-form'
 import { FormMeta, useEditMode } from '../form-meta'
@@ -9,15 +9,13 @@ export function EditableCheckboxCell<T extends FormMeta>(context: CellContext<T,
 
   if (!editMode)
     return (
-      <EdsProvider density="compact">
-        <Checkbox
-          enterKeyHint="next"
-          aria-label="readonly"
-          readOnly={true}
-          checked={context.getValue()}
-          disabled={true}
-        />
-      </EdsProvider>
+      <Checkbox
+        enterKeyHint="next"
+        aria-label="readonly"
+        readOnly={true}
+        checked={context.getValue()}
+        disabled={true}
+      />
     )
 
   return (
@@ -25,9 +23,7 @@ export function EditableCheckboxCell<T extends FormMeta>(context: CellContext<T,
       control={control}
       name={context.column.id}
       render={({ field: { value, ...field } }) => (
-        <EdsProvider density="compact">
-          <Checkbox enterKeyHint="send" aria-label="editable" checked={value} {...field} />
-        </EdsProvider>
+        <Checkbox enterKeyHint="send" aria-label="editable" checked={value} {...field} />
       )}
     />
   )

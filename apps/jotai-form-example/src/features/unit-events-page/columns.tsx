@@ -1,4 +1,8 @@
-import { EditableNumberCell, EditableTextAreaCell } from '@equinor/apollo-components'
+import {
+  EditableCheckboxCell,
+  EditableNumberCell,
+  EditableTextAreaCell,
+} from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { ActionsCell } from './components'
 import { UnitEvent } from './types'
@@ -35,6 +39,7 @@ export const unitEventColumns: ColumnDef<UnitEvent, any>[] = [
   }),
   columnHelper.accessor('isActive', {
     header: 'Active',
+    cell: EditableCheckboxCell,
   }),
   columnHelper.accessor('updatedAt', {
     header: 'Updated',
