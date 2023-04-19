@@ -1,4 +1,5 @@
 import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
+import { arrow_up } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -49,7 +50,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
               {...getHelperTextProps({ error })}
             />
             <IconButton variant="ghost_icon" onClick={stopPropagation(openDialog)}>
-              <Icon name="arrow_up" size={24} style={{ transform: 'rotateZ(45deg)' }} />
+              <Icon data={arrow_up} size={24} style={{ transform: 'rotateZ(45deg)' }} />
             </IconButton>
           </div>
 

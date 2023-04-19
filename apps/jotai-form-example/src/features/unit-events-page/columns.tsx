@@ -1,4 +1,4 @@
-import { EditableNumberCell } from '@equinor/apollo-components'
+import { EditableNumberCell, EditableTextAreaCell } from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { ActionsCell } from './components'
 import { UnitEvent } from './types'
@@ -31,6 +31,7 @@ export const unitEventColumns: ColumnDef<UnitEvent, any>[] = [
   }),
   columnHelper.accessor('comment', {
     header: 'Comment',
+    cell: (context) => <EditableTextAreaCell {...context} title="Comment" />,
   }),
   columnHelper.accessor('isActive', {
     header: 'Active',
