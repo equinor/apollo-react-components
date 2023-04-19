@@ -1,7 +1,7 @@
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useMemo } from 'react'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
 import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
@@ -16,7 +16,6 @@ export function EditableDateCell<T extends FormMeta>(props: EditableDateCellProp
   const rawValue = context.getValue<string>()
 
   const editMode = useEditMode()
-  const { control } = useFormContext()
 
   const formattedValue = useMemo(
     () => dateStringFormatter?.(rawValue) ?? rawValue,
@@ -27,7 +26,6 @@ export function EditableDateCell<T extends FormMeta>(props: EditableDateCellProp
 
   return (
     <Controller
-      control={control}
       name={context.column.id}
       render={({ field: { value, onChange, ...field }, fieldState: { error } }) => (
         <InlineTextField

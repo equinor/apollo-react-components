@@ -2,7 +2,7 @@ import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
 import { arrow_up } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
 import { PopoverCell } from '../cells/PopoverCell'
 import { FormMeta, useEditMode } from '../form-meta'
@@ -18,7 +18,6 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
   const [textareaValue, setTextareaValue] = useState<string>(context.getValue())
   const [open, setOpen] = useState(false)
   const editMode = useEditMode()
-  const { control } = useFormContext()
 
   const name = context.column.id
 
@@ -30,7 +29,6 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
 
   return (
     <Controller
-      control={control}
       name={name}
       render={({ field: { onChange, ref, ...field }, fieldState: { error } }) => (
         <>

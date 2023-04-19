@@ -1,6 +1,6 @@
 import { Autocomplete } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
 
@@ -26,12 +26,11 @@ export function EditableDropdownSingleCell<T extends FormMeta>(
 ) {
   const { options, ...context } = props
   const editMode = useEditMode()
-  const { control } = useFormContext()
+
   if (!editMode) return <TypographyCustom truncate>{context.getValue() as any}</TypographyCustom>
 
   return (
     <Controller
-      control={control}
       name={context.column.id}
       render={({ field: { value, onChange, ...field } }) => {
         const selectedOption =
