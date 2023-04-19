@@ -1,9 +1,11 @@
 import {
   EditableCheckboxCell,
+  EditableDropdownSingleCell,
   EditableNumberCell,
   EditableTextAreaCell,
 } from '@equinor/apollo-components'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
+import { locationOptions } from 'mock-data/src/unit-events/unitEvents'
 import { ActionsCell } from './components'
 import { UnitEvent } from './types'
 
@@ -13,6 +15,12 @@ export const unitEventColumns: ColumnDef<UnitEvent, any>[] = [
   columnHelper.accessor('location', {
     header: 'Location',
     size: 200,
+    cell: (context) => (
+      <EditableDropdownSingleCell
+        options={locationOptions.map((option) => ({ label: option, value: option }))}
+        {...context}
+      />
+    ),
   }),
   columnHelper.accessor('unit', {
     id: 'Unit',

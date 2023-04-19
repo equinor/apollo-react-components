@@ -14,7 +14,7 @@
   "dependencies": {
     "@equinor/apollo-components": "*",
     "@equinor/apollo-utils": "*",
-    "@equinor/eds-core-react": "^0.29.1",
+    "@equinor/eds-core-react": "^0.30.0",
     "@equinor/eds-icons": "^0.18.0",
     "@hookform/resolvers": "^3.0.0",
     "@tanstack/react-location": "^3.7.4",
