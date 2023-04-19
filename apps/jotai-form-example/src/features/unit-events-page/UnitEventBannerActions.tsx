@@ -3,13 +3,17 @@ import { add, remove } from '@equinor/eds-icons'
 import { UnitEvent } from './types'
 import { buildNewUnitEvent } from './utils'
 
-interface UnitEventActionsProps {
+interface UnitEventBannerActionsProps {
   hasEditRows: boolean
   onCancelAll: () => void
   addRows: (rows: UnitEvent[]) => void
 }
 
-export function UnitEventActions({ addRows, onCancelAll, hasEditRows }: UnitEventActionsProps) {
+export function UnitEventBannerActions({
+  addRows,
+  onCancelAll,
+  hasEditRows,
+}: UnitEventBannerActionsProps) {
   const handleAddRow = () => {
     const newUnitEvent = buildNewUnitEvent()
     addRows([newUnitEvent])

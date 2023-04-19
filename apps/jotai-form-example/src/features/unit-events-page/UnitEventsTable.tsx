@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react'
 import { unitEventColumns } from './columns'
 import { usePokemonQuery } from './hooks'
 import { FormsCache, UnitEvent } from './types'
-import { UnitEventActions } from './UnitEventActions'
+import { UnitEventBannerActions } from './UnitEventBannerActions'
 import { UnitEventFormWrapper } from './UnitEventsFormContext'
 
 export function UnitEventsTable() {
@@ -62,7 +62,7 @@ export function UnitEventsTable() {
           totalRowCount: totalDBRowCount,
           customActions: () =>
             isLoading ? null : (
-              <UnitEventActions
+              <UnitEventBannerActions
                 hasEditRows={tableHasEditRows}
                 onCancelAll={handleCancelAll}
                 addRows={handleAddNewRows}
