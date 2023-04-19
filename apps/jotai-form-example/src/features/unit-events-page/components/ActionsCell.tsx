@@ -13,7 +13,7 @@ import { UnitEvent } from '../types'
 import { useUnitEventFormContext } from '../UnitEventsFormContext'
 
 export function ActionsCell() {
-  const mutatePokemon = useUnitEventMutation()
+  const mutateUnitEvent = useUnitEventMutation()
 
   const { setEditMode } = useUnitEventFormContext()
   const { handleSubmit } = useFormContext<UnitEvent>()
@@ -39,7 +39,7 @@ export function ActionsCell() {
 
         const isNew = getIsNew()
         console.log(`Mutating ${isNew ? 'new' : 'updated'} Unit Event`, newValues)
-        await mutatePokemon([newValues])
+        await mutateUnitEvent([newValues])
 
         // Cleanup
         setFormMeta({ _isNew: false })
