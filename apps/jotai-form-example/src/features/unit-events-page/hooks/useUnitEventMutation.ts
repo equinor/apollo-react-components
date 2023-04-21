@@ -1,20 +1,15 @@
-import { FormState } from '@equinor/apollo-utils'
-import { useQueryClient } from '@tanstack/react-query'
 import { UnitEvent } from 'mock-data'
-import { unitEventFormUtils } from '../utils'
+import { UNIT_EVENTS_QUERY_KEY } from '../utils'
+import { useInfiniteCache } from './useInfiniteCache'
 
-export function useUnitEventMutation(unitEvent: UnitEvent) {
-  const queryClient = useQueryClient()
-  const { resetForm } = unitEventFormUtils.useFormMutations(unitEvent)
+export function useUnitEventMutation() {
+  const cache = useInfiniteCache([UNIT_EVENTS_QUERY_KEY])
 
-  return (formState: FormState<UnitEvent>) => {
-    queryClient.setQueryData(['allUnitEvents'], (currentUnitEvent?: UnitEvent[]) => {
-      if (!currentUnitEvent) return
-      return currentUnitEvent.map((unitEvent) => {
-        if (unitEvent.id === formState.values.id) return formState.values
-        return unitEvent
-      })
-    })
-    resetForm()
+  return async (newValues: UnitEvent[]) => {
+    // Simulate backend call
+    await new Promise((resolve) => setTimeout(resolve, 500))
+
+    // Update cache
+    cache.update(newValues)
   }
 }

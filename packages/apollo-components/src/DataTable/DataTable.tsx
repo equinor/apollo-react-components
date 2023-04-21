@@ -106,7 +106,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
         const truncateMode = getFunctionValueOrDefault(cellConfig?.truncateMode, cell, 'hover')
 
         return (
-          <TypographyCustom truncate={truncateMode === 'hover'}>
+          <TypographyCustom truncate={truncateMode === 'hover'} enableShowAllOnHover>
             {cell.getValue() as any}
           </TypographyCustom>
         )

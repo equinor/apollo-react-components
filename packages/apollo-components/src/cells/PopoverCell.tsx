@@ -9,7 +9,7 @@ interface PopoverCellProps {
   title?: string | JSX.Element | ReactNode
 }
 
-export const PopoverCell = (props: PopoverCellProps) => {
+export function PopoverCell(props: PopoverCellProps) {
   const [open, setOpen] = useState(false)
   const anchorRef = useRef<HTMLDivElement>(null)
   const handleClick = () => setOpen(!open)
@@ -17,7 +17,11 @@ export const PopoverCell = (props: PopoverCellProps) => {
 
   return (
     <div style={{ position: 'relative' }} ref={anchorRef}>
-      <TypographyCustom truncate onClick={stopPropagation(handleClick)}>
+      <TypographyCustom
+        onClick={stopPropagation(handleClick)}
+        style={{ cursor: 'pointer' }}
+        truncate
+      >
         {String(props.value)}
       </TypographyCustom>
       <Popover

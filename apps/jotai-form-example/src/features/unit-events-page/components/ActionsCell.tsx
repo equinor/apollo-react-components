@@ -1,40 +1,78 @@
-import { Button, Icon } from '@equinor/eds-core-react'
+import {
+  removeFormMeta,
+  useEditMode,
+  useGetIsNew,
+  useHasRemoteChange,
+  useSetFormMeta,
+} from '@equinor/apollo-components'
+import { Button, Icon, Progress } from '@equinor/eds-core-react'
 import { close, edit, save } from '@equinor/eds-icons'
-import { CellContext } from '@tanstack/react-table'
-import { UnitEvent } from 'mock-data'
+import { useFormContext, useFormState } from 'react-hook-form'
 import { useUnitEventMutation } from '../hooks/useUnitEventMutation'
-import { unitEventFormUtils } from '../utils'
+import { UnitEvent } from '../types'
+import { useUnitEventFormContext } from '../UnitEventsFormContext'
 
-export function ActionsCell({ row }: CellContext<UnitEvent, unknown>) {
-  const pokemonFormState = unitEventFormUtils.useFormState({ id: row.id })
-  const { initializeForm, resetForm } = unitEventFormUtils.useFormMutations({ id: row.id })
-  const mutatePokemon = useUnitEventMutation(row.original)
+export function ActionsCell() {
+  const mutateUnitEvent = useUnitEventMutation()
+
+  const { setEditMode } = useUnitEventFormContext()
+  const { handleSubmit } = useFormContext<UnitEvent>()
+  const { isSubmitting, isValidating } = useFormState<UnitEvent>()
+
+  const hasRemoteChange = useHasRemoteChange()
+  const editMode = useEditMode()
+  const getIsNew = useGetIsNew()
+  const setFormMeta = useSetFormMeta()
 
   function handleEdit() {
-    initializeForm(row.original)
-  }
-
-  function handleSubmit() {
-    if (pokemonFormState) {
-      mutatePokemon(pokemonFormState)
-    }
-    handleCancel()
+    setEditMode(true)
   }
 
   function handleCancel() {
-    resetForm()
+    setEditMode(false)
   }
+
+  const onSubmit = handleSubmit(
+    async (data) => {
+      try {
+        const newValues = removeFormMeta(data)
+
+        const isNew = getIsNew()
+        console.log(`Mutating ${isNew ? 'new' : 'updated'} Unit Event`, newValues)
+        await mutateUnitEvent([newValues])
+
+        // Cleanup
+        setFormMeta({ _isNew: false })
+        setEditMode(false)
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    (errors) => {
+      console.log(errors)
+    }
+  )
+
+  if (!editMode) {
+    return (
+      <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+        <Button variant="ghost_icon" onClick={handleEdit}>
+          <Icon data={edit} />
+        </Button>
+      </div>
+    )
+  }
+
+  const inProgress = isSubmitting || isValidating
+  const disableSaveButton = inProgress || hasRemoteChange
 
   return (
     <div style={{ display: 'inline-flex' }}>
-      <Button
-        variant="ghost_icon"
-        disabled={pokemonFormState && !pokemonFormState?.isValid}
-        onClick={() => (!pokemonFormState ? handleEdit() : handleSubmit())}
-      >
-        <Icon data={!pokemonFormState ? edit : save} />
+      <Button variant="ghost_icon" disabled={disableSaveButton} onClick={onSubmit}>
+        {inProgress ? <Progress.Circular size={24} color="primary" /> : <Icon data={save}></Icon>}
       </Button>
-      <Button variant="ghost_icon" onClick={() => handleCancel()}>
+
+      <Button variant="ghost_icon" disabled={isSubmitting} onClick={handleCancel}>
         <Icon data={close} />
       </Button>
     </div>

@@ -8,6 +8,7 @@ import styled from 'styled-components'
 
 export type TypographyProps = {
   truncate?: boolean
+  enableShowAllOnHover?: boolean
 } & EdsTypographyProps
 
 const truncateStyle: CSSProperties = {
@@ -17,9 +18,9 @@ const truncateStyle: CSSProperties = {
 }
 
 export const TypographyCustom = (props: TypographyProps) => {
-  const { truncate, style: styleFromProps, ...edsTypographyProps } = props
+  const { truncate, enableShowAllOnHover, style: styleFromProps, ...edsTypographyProps } = props
 
-  if (truncate)
+  if (enableShowAllOnHover)
     return (
       <HoverCapture>
         <EdsTypography
@@ -30,6 +31,17 @@ export const TypographyCustom = (props: TypographyProps) => {
           }}
         />
       </HoverCapture>
+    )
+
+  if (truncate)
+    return (
+      <EdsTypography
+        {...edsTypographyProps}
+        style={{
+          ...styleFromProps,
+          ...truncateStyle,
+        }}
+      />
     )
 
   return <EdsTypography {...edsTypographyProps} style={styleFromProps} />

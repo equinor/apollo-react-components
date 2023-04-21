@@ -1,8 +1,7 @@
-import { TypographyCustom } from '@equinor/apollo-components'
 import { Autocomplete } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
-import { Controller, useFormContext } from 'react-hook-form'
-import styled from 'styled-components'
+import { Controller } from 'react-hook-form'
+import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
 
 export interface Option {
@@ -10,7 +9,8 @@ export interface Option {
   value: string
 }
 
-export interface EditableDropdownCellProps<T extends FormMeta> extends CellContext<T, unknown> {
+export interface EditableDropdownSingleCellProps<T extends FormMeta>
+  extends CellContext<T, unknown> {
   /**
    * `Option.value` is used internally to get and update selection state. `Option.label` is *only* for visual purposes.
    */
@@ -21,32 +21,34 @@ function buildEmptyOption(): Option {
   return { label: '', value: '' }
 }
 
-export function EditableDropdownCell<T extends FormMeta>(props: EditableDropdownCellProps<T>) {
+export function EditableDropdownSingleCell<T extends FormMeta>(
+  props: EditableDropdownSingleCellProps<T>
+) {
   const { options, ...context } = props
   const editMode = useEditMode()
-  const { control } = useFormContext()
+
   if (!editMode) return <TypographyCustom truncate>{context.getValue() as any}</TypographyCustom>
 
   return (
     <Controller
-      control={control}
       name={context.column.id}
       render={({ field: { value, onChange, ...field } }) => {
-        const selectedOption = options.find((option) => option.value === value) ?? buildEmptyOption
+        const selectedOption =
+          options.find((option) => option.value === value) ?? buildEmptyOption()
         return (
-          <AutocompleteCustom
+          <Autocomplete
             label=""
             // Casting is due to stying the Autocomplete, plain EDS Autocomplete works
             // Fixed when workaround is not needed anymore
-            selectedOptions={selectedOption && ([selectedOption] as Option[])}
+            selectedOptions={selectedOption && [selectedOption]}
             options={options}
-            optionLabel={(option) => (option as Option)?.label ?? ''}
+            optionLabel={(option) => option?.label ?? ''}
             aria-required
             hideClearButton
             aria-autocomplete="none"
             onOptionsChange={(changes) => {
               const [change] = changes.selectedItems
-              onChange((change as Option)?.value)
+              onChange(change?.value)
             }}
             {...field}
           />
@@ -55,14 +57,3 @@ export function EditableDropdownCell<T extends FormMeta>(props: EditableDropdown
     />
   )
 }
-
-// Requested in https://github.com/equinor/design-system/issues/2804
-export const AutocompleteCustom = styled(Autocomplete)`
-  input[type='text'] {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-right: ${({ hideClearButton }) =>
-      hideClearButton ? `calc(8px + (24px * 1))` : `calc(8px + (24px * 2))`};
-  }
-`

@@ -30,10 +30,12 @@ export const unitEventData: UnitEvent[] = unitEventDb.map((entity) => ({
   updatedAt: entity.updatedAt,
 }))
 
+export const locationOptions = Array.from(Array(4)).map(() => faker.address.country())
+
 function newUnitEvent(): UnitEvent {
   return {
     id: faker.datatype.uuid(),
-    location: faker.address.country(),
+    location: faker.helpers.arrayElement(locationOptions),
     unit: faker.color.human(),
     from: faker.date.past().toISOString(),
     to: faker.date.future().toISOString(),
@@ -41,7 +43,7 @@ function newUnitEvent(): UnitEvent {
     isActive: Math.random() > 0.2 ? true : false,
     reference: faker.name.fullName(),
     updatedAt: faker.date.past().toISOString(),
-    urgency: parseInt(faker.random.numeric(3)),
+    urgency: parseInt(faker.random.numeric(2)),
   }
 }
 
@@ -70,8 +72,6 @@ export const fetchData = (start: number, size: number) => {
 
   return {
     data: dbData.slice(start, start + size),
-    meta: {
-      totalRowCount: dbData.length,
-    },
+    totalSize: dbData.length,
   }
 }

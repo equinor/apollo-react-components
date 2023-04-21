@@ -1,11 +1,12 @@
-import { PopoverCell, stopPropagation } from '@equinor/apollo-components'
 import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
+import { arrow_up } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
+import { PopoverCell } from '../cells/PopoverCell'
 import { FormMeta, useEditMode } from '../form-meta'
-import { getHelperTextProps } from './utils'
+import { getHelperTextProps, stopPropagation } from './utils'
 
 interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {
   title: string
@@ -17,7 +18,6 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
   const [textareaValue, setTextareaValue] = useState<string>(context.getValue())
   const [open, setOpen] = useState(false)
   const editMode = useEditMode()
-  const { control } = useFormContext()
 
   const name = context.column.id
 
@@ -29,7 +29,6 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
 
   return (
     <Controller
-      control={control}
       name={name}
       render={({ field: { onChange, ref, ...field }, fieldState: { error } }) => (
         <>
@@ -49,7 +48,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
               {...getHelperTextProps({ error })}
             />
             <IconButton variant="ghost_icon" onClick={stopPropagation(openDialog)}>
-              <Icon name="arrow_up" size={24} style={{ transform: 'rotateZ(45deg)' }} />
+              <Icon data={arrow_up} size={24} style={{ transform: 'rotateZ(45deg)' }} />
             </IconButton>
           </div>
 
