@@ -1,5 +1,17 @@
 # jotai-form-example
 
+## 0.4.2
+
+### Patch Changes
+
+- d92214a: Implement react-hook-form edit cells
+- Updated dependencies [d92214a]
+- Updated dependencies [d92214a]
+- Updated dependencies [d92214a]
+  - mock-data@1.1.2
+  - @equinor/apollo-utils@0.1.4
+  - @equinor/apollo-components@3.1.5
+
 ## 0.4.1
 
 ### Patch Changes
