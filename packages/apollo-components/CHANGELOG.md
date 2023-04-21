@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.1.5
+
+### Patch Changes
+
+- d92214a: Add editable cells using react-hook-form
+
 ## 3.1.4
 
 ### Patch Changes

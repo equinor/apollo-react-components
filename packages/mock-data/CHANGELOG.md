@@ -1,5 +1,11 @@
 # mock-data
 
+## 1.1.2
+
+### Patch Changes
+
+- d92214a: Implement react-hook-form edit cells
+
 ## 1.1.1
 
 ### Patch Changes

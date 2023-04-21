@@ -1,5 +1,11 @@
 # @equinor/apollo-utils
 
+## 0.1.4
+
+### Patch Changes
+
+- d92214a: Remove edit cells from apollo-utils
+
 ## 0.1.3
 
 ### Patch Changes
