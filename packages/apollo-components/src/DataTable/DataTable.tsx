@@ -40,7 +40,7 @@ interface DataTableWrapperProps {
 function canUseContainStrict(height: string | undefined) {
   if (!height) return false
 
-  const heightIsANumber = !isNaN(parseFloat(height))
+  const heightIsANumber = /^\d+$/.test(height)
   if (heightIsANumber) return false
 
   const heightIsPercentage = height.endsWith('%')
