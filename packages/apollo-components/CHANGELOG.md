@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.1.8
+
+### Patch Changes
+
+- cf72859: Test for only numbers in height unit check
+
 ## 3.1.7
 
 ### Patch Changes
