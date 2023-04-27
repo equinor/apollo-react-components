@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.1.6
+
+### Patch Changes
+
+- 0c0c454: Fix table bug in some build environments
+
 ## 3.1.5
 
 ### Patch Changes
