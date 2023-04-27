@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.1.7
+
+### Patch Changes
+
+- 3a71ebe: Conditionally add contain: strict; to --table-container
+
 ## 3.1.6
 
 ### Patch Changes
