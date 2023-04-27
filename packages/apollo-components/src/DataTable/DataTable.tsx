@@ -28,6 +28,27 @@ interface DataTableWrapperProps {
   tableLayout?: TableLayout
 }
 
+/**
+ * Checks whether height has unit that can be used with `contain: strict;`. The unit has to be a
+ * [dimension](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages)
+ * in order for strict to work. It cannot be a number or percentage.
+ *
+ * The function checks whether the height is a number or percentage. If not, `contain: strict;` can be used.
+ *
+ * @param height string
+ */
+function canUseContainStrict(height: string | undefined) {
+  if (!height) return false
+
+  const heightIsANumber = !isNaN(parseFloat(height))
+  if (heightIsANumber) return false
+
+  const heightIsPercentage = height.endsWith('%')
+  if (heightIsPercentage) return false
+
+  return true
+}
+
 const DataTableWrapper = styled.div<DataTableWrapperProps>`
   width: ${(props) => props.width ?? '100%'};
 
@@ -35,6 +56,7 @@ const DataTableWrapper = styled.div<DataTableWrapperProps>`
     height: ${(props) => props.height ?? '100%'};
     width: '100%';
     overflow: auto;
+    ${(props) => (canUseContainStrict(props.height) ? 'contain: strict;' : '')}
 
     table {
       width: 100%;
@@ -170,7 +192,6 @@ export function DataTable<T>(props: DataTableProps<T>) {
       <div
         {...props.tableContainerProps}
         className={'--table-container ' + (props.tableContainerProps?.className ?? '')}
-        style={{ contain: 'strict' }}
         onScroll={props.tableContainerProps?.onScroll ?? onTableContainerScroll}
         ref={(node: HTMLDivElement) => {
           if (node) {
