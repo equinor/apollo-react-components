@@ -56,6 +56,7 @@ export function UnitEventsTable() {
           enableSorting: true,
           manualSorting: true,
         }}
+        columnResizing="onEnd"
         stickyHeader={true}
         bannerConfig={{
           enableColumnSelect: true,

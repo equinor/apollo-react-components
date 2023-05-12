@@ -135,6 +135,8 @@ export function DataTable<T>(props: DataTableProps<T>) {
         )
       },
     },
+    enableColumnResizing: Boolean(props.columnResizing),
+    columnResizeMode: typeof props.columnResizing === 'boolean' ? 'onChange' : props.columnResizing,
     enableSorting: sorting?.enableSorting,
     manualSorting: sorting?.manualSorting,
     enableExpanding: Boolean(props.expansion),

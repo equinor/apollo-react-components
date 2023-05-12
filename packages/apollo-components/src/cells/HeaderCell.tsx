@@ -1,22 +1,49 @@
-import { CellProps, Icon, Table } from '@equinor/eds-core-react'
+import { CellProps, Icon, Table as EdsTable } from '@equinor/eds-core-react'
 import { arrow_drop_down, arrow_drop_up } from '@equinor/eds-icons'
-import { flexRender, Header } from '@tanstack/react-table'
+import { tokens } from '@equinor/eds-tokens'
+import { flexRender, Header, Table } from '@tanstack/react-table'
 import { AriaAttributes, CSSProperties } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { StickyHeaderCell } from './StickyCell'
 
 interface HeaderCellProps<TData, TValue> {
   header: Header<TData, TValue>
+  table: Table<TData>
 }
 
-const HeaderDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  z-index: 5;
+const resizeCellStyle = css`
+  .resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    opacity: 0;
+    background: #aaa;
+    cursor: col-resize;
+    user-select: none;
+    touch-action: none;
+  }
+
+  .resizer.isResizing {
+    background: ${tokens.colors.interactive.focus.hex};
+    opacity: 1;
+  }
+
+  &:hover .resizer {
+    opacity: 1;
+  }
 `
 
-export const HeaderCell = <TData, TValue>({ header }: HeaderCellProps<TData, TValue>) => {
+const StickyCell = styled(StickyHeaderCell)`
+  ${resizeCellStyle}
+`
+
+const Cell = styled(EdsTable.Cell)`
+  ${resizeCellStyle}
+`
+
+export const HeaderCell = <TData, TValue>({ header, table }: HeaderCellProps<TData, TValue>) => {
   const style: CSSProperties = {
     width: header.column.getSize(),
     zIndex: 10,
@@ -35,20 +62,27 @@ export const HeaderCell = <TData, TValue>({ header }: HeaderCellProps<TData, TVa
    */
   if ((header.column.columnDef.meta as any)?.sticky) {
     return (
-      <StickyHeaderCell key={header.id} {...cellProps}>
-        <HeaderContent header={header} />
-      </StickyHeaderCell>
+      <StickyCell key={header.id} {...cellProps}>
+        <HeaderContent header={header} table={table} />
+      </StickyCell>
     )
   }
 
   return (
-    <Table.Cell key={header.id} {...cellProps}>
-      <HeaderContent header={header} />
-    </Table.Cell>
+    <Cell key={header.id} {...cellProps}>
+      <HeaderContent header={header} table={table} />
+    </Cell>
   )
 }
 
-function HeaderContent<TData, TValue>({ header }: HeaderCellProps<TData, TValue>) {
+const HeaderDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  z-index: 5;
+`
+
+function HeaderContent<TData, TValue>({ header, table }: HeaderCellProps<TData, TValue>) {
   if (header.isPlaceholder) return null
   return (
     <HeaderDiv>
@@ -58,6 +92,20 @@ function HeaderContent<TData, TValue>({ header }: HeaderCellProps<TData, TValue>
         desc: <Icon data={arrow_drop_down} />,
         none: <Icon data={arrow_drop_down} />,
       }[header.column.getIsSorted() as string] ?? null}
+      {table.options.enableColumnResizing && (
+        <div
+          onMouseDown={header.getResizeHandler()}
+          onTouchStart={header.getResizeHandler()}
+          onClick={(e) => e.stopPropagation()}
+          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
+          style={{
+            transform:
+              table.options.columnResizeMode === 'onEnd' && header.column.getIsResizing()
+                ? `translateX(${table.getState().columnSizingInfo.deltaOffset}px)`
+                : '',
+          }}
+        />
+      )}
     </HeaderDiv>
   )
 }

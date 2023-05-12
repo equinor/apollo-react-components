@@ -9,6 +9,7 @@ import {
   Table,
   VisibilityState,
 } from '@tanstack/react-table'
+import { TableOptions } from '@tanstack/table-core/build/lib/types'
 import {
   Dispatch,
   HTMLProps,
@@ -98,7 +99,7 @@ export interface DataTableProps<T> {
   virtual?: boolean
   getRowId?: (originalRow: T, index: number, parent: Row<T> | undefined) => string
   getSubRows?: (originalRow: T) => T[] | undefined
-
+  columnResizing?: boolean | TableOptions<T>['columnResizeMode']
   rowSelection?: Partial<ControlledState<RowSelectionState>> & {
     mode?: RowSelectionMode
     selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
@@ -123,7 +124,7 @@ export interface DataTableProps<T> {
     enableGlobalFilterInput?: boolean
     globalFilterPlaceholder?: string
     filterFromLeafRows?: boolean
-    customActions?: <T>(table: Table<T>) => ReactNode,
+    customActions?: <T>(table: Table<T>) => ReactNode
     /**
      * Default 1rem
      * Accepts any CSS padding value
