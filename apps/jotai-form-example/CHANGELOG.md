@@ -1,5 +1,14 @@
 # jotai-form-example
 
+## 0.4.3
+
+### Patch Changes
+
+- 42c733e: Add resizing to DataTable
+- Updated dependencies [42c733e]
+- Updated dependencies [d996b95]
+  - @equinor/apollo-components@3.2.0
+
 ## 0.4.2
 
 ### Patch Changes

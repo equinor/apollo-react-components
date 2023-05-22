@@ -1,5 +1,12 @@
 # @equinor/apollo-components
 
+## 3.2.0
+
+### Minor Changes
+
+- 42c733e: Add resizing to DataTable
+- d996b95: Add CheckboxCell
+
 ## 3.1.8
 
 ### Patch Changes
