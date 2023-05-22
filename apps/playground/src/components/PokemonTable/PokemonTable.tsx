@@ -58,11 +58,12 @@ export const PokemonTable = () => {
           state: rowSelectionState,
           onChange: setRowSelectionState,
         }}
+        columnResizing
         getRowId={(row) => row.id.toString()}
         bannerConfig={{
           enableGlobalFilterInput: true,
           enableColumnSelect: true,
-          enableTableCaption: true
+          enableTableCaption: true,
         }}
         sorting={{ enableSorting: true }}
         stickyHeader={true}

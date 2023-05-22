@@ -13,7 +13,7 @@ export function TableHeader<T>({ table, sticky }: TableHeaderProps<T>) {
       {table.getHeaderGroups().map((headerGroup) => (
         <Table.Row key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <HeaderCell header={header} key={header.id} />
+            <HeaderCell header={header} key={header.id} table={table} />
           ))}
         </Table.Row>
       ))}
