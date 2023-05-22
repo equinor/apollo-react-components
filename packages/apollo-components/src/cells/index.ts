@@ -1,3 +1,4 @@
+export * from './CheckboxCell'
 export * from './ChipsCell'
 export * from './DynamicCell'
 export * from './HeaderCell'
