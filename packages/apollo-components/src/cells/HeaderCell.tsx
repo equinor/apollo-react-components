@@ -8,6 +8,7 @@ import { StickyHeaderCell } from './StickyCell'
 
 interface HeaderCellProps<TData, TValue> {
   header: Header<TData, TValue>
+  /** Needed for column resizing */
   table: Table<TData>
 }
 
@@ -82,7 +83,7 @@ const HeaderDiv = styled.div`
   z-index: 5;
 `
 
-function HeaderContent<TData, TValue>({ header, table }: HeaderCellProps<TData, TValue>) {
+function HeaderContent<TData, TValue>({ header, table: table }: HeaderCellProps<TData, TValue>) {
   if (header.isPlaceholder) return null
   return (
     <HeaderDiv>
