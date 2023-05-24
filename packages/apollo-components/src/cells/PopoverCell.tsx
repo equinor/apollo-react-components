@@ -22,7 +22,7 @@ export function PopoverCell(props: PopoverCellProps) {
         style={{ cursor: 'pointer' }}
         truncate
       >
-        {String(props.value)}
+        {String(props.value ?? '')}
       </TypographyCustom>
       <Popover
         id={props.id}
@@ -38,7 +38,7 @@ export function PopoverCell(props: PopoverCellProps) {
           </Popover.Title>
         )}
         <Popover.Content>
-          <Typography>{String(props.value)}</Typography>
+          <Typography>{String(props.value ?? '')}</Typography>
         </Popover.Content>
       </Popover>
     </div>
