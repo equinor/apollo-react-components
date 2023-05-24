@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.2.1
+
+### Patch Changes
+
+- a782bdd: Show blank cell instead of null string in PopoverCell
+
 ## 3.2.0
 
 ### Minor Changes
