@@ -17,13 +17,13 @@
     "storybook": "storybook dev"
   },
   "dependencies": {
-    "@equinor/eds-icons": "^0.15.0",
-    "@equinor/eds-tokens": "^0.9.0",
-    "@tanstack/match-sorter-utils": "^8.7.6",
-    "@tanstack/react-table": "^8.7.6",
+    "@equinor/eds-icons": "^0.19.1",
+    "@equinor/eds-tokens": "^0.9.1",
+    "@tanstack/match-sorter-utils": "^8.8.4",
+    "@tanstack/react-table": "^8.9.1",
     "@tanstack/react-virtual": "^3.0.0-beta.54",
-    "tsup": "^6.3.0",
-    "type-fest": "^3.6.1"
+    "tsup": "^6.7.0",
+    "type-fest": "^3.11.0"
   },
   "peerDependencies": {
     "@equinor/eds-core-react": "^0.27.0",
