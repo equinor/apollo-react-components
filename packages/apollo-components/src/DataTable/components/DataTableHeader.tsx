@@ -6,12 +6,12 @@ import { DebouncedInput } from '../filters'
 import { DataTableProps } from '../types'
 import { ColumnSelect } from './ColumnSelect'
 
-const TableBannerWrapper = styled.div<{padding?: string}>`
+const TableBannerWrapper = styled.div<{ padding?: string }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: ${props => props.padding || '1rem'};
+  padding: ${(props) => props.padding || '1rem'};
 `
 
 const FilterContainer = styled.div`
@@ -37,12 +37,17 @@ export function TableBanner<T>({
   return (
     <TableBannerWrapper className="--table-caption" padding={bannerConfig?.padding}>
       <FilterContainer className="--filter-container-left">
-        {bannerConfig?.enableTableCaption && <Typography variant="h3" as="h2">{tableCaption}</Typography>}
-        {bannerConfig?.customActions?.(table)}
+        {bannerConfig?.enableTableCaption && (
+          <Typography variant="h3" as="h2">
+            {tableCaption}
+          </Typography>
+        )}
+        {bannerConfig?.customActionsLeft?.(table) ?? bannerConfig?.customActions?.(table)}
       </FilterContainer>
 
       <FilterContainer className="--filter-container-right">
         <>
+          {bannerConfig?.customActionsRight?.(table)}
           {bannerConfig?.enableGlobalFilterInput && (
             <DebouncedInput
               value={globalFilter.state}

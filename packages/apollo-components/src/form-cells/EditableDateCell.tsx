@@ -1,7 +1,7 @@
 import { TextField } from '@equinor/eds-core-react'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useMemo } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, FieldError } from 'react-hook-form'
 import styled from 'styled-components'
 import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
@@ -9,10 +9,18 @@ import { getHelperTextProps } from './utils'
 
 export interface EditableDateCellProps<T extends FormMeta> extends CellContext<T, unknown> {
   dateStringFormatter?: (date: string) => string
+  /**
+   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over
+   * react-hook-form's validation.
+   */
+  error?: FieldError
 }
 
-export function EditableDateCell<T extends FormMeta>(props: EditableDateCellProps<T>) {
-  const { dateStringFormatter, ...context } = props
+export function EditableDateCell<T extends FormMeta>({
+  dateStringFormatter,
+  error: errorFromProps,
+  ...context
+}: EditableDateCellProps<T>) {
   const rawValue = context.getValue<string>()
 
   const editMode = useEditMode()
@@ -36,7 +44,7 @@ export function EditableDateCell<T extends FormMeta>(props: EditableDateCellProp
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             onChange(e.target.value ? parseISODate(e.target.value) : '')
           }
-          {...getHelperTextProps({ error })}
+          {...getHelperTextProps({ error: errorFromProps ?? error })}
           {...field}
         />
       )}

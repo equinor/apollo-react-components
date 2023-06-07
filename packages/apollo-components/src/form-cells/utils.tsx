@@ -1,19 +1,7 @@
 import { Icon } from '@equinor/eds-core-react'
-import { Variants } from '@equinor/eds-core-react/dist/types/components/types'
 import { error_filled, warning_filled } from '@equinor/eds-icons'
 import { SyntheticEvent } from 'react'
-
-interface GetHelperTextPropsProps {
-  error?: { message?: string }
-  warning?: { message: string }
-  helperText?: string
-}
-
-interface GetHelperTextProps {
-  variant?: Variants
-  helperText?: string
-  helperIcon: JSX.Element | null
-}
+import { GetHelperTextProps, GetHelperTextPropsProps } from './types'
 
 export function getHelperTextProps({
   error,

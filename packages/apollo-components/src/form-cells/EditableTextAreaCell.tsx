@@ -2,7 +2,7 @@ import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
 import { arrow_up } from '@equinor/eds-icons'
 import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, FieldError } from 'react-hook-form'
 import styled from 'styled-components'
 import { PopoverCell } from '../cells/PopoverCell'
 import { FormMeta, useEditMode } from '../form-meta'
@@ -10,11 +10,18 @@ import { getHelperTextProps, stopPropagation } from './utils'
 
 interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {
   title: string
+  /**
+   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over
+   * react-hook-form's validation.
+   */
+  error?: FieldError
 }
 
-export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextAreaProps<T>) {
-  const { title, ...context } = props
-
+export function EditableTextAreaCell<T extends FormMeta>({
+  title,
+  error: errorFromProps,
+  ...context
+}: EdtiableTextAreaProps<T>) {
   const [textareaValue, setTextareaValue] = useState<string>(context.getValue())
   const [open, setOpen] = useState(false)
   const editMode = useEditMode()
@@ -45,7 +52,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
               onChange={onChange}
               ref={ref}
               {...field}
-              {...getHelperTextProps({ error })}
+              {...getHelperTextProps({ error: errorFromProps ?? error })}
             />
             <IconButton variant="ghost_icon" onClick={stopPropagation(openDialog)}>
               <Icon data={arrow_up} size={24} style={{ transform: 'rotateZ(45deg)' }} />
