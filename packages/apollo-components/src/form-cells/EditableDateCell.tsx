@@ -1,18 +1,23 @@
 import { TextField } from '@equinor/eds-core-react'
-import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useMemo } from 'react'
 import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
 import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
+import { EditableCellBaseProps } from './types'
 import { getHelperTextProps } from './utils'
 
-export interface EditableDateCellProps<T extends FormMeta> extends CellContext<T, unknown> {
+export interface EditableDateCellProps<T extends FormMeta>
+  extends EditableCellBaseProps<T, string> {
   dateStringFormatter?: (date: string) => string
 }
 
-export function EditableDateCell<T extends FormMeta>(props: EditableDateCellProps<T>) {
-  const { dateStringFormatter, ...context } = props
+export function EditableDateCell<T extends FormMeta>({
+  dateStringFormatter,
+  error: errorFromProps,
+  onChange: onChangeFromProps,
+  ...context
+}: EditableDateCellProps<T>) {
   const rawValue = context.getValue<string>()
 
   const editMode = useEditMode()
@@ -33,10 +38,12 @@ export function EditableDateCell<T extends FormMeta>(props: EditableDateCellProp
           type="date"
           autoComplete="none"
           value={value ? parseISODate(value) : ''}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            onChange(e.target.value ? parseISODate(e.target.value) : '')
-          }
-          {...getHelperTextProps({ error })}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            const newDateString = e.target.value ? parseISODate(e.target.value) : ''
+            onChange(newDateString)
+            onChangeFromProps?.(newDateString)
+          }}
+          {...getHelperTextProps({ error: errorFromProps ?? error })}
           {...field}
         />
       )}

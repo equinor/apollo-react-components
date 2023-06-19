@@ -1,20 +1,23 @@
 import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
 import { arrow_up } from '@equinor/eds-icons'
-import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
 import { PopoverCell } from '../cells/PopoverCell'
 import { FormMeta, useEditMode } from '../form-meta'
+import { EditableCellBaseProps } from './types'
 import { getHelperTextProps, stopPropagation } from './utils'
 
-interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {
+interface EdtiableTextAreaProps<T extends FormMeta> extends EditableCellBaseProps<T, string> {
   title: string
 }
 
-export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextAreaProps<T>) {
-  const { title, ...context } = props
-
+export function EditableTextAreaCell<T extends FormMeta>({
+  title,
+  error: errorFromProps,
+  onChange: onChangeFromProps,
+  ...context
+}: EdtiableTextAreaProps<T>) {
   const [textareaValue, setTextareaValue] = useState<string>(context.getValue())
   const [open, setOpen] = useState(false)
   const editMode = useEditMode()
@@ -45,7 +48,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
               onChange={onChange}
               ref={ref}
               {...field}
-              {...getHelperTextProps({ error })}
+              {...getHelperTextProps({ error: errorFromProps ?? error })}
             />
             <IconButton variant="ghost_icon" onClick={stopPropagation(openDialog)}>
               <Icon data={arrow_up} size={24} style={{ transform: 'rotateZ(45deg)' }} />
@@ -58,6 +61,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
             onClose={() => {
               closeDialog()
               onChange(textareaValue)
+              onChangeFromProps?.(textareaValue)
             }}
             isDismissable
             style={{ width: 'min(50rem, calc(100vw - 4rem))' }}
@@ -86,6 +90,7 @@ export function EditableTextAreaCell<T extends FormMeta>(props: EdtiableTextArea
                 onClick={() => {
                   closeDialog()
                   onChange(textareaValue)
+                  onChangeFromProps?.(textareaValue)
                 }}
               >
                 Submit

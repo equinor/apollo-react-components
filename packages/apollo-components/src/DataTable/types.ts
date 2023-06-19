@@ -124,7 +124,12 @@ export interface DataTableProps<T> {
     enableGlobalFilterInput?: boolean
     globalFilterPlaceholder?: string
     filterFromLeafRows?: boolean
+    /**
+     * @deprecated Use `customActionsLeft` instead
+     */
     customActions?: <T>(table: Table<T>) => ReactNode
+    customActionsLeft?: <T>(table: Table<T>) => ReactNode
+    customActionsRight?: <T>(table: Table<T>) => ReactNode
     /**
      * Default 1rem
      * Accepts any CSS padding value
