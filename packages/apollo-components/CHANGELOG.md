@@ -1,5 +1,16 @@
 # @equinor/apollo-components
 
+## 3.3.0
+
+### Minor Changes
+
+- 4f3a7e6: Enable custom onChange methods
+
+### Patch Changes
+
+- 279d780: Show blank cell instead of null string in PopoverCell
+- 74ecb33: Support custom errors
+
 ## 3.2.1
 
 ### Patch Changes
