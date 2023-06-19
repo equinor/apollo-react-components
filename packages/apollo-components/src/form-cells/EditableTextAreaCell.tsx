@@ -1,25 +1,21 @@
 import { Button, Dialog as EDS, Icon, TextField } from '@equinor/eds-core-react'
 import { arrow_up } from '@equinor/eds-icons'
-import { CellContext } from '@tanstack/react-table'
 import { ChangeEvent, useState } from 'react'
-import { Controller, FieldError } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
 import { PopoverCell } from '../cells/PopoverCell'
 import { FormMeta, useEditMode } from '../form-meta'
+import { EditableCellBaseProps } from './types'
 import { getHelperTextProps, stopPropagation } from './utils'
 
-interface EdtiableTextAreaProps<T extends FormMeta> extends CellContext<T, string> {
+interface EdtiableTextAreaProps<T extends FormMeta> extends EditableCellBaseProps<T, string> {
   title: string
-  /**
-   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over
-   * react-hook-form's validation.
-   */
-  error?: FieldError
 }
 
 export function EditableTextAreaCell<T extends FormMeta>({
   title,
   error: errorFromProps,
+  onChange: onChangeFromProps,
   ...context
 }: EdtiableTextAreaProps<T>) {
   const [textareaValue, setTextareaValue] = useState<string>(context.getValue())
@@ -65,6 +61,7 @@ export function EditableTextAreaCell<T extends FormMeta>({
             onClose={() => {
               closeDialog()
               onChange(textareaValue)
+              onChangeFromProps?.(textareaValue)
             }}
             isDismissable
             style={{ width: 'min(50rem, calc(100vw - 4rem))' }}
@@ -93,6 +90,7 @@ export function EditableTextAreaCell<T extends FormMeta>({
                 onClick={() => {
                   closeDialog()
                   onChange(textareaValue)
+                  onChangeFromProps?.(textareaValue)
                 }}
               >
                 Submit

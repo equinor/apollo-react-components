@@ -1,23 +1,15 @@
 import { TextField } from '@equinor/eds-core-react'
-import { CellContext } from '@tanstack/react-table'
-import { Controller, FieldError, FieldPath } from 'react-hook-form'
+import { Controller, FieldPath } from 'react-hook-form'
 import styled from 'styled-components'
 import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
+import { EditableCellBaseProps } from './types'
 import { getHelperTextProps } from './utils'
-
-interface EditableTextFieldCellProps<T extends FormMeta> extends CellContext<T, unknown> {
-  /**
-   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over
-   * react-hook-form's validation.
-   */
-  error?: FieldError
-}
 
 export function EditableTextFieldCell<T extends FormMeta>({
   error: errorFromProps,
   ...context
-}: EditableTextFieldCellProps<T>) {
+}: EditableCellBaseProps<T, string>) {
   const editMode = useEditMode()
 
   if (!editMode) return <TypographyCustom truncate>{context.getValue() as any}</TypographyCustom>

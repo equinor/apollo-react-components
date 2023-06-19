@@ -1,9 +1,9 @@
 import { Autocomplete } from '@equinor/eds-core-react'
-import { CellContext } from '@tanstack/react-table'
-import { Controller, FieldError } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { TypographyCustom } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
 import { HelperText } from './FormHelperText'
+import { EditableCellBaseProps } from './types'
 import { getHelperTextProps } from './utils'
 
 export interface Option {
@@ -12,16 +12,12 @@ export interface Option {
 }
 
 export interface EditableDropdownSingleCellProps<T extends FormMeta>
-  extends CellContext<T, unknown> {
+  extends Omit<EditableCellBaseProps<T, unknown>, 'onChange'> {
   /**
    * `Option.value` is used internally to get and update selection state. `Option.label` is *only* for visual purposes.
    */
   options: Option[]
-  /**
-   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over
-   * react-hook-form's validation.
-   */
-  error?: FieldError
+  onChange?: (value: Option) => void
 }
 
 function buildEmptyOption(): Option {
@@ -31,6 +27,7 @@ function buildEmptyOption(): Option {
 export function EditableDropdownSingleCell<T extends FormMeta>({
   options,
   error: errorFromProps,
+  onChange: onChangeFromProps,
   ...context
 }: EditableDropdownSingleCellProps<T>) {
   const editMode = useEditMode()
@@ -58,6 +55,7 @@ export function EditableDropdownSingleCell<T extends FormMeta>({
               onOptionsChange={(changes) => {
                 const [change] = changes.selectedItems
                 onChange(change?.value)
+                onChangeFromProps?.(change)
               }}
               {...field}
             />
