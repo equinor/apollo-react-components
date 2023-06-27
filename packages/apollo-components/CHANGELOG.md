@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.4.0
+
+### Minor Changes
+
+- ba31741: Add the ability to display warning type message by prefixing with the exported `WARNING_PREFIX`
+
 ## 3.3.0
 
 ### Minor Changes
