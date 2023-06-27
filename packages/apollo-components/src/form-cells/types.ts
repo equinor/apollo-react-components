@@ -17,8 +17,7 @@ export interface GetHelperTextProps {
 
 export interface EditableCellBaseProps<T extends FormMeta, Value> extends CellContext<T, Value> {
   /**
-   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over
-   * react-hook-form's validation.
+   * FieldError object used to overwrite react-hook-form validation result. It is prioritized over react-hook-form's validation. If prefixed with the exported `WARNING_PREFIX` it will be displayed as an warning.
    */
   error?: FieldError
   /**
