@@ -3,10 +3,10 @@ import { arrow_up } from '@equinor/eds-icons'
 import { ChangeEvent, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import styled from 'styled-components'
-import { PopoverCell } from '../cells/PopoverCell'
+import { PopoverCell, stopPropagation } from '../cells'
 import { FormMeta, useEditMode } from '../form-meta'
 import { EditableCellBaseProps } from './types'
-import { getHelperTextProps, stopPropagation } from './utils'
+import { getHelperTextProps } from './utils'
 
 interface EdtiableTextAreaProps<T extends FormMeta> extends EditableCellBaseProps<T, string> {
   title: string
