@@ -1,3 +1,4 @@
+import { Column, Table } from '@tanstack/react-table'
 import { SyntheticEvent } from 'react'
 
 /**
@@ -22,4 +23,23 @@ export function stopPropagation<T extends HTMLElement>(handler: (e: SyntheticEve
     e.stopPropagation()
     handler(e)
   }
+}
+
+/** Used for calculating the `right` px value of pinned cells */
+export function getTotalRight<TData>(table: Table<TData>, column: Column<TData>) {
+  return table
+    .getRightLeafHeaders()
+    .slice(column.getPinnedIndex() + 1)
+    .reduce((acc, col) => acc + col.getSize(), 0)
+}
+
+export function getIsFirstRightPinnedColumn<TData>(column: Column<TData>) {
+  return column.getIsPinned() === 'right' && column.getPinnedIndex() === 0
+}
+
+export function getIsLastLeftPinnedColumn<TData>(table: Table<TData>, column: Column<TData>) {
+  return (
+    column.getIsPinned() === 'left' &&
+    table.getLeftLeafHeaders().length - 1 === column.getPinnedIndex()
+  )
 }

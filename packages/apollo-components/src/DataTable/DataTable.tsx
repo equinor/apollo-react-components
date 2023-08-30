@@ -1,4 +1,5 @@
 import {
+  ColumnPinningState,
   ExpandedState,
   getCoreRowModel,
   getExpandedRowModel,
@@ -112,6 +113,17 @@ export function DataTable<T>(props: DataTableProps<T>) {
     props.expansion?.onChange ?? setInternalExpandedState,
   ]
 
+  // Column pinning state
+  const [internalColumnPinning, setInternalColumnPinning] = useState<ColumnPinningState>({})
+  const [columnPinning, setColumnPinning] = [
+    typeof props.columnPinning === 'object' && props.columnPinning.state
+      ? props.columnPinning.state
+      : internalColumnPinning,
+    typeof props.columnPinning === 'object' && props.columnPinning.onChange
+      ? props.columnPinning.onChange
+      : setInternalColumnPinning,
+  ]
+
   const table = useReactTable({
     columns: prependSelectColumn(columns, props.rowSelection),
     data: data,
@@ -123,6 +135,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
       sorting: props.sorting?.enableSorting ? props.sorting?.state ?? sortingState : undefined,
       rowSelection: rowSelectionState,
       columnVisibility,
+      columnPinning,
     },
     defaultColumn: {
       cell: ({ cell }) => {
@@ -143,12 +156,16 @@ export function DataTable<T>(props: DataTableProps<T>) {
     enableMultiRowSelection: props.rowSelection?.mode === 'multiple',
     enableSubRowSelection: props.rowSelection?.mode !== 'single',
     filterFromLeafRows: bannerConfig?.filterFromLeafRows,
+    enablePinning:
+      props.columnPinning !== undefined &&
+      (typeof props.columnPinning === 'boolean' ? props.columnPinning : props.columnPinning.enable),
     getFilteredRowModel: enableGlobalFilter(getFilteredRowModel()),
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onExpandedChange: setExpandedState,
     onRowSelectionChange: setRowSelectionState,
+    onColumnPinningChange: setColumnPinning,
     onSortingChange: sorting?.enableSorting ? sorting?.onChange ?? setSortingState : undefined,
     onColumnVisibilityChange: setColumnVisibility,
     onGlobalFilterChange: enableGlobalFilter(setGlobalFilterState),

@@ -21,10 +21,11 @@ export const pokemonColumns: ColumnDef<Pokemon, any>[] = [
   columnHelper.accessor('base.specialDefense', { header: 'Sp. Defense' }),
   columnHelper.accessor('base.speed', {
     header: 'Speed',
+    id: 'test',
   }),
   columnHelper.display({
     header: 'Actions',
+    enablePinning: true,
     cell: PokemonActionsCell,
-    meta: { sticky: true },
   }),
 ]

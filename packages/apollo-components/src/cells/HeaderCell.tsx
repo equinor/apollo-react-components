@@ -5,6 +5,7 @@ import { flexRender, Header, Table } from '@tanstack/react-table'
 import { AriaAttributes, CSSProperties } from 'react'
 import styled, { css } from 'styled-components'
 import { StickyHeaderCell } from './StickyCell'
+import { getIsFirstRightPinnedColumn, getIsLastLeftPinnedColumn, getTotalRight } from './utils'
 
 interface HeaderCellProps<TData, TValue> {
   header: Header<TData, TValue>
@@ -55,6 +56,38 @@ export const HeaderCell = <TData, TValue>({ header, table }: HeaderCellProps<TDa
     sort: getSort(header),
     onClick: header.column.getToggleSortingHandler(),
     colSpan: header.colSpan,
+  }
+
+  const columnPinningDirection = header.column.getIsPinned()
+  if (columnPinningDirection) {
+    return (
+      <EdsTable.Cell
+        {...cellProps}
+        style={{
+          ...cellProps.style,
+          position: 'sticky',
+          top: 0,
+          zIndex: 11,
+          backgroundClip: 'padding-box',
+          display: 'table-cell',
+          ...(columnPinningDirection === 'left'
+            ? {
+                left: `${header.column.getStart('left')}px`,
+                borderRight: getIsLastLeftPinnedColumn(table, header.column)
+                  ? `1px solid ${tokens.colors.ui.background__medium.hex}`
+                  : undefined,
+              }
+            : {
+                right: `${getTotalRight(table, header.column)}px`,
+                borderLeft: getIsFirstRightPinnedColumn(header.column)
+                  ? `1px solid ${tokens.colors.ui.background__medium.hex}`
+                  : undefined,
+              }),
+        }}
+      >
+        <HeaderContent header={header} table={table} />
+      </EdsTable.Cell>
+    )
   }
 
   /*
