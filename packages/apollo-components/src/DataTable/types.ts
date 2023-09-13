@@ -1,6 +1,7 @@
 import {
   Cell,
   ColumnDef,
+  ColumnPinningState,
   ExpandedState,
   OnChangeFn,
   Row,
@@ -112,6 +113,11 @@ export interface DataTableProps<T> {
     enableSorting?: boolean
     manualSorting?: boolean
   }
+  columnPinning?:
+    | boolean
+    | (ControlledState<ColumnPinningState> & {
+        enable?: boolean
+      })
   globalFilter?: ControlledState<string>
   columnVisibility?: ControlledState<VisibilityState>
   /**
@@ -141,7 +147,7 @@ export interface DataTableProps<T> {
 }
 
 type ControlledState<T> = {
-  state: T
+  state?: T
   /** Callback when state chagnes. Using this requires the state to be fully controlled. */
   onChange?: Dispatch<SetStateAction<T>>
 }

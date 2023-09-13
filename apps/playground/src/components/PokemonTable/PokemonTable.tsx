@@ -59,7 +59,15 @@ export const PokemonTable = () => {
           onChange: setRowSelectionState,
         }}
         columnResizing
+        columnPinning={{
+          enable: true,
+          state: {
+            left: ['name'],
+            right: ['Actions', 'test'],
+          },
+        }}
         getRowId={(row) => row.id.toString()}
+        tableLayout="fixed"
         bannerConfig={{
           enableGlobalFilterInput: true,
           enableColumnSelect: true,
