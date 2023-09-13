@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.5.0
+
+### Minor Changes
+
+- 22a182e: Add column pinning
+
 ## 3.4.0
 
 ### Minor Changes
