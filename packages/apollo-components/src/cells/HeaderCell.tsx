@@ -122,9 +122,9 @@ function HeaderContent<TData, TValue>({ header, table: table }: HeaderCellProps<
     <HeaderDiv>
       {flexRender(header.column.columnDef.header, header.getContext())}
       {{
-        asc: <Icon data={arrow_drop_up} />,
-        desc: <Icon data={arrow_drop_down} />,
-        none: <Icon data={arrow_drop_down} />,
+        asc: <Icon data={arrow_drop_up} style={{ flexShrink: 0 }} />,
+        desc: <Icon data={arrow_drop_down} style={{ flexShrink: 0 }} />,
+        none: <Icon data={arrow_drop_down} style={{ flexShrink: 0 }} />,
       }[header.column.getIsSorted() as string] ?? null}
       {table.options.enableColumnResizing && (
         <div
