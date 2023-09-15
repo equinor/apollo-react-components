@@ -1,5 +1,12 @@
 # @equinor/apollo-components
 
+## 3.5.1
+
+### Patch Changes
+
+- 34c5866: Upgrade @tanstack/react-table
+- c3c9a93: Add no-shrink to short icons
+
 ## 3.5.0
 
 ### Minor Changes
