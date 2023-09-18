@@ -1,4 +1,4 @@
 export * from './components'
-export { DataTable } from './DataTable'
+export * from './DataTable'
 export * from './types'
-export { capitalizeHeader, prependSelectColumn } from './utils'
+export * from './utils'

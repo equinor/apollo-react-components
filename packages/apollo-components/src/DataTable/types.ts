@@ -1,8 +1,12 @@
-import {
+import type {
   Cell,
+  CellContext,
   ColumnDef,
   ColumnPinningState,
+  ColumnResizeMode,
+  ColumnSort,
   ExpandedState,
+  HeaderContext,
   OnChangeFn,
   Row,
   RowSelectionState,
@@ -10,8 +14,7 @@ import {
   Table,
   VisibilityState,
 } from '@tanstack/react-table'
-import { TableOptions } from '@tanstack/table-core/build/lib/types'
-import {
+import type {
   Dispatch,
   HTMLProps,
   MutableRefObject,
@@ -19,6 +22,24 @@ import {
   ReactNode,
   SetStateAction,
 } from 'react'
+
+// Re-exports from react-table
+export type {
+  Cell,
+  CellContext,
+  ColumnDef,
+  ColumnPinningState,
+  ColumnResizeMode,
+  ColumnSort,
+  ExpandedState,
+  HeaderContext,
+  OnChangeFn,
+  Row,
+  RowSelectionState,
+  SortingState,
+  Table,
+  VisibilityState,
+}
 
 export interface TableRowWrapper<T> {
   (props: TableRowWrapperProps<T>): ReactElement
@@ -100,7 +121,7 @@ export interface DataTableProps<T> {
   virtual?: boolean
   getRowId?: (originalRow: T, index: number, parent: Row<T> | undefined) => string
   getSubRows?: (originalRow: T) => T[] | undefined
-  columnResizing?: boolean | TableOptions<T>['columnResizeMode']
+  columnResizing?: boolean | ColumnResizeMode
   rowSelection?: Partial<ControlledState<RowSelectionState>> & {
     mode?: RowSelectionMode
     selectColumn?: 'default' | ((options?: Record<string, any>) => ColumnDef<T, any>)
