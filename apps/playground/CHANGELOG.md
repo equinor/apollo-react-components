@@ -1,5 +1,14 @@
 # playground
 
+## 0.3.1
+
+### Patch Changes
+
+- d073cc3: Upgrade to TypeScript 5.2.2
+- Updated dependencies [d073cc3]
+- Updated dependencies [82a8881]
+  - @equinor/apollo-components@3.5.1
+
 ## 0.3.0
 
 ### Minor Changes
