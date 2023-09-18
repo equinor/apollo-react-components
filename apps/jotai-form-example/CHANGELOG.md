@@ -1,5 +1,16 @@
 # jotai-form-example
 
+## 0.4.4
+
+### Patch Changes
+
+- d073cc3: Upgrade to TypeScript 5.2.2
+- Updated dependencies [d073cc3]
+- Updated dependencies [82a8881]
+  - @equinor/apollo-components@3.5.1
+  - @equinor/apollo-utils@0.1.5
+  - mock-data@1.1.3
+
 ## 0.4.3
 
 ### Patch Changes

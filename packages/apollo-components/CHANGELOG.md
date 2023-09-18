@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- d073cc3: Upgrade to TypeScript 5.2.2
+- 82a8881: Re-export from react-table
+
+## 3.5.1
+
+### Patch Changes
+
 - 34c5866: Upgrade @tanstack/react-table
 - c3c9a93: Add no-shrink to short icons
 

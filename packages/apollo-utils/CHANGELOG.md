@@ -1,5 +1,11 @@
 # @equinor/apollo-utils
 
+## 0.1.5
+
+### Patch Changes
+
+- d073cc3: Upgrade to TypeScript 5.2.2
+
 ## 0.1.4
 
 ### Patch Changes

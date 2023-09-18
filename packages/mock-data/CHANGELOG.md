@@ -1,5 +1,13 @@
 # mock-data
 
+## 1.1.3
+
+### Patch Changes
+
+- d073cc3: Upgrade to TypeScript 5.2.2
+- Updated dependencies [d073cc3]
+  - eslint-config-custom@0.0.1
+
 ## 1.1.2
 
 ### Patch Changes
