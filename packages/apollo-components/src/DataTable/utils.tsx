@@ -1,6 +1,9 @@
-import { Column, ColumnDef, HeaderContext } from '@tanstack/react-table'
+import { Column, ColumnDef, createColumnHelper, HeaderContext } from '@tanstack/react-table'
 import { SelectColumnDef } from '../cells'
 import { DataTableProps } from './types'
+
+// Re-exports from react-table
+export { createColumnHelper }
 
 /**
  * Capitalize the table header.
