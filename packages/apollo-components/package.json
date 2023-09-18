@@ -46,7 +46,7 @@
     "eslint-config-custom": "*",
     "storybook": "^7.0.0-alpha.38",
     "tsconfig": "*",
-    "typescript": "^4.5.2"
+    "typescript": "^5.2.2"
   },
   "publishConfig": {
     "access": "public"
