@@ -24,23 +24,23 @@
   },
   "peerDependencies": {
     "@equinor/eds-core-react": "^0.27.0",
-    "styled-components": "^5.3.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.7"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",
-    "@vitest/ui": "^0.28.5",
-    "eslint": "^8.34.0",
-    "eslint-config-custom": "*",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.1",
     "@types/styled-components": "^5.1.26",
+    "@vitest/ui": "^0.28.5",
+    "eslint": "^8.34.0",
+    "eslint-config-custom": "*",
     "jsdom": "^21.1.0",
-    "vitest": "^0.28.5",
     "tsconfig": "*",
-    "typescript": "^4.9.5"
+    "typescript": "^5.2.2",
+    "vitest": "^0.28.5"
   },
   "publishConfig": {
     "access": "public"
