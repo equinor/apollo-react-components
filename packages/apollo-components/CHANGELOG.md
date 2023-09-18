@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.5.2
+
+### Patch Changes
+
+- 48e1060: Trigger version increment
+
 ## 3.5.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @equinor/apollo-utils
 
+## 0.1.6
+
+### Patch Changes
+
+- 48e1060: Trigger version increment
+
 ## 0.1.5
 
 ### Patch Changes
