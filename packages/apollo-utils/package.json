@@ -20,7 +20,7 @@
   "dependencies": {
     "jotai": "^2.0.1",
     "tsup": "^6.6.3",
-    "zod": "^3.20.6"
+    "zod": "^3.22.3"
   },
   "peerDependencies": {
     "@equinor/eds-core-react": "^0.27.0",
