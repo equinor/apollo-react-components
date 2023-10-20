@@ -84,6 +84,13 @@ export interface CellConfig<T> {
    * ***Note**: This only applies to default cells. Custom cells need custom implementation.*
    */
   truncateMode?: TruncateMode | ((cell: Cell<T, unknown>) => TruncateMode)
+  /**
+   * Manually set the cell background color. Prioritized over highlight color.
+   *
+   * @param cell
+   * @returns color in hex, rgb or rgba, undefined to use default
+   */
+  getCellColor?: (cell: Cell<T, unknown>) => string | undefined
 }
 
 export type RowSelectionMode = 'single' | 'multiple'
