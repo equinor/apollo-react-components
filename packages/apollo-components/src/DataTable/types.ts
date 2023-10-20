@@ -59,6 +59,10 @@ export interface RowConfig<T> {
   onClick?: (row: Row<T>) => void
   onMouseEnter?: (row: Row<T>) => void
   onMouseLeave?: (row: Row<T>) => void
+  /**
+   * Whatever is returned from this function will be added as a data-id attribute on the tr in the dom.
+   */
+  getDataIdAttribute?: (row: Row<T>) => string | undefined
 }
 
 export type TruncateMode = 'wrap' | 'hover'
