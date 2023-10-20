@@ -2,32 +2,38 @@ import { Table as EdsTable } from '@equinor/eds-core-react'
 import { tokens } from '@equinor/eds-tokens'
 import { Cell, flexRender } from '@tanstack/react-table'
 import styled from 'styled-components'
+import { CellConfig } from '../DataTable'
 import { StickyCell } from './StickyCell'
 import { getIsFirstRightPinnedColumn, getIsLastLeftPinnedColumn, getTotalRight } from './utils'
 
 type TableCellProps<T> = {
   cell: Cell<T, unknown>
-  highlight?: boolean
-  getStickyCellColor?: (cell: Cell<T, unknown>) => string
+  cellConfig?: CellConfig<T>
 }
 
 type StyledStickyCellProps = {
-  highlight?: boolean
   backgroundColor?: string
 }
 
 export const StyledStickyCell = styled(StickyCell)<StyledStickyCellProps>`
-  background-color: ${({ backgroundColor: bg }) => (bg ? `${bg} !important` : `inherit`)};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? `${backgroundColor} !important` : `inherit`};
 `
 
-const StyledCell = styled(EdsTable.Cell)<{ backgroundColor?: string }>`
-  background-color: ${({ backgroundColor: bg }) => (bg ? `${bg} !important` : `inherit`)};
+const StyledCell = styled(EdsTable.Cell)<StyledStickyCellProps>`
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? `${backgroundColor} !important` : `inherit`};
 `
 /* TODO: Investigate why app crashes when this component is loaded in PokemonTable  */
-export function DynamicCell<T>({ cell, highlight, getStickyCellColor }: TableCellProps<T>) {
+export function DynamicCell<T>({ cell, cellConfig }: TableCellProps<T>) {
   const cellContent = flexRender(cell.column.columnDef.cell, cell.getContext())
 
   const columnPinningDirection = cell.column.getIsPinned()
+  const stickyCellColor = cellConfig?.getStickyCellColor?.(cell)
+  const regularCellColor =
+    cellConfig?.getCellColor?.(cell) ??
+    (cellConfig?.getShouldHighlight?.(cell) ? '#d5eaf4' : undefined)
+
   if (columnPinningDirection) {
     return (
       <EdsTable.Cell
@@ -35,7 +41,7 @@ export function DynamicCell<T>({ cell, highlight, getStickyCellColor }: TableCel
         style={{
           position: 'sticky',
           top: 0,
-          backgroundColor: getStickyCellColor?.(cell) ?? 'inherit',
+          backgroundColor: stickyCellColor ?? 'inherit',
           zIndex: 5,
           backgroundClip: 'padding-box',
           display: 'table-cell',
@@ -65,14 +71,14 @@ export function DynamicCell<T>({ cell, highlight, getStickyCellColor }: TableCel
    */
   if ((cell.column.columnDef.meta as any)?.sticky) {
     return (
-      <StyledStickyCell backgroundColor={getStickyCellColor?.(cell)} data-column={cell.column.id}>
+      <StyledStickyCell backgroundColor={stickyCellColor} data-column={cell.column.id}>
         {cellContent}
       </StyledStickyCell>
     )
   }
 
   return (
-    <StyledCell data-column={cell.column.id} backgroundColor={highlight ? '#d5eaf4' : undefined}>
+    <StyledCell data-column={cell.column.id} backgroundColor={regularCellColor}>
       {cellContent}
     </StyledCell>
   )

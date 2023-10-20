@@ -37,12 +37,7 @@ export function TableRow<T>({
       onMouseLeave={handleRowEvent(row, rowConfig?.onMouseLeave)}
     >
       {row.getVisibleCells().map((cell) => (
-        <DynamicCell
-          cell={cell}
-          key={cell.id}
-          getStickyCellColor={cellConfig?.getStickyCellColor}
-          highlight={cellConfig?.getShouldHighlight?.(cell)}
-        />
+        <DynamicCell cell={cell} key={cell.id} cellConfig={cellConfig} />
       ))}
     </StyledTableRow>
   )
