@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.6.0
+
+### Minor Changes
+
+- 06d8f02: Add data-id to tr dom element by passing `rowConfig.getDataIdAttribute`
+
 ## 3.5.2
 
 ### Patch Changes
