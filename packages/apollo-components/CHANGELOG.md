@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.6.1
+
+### Patch Changes
+
+- 0e517b9: Set cell color by returning hex, rgb or rgba from `cellConfig.getCellColor`
+
 ## 3.6.0
 
 ### Minor Changes
