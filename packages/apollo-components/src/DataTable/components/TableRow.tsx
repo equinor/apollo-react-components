@@ -20,11 +20,13 @@ export function TableRow<T>({
   index,
 }: TableRowProps<T>) {
   const rowWrapper = rowConfig?.rowWrapper
+  const dataIdValue = rowConfig?.getDataIdAttribute?.(row)
 
   const tableRowContent = (
     <StyledTableRow
       active={row.getIsSelected()}
       data-index={index}
+      data-id={dataIdValue}
       ref={measureElement}
       style={{
         cursor: rowConfig?.onClick ? 'pointer' : 'initial',
