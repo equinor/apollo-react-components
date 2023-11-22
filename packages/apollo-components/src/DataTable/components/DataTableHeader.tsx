@@ -56,7 +56,7 @@ export function TableBanner<T>({
               onChange={(value) => globalFilter.onChange(String(value))}
             />
           )}
-          {bannerConfig?.enableColumnSelect && <ColumnSelect table={table} />}
+          {bannerConfig?.enableColumnSelect && <ColumnSelect table={table} columnSelectPlaceholder={bannerConfig.columnSelectPlaceholder} />}
           {bannerConfig?.totalRowCount && (
             <span>
               {table.options.data.length.toLocaleString()} /{' '}
