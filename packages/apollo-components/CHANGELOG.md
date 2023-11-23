@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.7.0
+
+### Minor Changes
+
+- 6b4c91d: support select column button text
+
 ## 3.6.1
 
 ### Patch Changes
