@@ -1,4 +1,4 @@
-import { Button, Checkbox, Divider, Icon, Popover, Tooltip } from '@equinor/eds-core-react'
+import { Button, Checkbox, Divider, Icon, Popover, Tooltip } from "@equinor/eds-core-react";
 import { close, view_column } from '@equinor/eds-icons'
 import { Table } from '@tanstack/react-table'
 import { useRef, useState } from 'react'
@@ -19,26 +19,32 @@ const ActionsWrapper = styled.div`
 `
 
 interface ColumnSelectProps<T> {
-  table: Table<T>
+  table: Table<T>;
+  columnSelectPlaceholder?: string
 }
 
-export function ColumnSelect<T>({ table }: ColumnSelectProps<T>) {
+export function ColumnSelect<T>({ table, columnSelectPlaceholder }: ColumnSelectProps<T>) {
   const [isOpen, setIsOpen] = useState(false)
   const referenceElement = useRef<HTMLButtonElement>(null)
   const selectableColumns = table.getAllLeafColumns().filter((column) => column.id !== 'select')
 
   return (
     <>
-      <Tooltip title="Select columns" placement="left">
+      <Tooltip
+        // empty string internally set to shouldOpen = false.
+        title={columnSelectPlaceholder ? '' : 'Select columns'}
+        placement="left"
+      >
         <Button
           aria-haspopup
           id="column-select-anchor"
           aria-controls="column-select-popover"
           aria-expanded={isOpen}
           ref={referenceElement}
-          variant="ghost_icon"
+          variant={columnSelectPlaceholder ? "ghost" : "ghost_icon"}
           onClick={() => setIsOpen(true)}
         >
+          {columnSelectPlaceholder}
           <Icon name="view_column" data={view_column} />
         </Button>
       </Tooltip>

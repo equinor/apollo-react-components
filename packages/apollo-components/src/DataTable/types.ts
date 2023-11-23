@@ -161,6 +161,7 @@ export interface DataTableProps<T> {
     enableColumnSelect?: boolean
     enableGlobalFilterInput?: boolean
     globalFilterPlaceholder?: string
+    columnSelectPlaceholder?: string
     filterFromLeafRows?: boolean
     /**
      * @deprecated Use `customActionsLeft` instead

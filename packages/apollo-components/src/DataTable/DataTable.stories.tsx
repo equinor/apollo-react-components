@@ -26,6 +26,7 @@ const args: Partial<DataTableProps<unknown>> = {
 export default {
   title: 'DataTable/DataTable',
   component: DataTable,
+
   args,
   argTypes: {
     data: disableControl(),
@@ -46,6 +47,43 @@ export const GlobalFilter: ComponentStoryFn<typeof DataTable<Fruit>> = ({
     data={fruitsData}
     columns={fruitColumns}
     bannerConfig={{
+      enableGlobalFilterInput: filters?.enableGlobalFilterInput,
+      globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length
+        ? filters.globalFilterPlaceholder
+        : 'Forage for fruit',
+    }}
+  />
+)
+
+export const ColumnSelect: ComponentStoryFn<typeof DataTable<Fruit>> = ({
+ bannerConfig: filters,
+ ...props
+}) => (
+  <DataTable
+    {...props}
+    data={fruitsData}
+    columns={fruitColumns}
+    bannerConfig={{
+      enableColumnSelect: true,
+      enableGlobalFilterInput: filters?.enableGlobalFilterInput,
+      globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length
+        ? filters.globalFilterPlaceholder
+        : 'Forage for fruit',
+    }}
+  />
+)
+
+export const ColumnSelectPlaceholder: ComponentStoryFn<typeof DataTable<Fruit>> = ({
+  bannerConfig: filters,
+  ...props
+}) => (
+  <DataTable
+    {...props}
+    data={fruitsData}
+    columns={fruitColumns}
+    bannerConfig={{
+      enableColumnSelect: true,
+      columnSelectPlaceholder: 'Select columns',
       enableGlobalFilterInput: filters?.enableGlobalFilterInput,
       globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length
         ? filters.globalFilterPlaceholder
