@@ -55,6 +55,7 @@ const HoverCapture = styled.div`
   width: 100%;
 
   &:hover {
+    height: inherit;
     z-index: 1;
   }
 
@@ -66,8 +67,13 @@ const HoverCapture = styled.div`
   &:hover > * {
     width: auto;
     z-index: 1;
-    padding: 0.5em 1em;
-    margin: -0.5em -1em;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: -1em;
+    margin-right: -1em;
 
     background-color: inherit;
   }
