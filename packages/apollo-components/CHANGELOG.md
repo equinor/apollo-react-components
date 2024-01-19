@@ -1,5 +1,11 @@
 # @equinor/apollo-components
 
+## 3.7.1
+
+### Patch Changes
+
+- 361486c: Improve `TypographyCustom` height
+
 ## 3.7.0
 
 ### Minor Changes
