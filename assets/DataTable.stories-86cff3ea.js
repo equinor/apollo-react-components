@@ -95,6 +95,7 @@ import{_,t as C,m as Hr,s as v,a as V,j as f,C as $,b as We,c as se,d as je,u as
   width: 100%;
 
   &:hover {
+    height: inherit;
     z-index: 1;
   }
 
@@ -106,8 +107,13 @@ import{_,t as C,m as Hr,s as v,a as V,j as f,C as $,b as We,c as se,d as je,u as
   &:hover > * {
     width: auto;
     z-index: 1;
-    padding: 0.5em 1em;
-    margin: -0.5em -1em;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: -1em;
+    margin-right: -1em;
 
     background-color: inherit;
   }
@@ -267,4 +273,4 @@ React table utility function.`,displayName:"capitalizeHeader",props:{}}}catch{}t
   enableGlobalFilterInput: filters?.enableGlobalFilterInput,
   globalFilterPlaceholder: filters?.globalFilterPlaceholder?.length ? filters.globalFilterPlaceholder : 'Forage for fruit'
 }} />`,...(Jn=(Qn=Ae.parameters)==null?void 0:Qn.docs)==null?void 0:Jn.source}}};const ss=["Basic","GlobalFilter","ColumnSelect","ColumnSelectPlaceholder"];export{ke as Basic,Ie as ColumnSelect,Ae as ColumnSelectPlaceholder,Fe as GlobalFilter,ss as __namedExportsOrder,ls as default};
-//# sourceMappingURL=DataTable.stories-59ed82bb.js.map
+//# sourceMappingURL=DataTable.stories-86cff3ea.js.map
