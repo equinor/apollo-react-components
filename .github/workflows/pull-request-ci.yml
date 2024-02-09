@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
-          cache: 'yarn'
+          node-version: 20
+          cache: yarn
 
       - name: 📦 Install Dependencies
         run: yarn install --frozen-lockfile --prefer-offline
